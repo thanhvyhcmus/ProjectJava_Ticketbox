@@ -5,8 +5,14 @@ package Model;
     protected String password;
    
     
-    
-
+    Login_Infor() {
+        username="";
+        password="";
+    }
+    Login_Infor(String username, String password) {
+        this.username=username;
+        this.password=password;
+    }
     public boolean check_password(String pass)
     {
         if (pass.equals(password))
