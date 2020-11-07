@@ -54,6 +54,9 @@ public class Showtime {
             return false;
         return seats[row][col];
     }
+    public boolean check_title(String title) {
+        return(get_title().equals(title));
+    }
 
     
 
