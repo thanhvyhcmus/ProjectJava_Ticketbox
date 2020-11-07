@@ -1,11 +1,7 @@
 package Model;
 
-public class Admin extends User {
+public class Admin extends Login_Infor {
 
-    @Override
-    public boolean isAdmin() {
-        // TODO Auto-generated method stub
-        return true;
-    }
+
     
 }

@@ -1,7 +1,6 @@
 package Model;
 
- public abstract class User {
-    protected String ID;
+ public abstract class Login_Infor {
     protected String username;
     protected String password;
    
@@ -20,5 +19,10 @@ package Model;
             return true;
         return false;
     }
-    abstract public boolean isAdmin();
+    public boolean is_admin()
+    {
+        if(username.equals("admin"))
+            return true;
+        return false;
+    }   
 }

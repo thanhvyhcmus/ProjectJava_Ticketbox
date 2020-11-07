@@ -1,8 +1,5 @@
 package Model;
 
-public class Customer  extends User{
-    public boolean isAdmin()
-    {
-        return false;
-    }
+public class Customer  extends Login_Infor{
+
 }
