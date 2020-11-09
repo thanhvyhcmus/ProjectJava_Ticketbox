@@ -1,23 +1,19 @@
 package Model;
 
-public class Customer  extends Login_Infor{
-    int id;
-    String full_name;
-    String doB;
+public class Customer  extends User{
     int points;
+    String favouriteGenre;
     Customer()
     {
-        id = 0;
-        full_name = null;
-        doB = null;
+        super();
         points = 0;
+        favouriteGenre = null;
     }
-    Customer(int id, String full_name, String doB)
+    Customer(String id,String fullname, String doB,String phone,String username, String password,String genre)
     {
-        this.id = id;
-        this.full_name = full_name;
-        this.doB = doB;
+        super(id, fullname, doB, phone, username, password);
         points = 0;
+        this.favouriteGenre=genre;
     }
     public void addPoints(int points)
     {
@@ -27,11 +23,9 @@ public class Customer  extends Login_Infor{
     {
         return points;
     }
-    public void set_full_name(String full_name)
+    public void set_favorite(String genre)
     {
-        this.full_name = full_name;
+        favouriteGenre =genre;
     }
-    public void set_doB(String doB){
-        this.doB = doB;
-    }
+
 }
