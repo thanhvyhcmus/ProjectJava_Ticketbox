@@ -12,4 +12,4 @@ sau </poperties>
 *Sau khi có lib rồi Muốn kết nối đc với mysql:
 _ tải mysql server và workbench về rồi vào mysql workbench thực hiện mấy dòng lệnh trong file database.sql t gửi để tạo data
 _trong class JDBCConnection thuoc class DAO mn sửa lại username và pass giống cái mn cài trong mysql á
-_Vậy là chạy đc rồi
+_Vậy là chạy đc rồi test lại bằng việc gọi hàm getJDBCCOnnection nếu có xuất hiện thông báo conneted successfully thì OK
