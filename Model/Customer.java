@@ -1,27 +1,27 @@
 package Model;
 
 public class Customer  extends User{
-    int points;
+    int point;
     String favouriteGenre;
     Customer()
     {
         super();
-        points = 0;
+        point = 0;
         favouriteGenre = null;
     }
     Customer(String id,String fullname, String doB,String phone,String username, String password,String genre)
     {
         super(id, fullname, doB, phone, username, password);
-        points = 0;
+        point = 0;
         this.favouriteGenre=genre;
     }
     public void addPoints(int points)
     {
-        this.points += points;
+        this.point += points;
     }
-    public int get_points()
+    public int getPoints()
     {
-        return points;
+        return point;
     }
     public void set_favorite(String genre)
     {

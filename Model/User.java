@@ -25,44 +25,48 @@ package Model;
         this.username=username;
         this.password=password;
     }
-    public boolean check_password(String pass)
+    public boolean checkPassword(String pass)
     {
         if (pass.equals(password))
             return true;
         return false;
     }
-    public boolean check_username(String username)
+    public boolean checkUserName(String username)
     {
         if(username.equals(this.username))
             return true;
         return false;
     }
-    public boolean is_admin()
+    public boolean IsAdmin()
     {
         if(username.equals("admin"))
             return true;
         return false;
     }
-    public void set_doB(String doB)
+    public void setUserName(String username)
+    {
+        this.username = username;
+    }
+    public void setDoB(String doB)
     {
         this.doB = doB;
     }   
-    public void set_full_name(String full_name)
+    public void setFullName(String full_name)
     {
         this.fullname=full_name;
     }
-    public String get_doB()
+    public String getDoB()
     {
         return this.doB;
     }
-    public String get_fullname()
+    public String getFullname()
     {
         return this.fullname;
     }
-    public String get_phone(){
+    public String getPhone(){
         return phone;
     }
-    public String get_id()
+    public String getId()
     {
         return id;
     }

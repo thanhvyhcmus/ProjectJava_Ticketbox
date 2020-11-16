@@ -3,27 +3,26 @@ package Model;
 import java.util.ArrayList;
 
 public class Theater {
+    String id;
     String name;
     ArrayList<Showtime> schedule;
-    Theater(String name) {
+    String address;
+    Theater(String id,String name,String address,ArrayList<Showtime> schedule) {
         this.name=name;
-        schedule=new ArrayList<Showtime>();
+        this.id=id;
+        this.address=address;
+        this.schedule=schedule;
     }
     public void add_Showtime(Showtime showtime)
     {
         this.schedule.add(showtime);
     }
-    public Showtime search_Showtime(String name) {
-        for (Showtime showtime : schedule) {
-            if(showtime.check_title(name))
-                return showtime;
-        }
-        return null;
+    public void setID(String id)
+    {
+        this.id=id;
     }
-    public void delete_Showtime(String name) {
-        Showtime temp =search_Showtime(name);
-        if (temp != null) {
-            schedule.remove(temp);
-        }
+    public String getID()
+    {
+        return id;
     }
 }

@@ -1,61 +1,50 @@
 package Model;
 
-public class Showtime {
-    Film film;
-    String startTime;
-    boolean[][] seats; // Nếu là false có nghĩa là còn chỗ trống
+import java.util.ArrayList;
 
-    public Showtime( Film film,String startTime,int row,int col) {
+public class Showtime {
+    String id;
+    Film film;
+    Theater theater;
+    String startTime;
+    ArrayList<ArrayList<Boolean>> seats; // Nếu là false có nghĩa là còn chỗ trống
+
+    public Showtime( String id,Theater theater,Film film,String startTime,int row,int col) {
+        this.id=id;
         this.film=film;
         this.startTime=startTime;
-        seats = new boolean[row][col];
-        for(int i=0;i<seats.length;i++) {
+        this.theater=theater;
+        seats = new ArrayList<ArrayList<Boolean>>();
+        for(int i=0;i<row;i++) {
+            seats.add(new ArrayList<Boolean>());
             for(int j=0;j<col;j++) {
-                seats[i][j]=false;
+                seats.get(i).add(false);
             }
         }
     }
-    public boolean buy_ticket(int row, int col) {
-        if(row>seats.length ||col>seats[0].length ||row<0 ||col<0)
-            return false;
-        else
-        {
-            if(seats[row][col]==false)
-                {
-                    seats[row][col]=true;
-                    return true;
-                }
-            else   
-                return false;
-        }
+    public Showtime()
+    {
+        id="";
+        film=null;
+        theater=null;
+        startTime="";
+        seats=null;
     }
-    public boolean cancel_ticket(int row, int col) {
-        if(row>seats.length ||col>seats[0].length ||row<0 ||col<0)
-            return false;
-        else
-        {
-            if(seats[row][col]==true)
-                {
-                    seats[row][col]=false;
-                    return true;
-                }
-            else   
-                return false;
-        }
+    public void setFilm(Film film)
+    {
+        this.film = film;
     }
-    public String get_startTime(){
-        return startTime;
+    public void setTheater(Theater theater)
+    {
+        this.theater = theater;
     }
-    public String get_title(){
-        return film.get_title();
+    public String getID()
+    {
+        return id;
     }
-    public boolean check_available_seat(int row, int col) {
-        if(row>seats.length ||col>seats[0].length ||row<0 ||col<0)
-            return false;
-        return seats[row][col];
-    }
-    public boolean check_title(String title) {
-        return(get_title().equals(title));
+    public void setID(String id)
+    {
+        this.id = id;
     }
 
     
