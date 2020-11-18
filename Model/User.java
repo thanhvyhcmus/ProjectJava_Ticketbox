@@ -7,6 +7,7 @@ package Model;
     protected String phone;
     protected String username;
     protected String password;
+    protected byte isadmin;
    
     
     User() {
@@ -39,7 +40,7 @@ package Model;
     }
     public boolean IsAdmin()
     {
-        if(username.equals("admin"))
+        if(isadmin==1)
             return true;
         return false;
     }
@@ -69,5 +70,14 @@ package Model;
     public String getId()
     {
         return id;
+    }
+    public String getUsername(){
+        return username;
+    }
+    public String getPassword(){
+        return password;
+    }
+    public byte getIsadmin(){
+        return isadmin;
     }
 }

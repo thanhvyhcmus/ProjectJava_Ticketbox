@@ -3,16 +3,18 @@ package Model;
 public class Customer  extends User{
     int point;
     String favouriteGenre;
+
     Customer()
     {
         super();
         point = 0;
         favouriteGenre = null;
     }
-    Customer(String id,String fullname, String doB,String phone,String username, String password,String genre)
+    public Customer(String id,String fullname, String doB,String username, String password,String phone,int point,String genre)
     {
         super(id, fullname, doB, phone, username, password);
-        point = 0;
+        isadmin =0;
+        this.point = point;
         this.favouriteGenre=genre;
     }
     public void addPoints(int points)
@@ -23,9 +25,16 @@ public class Customer  extends User{
     {
         return point;
     }
-    public void set_favorite(String genre)
+    public String getFavouriteGenre(){
+        return  favouriteGenre;
+    }
+    public void setFavouriteGenre(String genre)
     {
         favouriteGenre =genre;
+    }
+    public String toString()
+    {
+        return id+" "+ fullname+" "+doB+" "+username+" "+password+" "+phone+" "+Integer.toString(point)+" "+favouriteGenre+" "+Byte.toString(isadmin);
     }
 
 }
