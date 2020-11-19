@@ -10,34 +10,47 @@ import Model.Admin;
 import Model.Customer;
 import DAO.JDBCConnection.JDBCConnection;
 public class UserDAO {
-    public   ArrayList<Customer> getAllCustormer(){
+    public static  ArrayList<Customer> getAllCustormer(){
         ArrayList<Customer> customer = new ArrayList<Customer>();
+        Connection conn = null;
+        Statement stm=null;
+        ResultSet res=null;
         try {
-            Connection conn = JDBCConnection.getConnection();
-            Statement stm = conn.createStatement();
+            conn = JDBCConnection.getConnection();
+            stm = conn.createStatement();
             String sql = "select * from user";
-            ResultSet res = stm.executeQuery(sql);
+            res = stm.executeQuery(sql);
             while(res.next()){
                 customer.add( new Customer(res.getString(1), res.getString(2), res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getInt(7),res.getString(8)));
             }
-            conn.close();
+
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
+        finally{
+            try{
+                if(conn != null)
+                    conn.close();
+                if(res != null)
+                    res.close();
+                if(stm != null)
+                    stm.close();
+            }catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
         return customer;
     }
-    public static void main(String[] args)
-    {
-        UserDAO x = new UserDAO();
-        System.out.println(x.checkAnAccount("1df", "12345"));
 
-    }
-    public boolean updateACustomer(Customer customer){
+    public static boolean updateACustomer(Customer customer){
         int rs=0;
+        Connection conn=null;
+        PreparedStatement stm=null;
+
         try {
-            Connection conn = JDBCConnection.getConnection();
+            conn = JDBCConnection.getConnection();
             String sql = "update user set id = ?, fullname = ?, dob = ?,username = ?,password = ?, phone= ?,point = ?,favouriteGenre = ?,isadmin = ? where id = ?" ;
-            PreparedStatement stm = conn.prepareStatement(sql);
+            stm = conn.prepareStatement(sql);
             stm.setString(1, customer.getId());
             stm.setString(2, customer.getFullname());
             stm.setString(3, customer.getDoB());
@@ -49,63 +62,104 @@ public class UserDAO {
             stm.setByte(9, customer.getIsadmin());
             stm.setString(10, customer.getId());
             rs= stm.executeUpdate();
-        
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
-
+        }
+        finally{
+            try{
+                if(stm!=null)
+                    stm.close();
+                if(conn!=null)
+                    conn.close();    
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
         }
         if (rs==0)
             return false;
         return true;
 
     }
-    public boolean deleteACustomer(Customer customer){
+    public static boolean deleteACustomer(Customer customer){
         int rs=0;
+        Connection conn=null; 
+        PreparedStatement stm=null;
+        
+
         try {
-            Connection conn = JDBCConnection.getConnection();
+            conn = JDBCConnection.getConnection();
             String sql = "delete from user  where id = ?" ;
-            PreparedStatement stm = conn.prepareStatement(sql);
+            stm = conn.prepareStatement(sql);
             stm.setString(1, customer.getId());
             rs= stm.executeUpdate();
-        
+            conn.close();
+            stm.close();
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
 
+        }finally{
+            try{
+                if(conn != null){
+                    conn.close();
+                }
+                if(stm != null){
+                    stm.close();
+                }
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
         }
         if (rs==0)
             return false;
         return true;
 
     }
-    public int checkAnAccount(String username,String password){
+    public static int checkAnAccount(String username,String password){
         int rs=0;
+        PreparedStatement stm=null;
+        Connection conn=null;
+        ResultSet res=null;
         try {
             
-            Connection conn = JDBCConnection.getConnection();
+            conn = JDBCConnection.getConnection();
             String sql = "select isadmin from user where username=? and password= ?";
-            PreparedStatement stm = conn.prepareStatement(sql);
+            stm = conn.prepareStatement(sql);
             stm.setString(1, username);
             stm.setString(2,password);
-            ResultSet res= stm.executeQuery();
+            res= stm.executeQuery();
             if (res.next())
                 rs=res.getInt(1)+1;
                 
-            
-            conn.close();
+
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally {
+            try
+            {
+                if(stm != null)
+                    stm.close();
+                if(conn != null)
+                    conn.close();
+                if(res != null)
+                    res.close();
+            }catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
         
         return rs;
     }
 //     //check cho cả admin va customer
 // //(0: sai, 1: Cus, 2: admin)
-    public boolean addACustomer(Customer customer){
+    public static boolean addACustomer(Customer customer){
         int rs=0;
+        Connection conn=null;
+        PreparedStatement stm=null;
         try {
-            Connection conn = JDBCConnection.getConnection();
+            conn = JDBCConnection.getConnection();
             String sql = "insert into  user (`id`, `fullname`, `dob`, `username`, `password`, `phone`, `point`, `favouriteGenre`,`isadmin`) VALUES (?,?,?,?,?,?,?,?,?)" ;
-            PreparedStatement stm = conn.prepareStatement(sql);
+            stm = conn.prepareStatement(sql);
             stm.setString(1, customer.getId());
             stm.setString(2, customer.getFullname());
             stm.setString(3, customer.getDoB());
@@ -116,17 +170,30 @@ public class UserDAO {
             stm.setString(8, customer.getFavouriteGenre());
             stm.setByte(9, (byte)0);
             rs= stm.executeUpdate();
-        
+
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
 
+        }
+        finally{
+            try
+            {
+                if (stm != null)
+                    stm.close();
+                if(conn != null)
+                    conn.close();
+               
+            }
+            catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
         if (rs==0)
             return false;
         return true;
 
     }
-    public boolean addAnAdmin(Admin admin){
+    public static boolean addAnAdmin(Admin admin){
         int rs=0;
         try {
             Connection conn = JDBCConnection.getConnection();
@@ -142,7 +209,8 @@ public class UserDAO {
             stm.setString(8, null);
             stm.setByte(9, (byte)1);
             rs= stm.executeUpdate();
-        
+            conn.close();
+            stm.close();
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -152,7 +220,7 @@ public class UserDAO {
         return true;
 
     }
-    public boolean deleteAnAdmin(Admin admin){
+    public static boolean deleteAnAdmin(Admin admin){
         int rs=0;
         try {
             Connection conn = JDBCConnection.getConnection();
@@ -160,7 +228,8 @@ public class UserDAO {
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setString(1, admin.getId());
             rs= stm.executeUpdate();
-        
+            conn.close();
+            stm.close();
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
 
