@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Model.Theater;
-import DAO.JDBCConnection.JDBCConnection;
 
 public class TheaterDAO {
     public static ArrayList<Theater> getAllTheaters(){

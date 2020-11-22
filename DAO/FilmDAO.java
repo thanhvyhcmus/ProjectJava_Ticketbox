@@ -6,7 +6,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import Model.Film;
-import DAO.JDBCConnection.JDBCConnection;
 public class FilmDAO {
     public static ArrayList<Film> getAllFilm() {
         ArrayList<Film> film = new ArrayList<>();
@@ -115,17 +114,16 @@ public class FilmDAO {
         PreparedStatement stm=null;
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "insert into  film  VALUES (?,?,?,?,?,?,?,?,?,?)" ;
+            String sql = "insert into  film  VALUES (null,?,?,?,?,?,?,?,?,?)" ;
             stm = conn.prepareStatement(sql);
-            stm.setString(1, null);
-            stm.setString(2, film.getReleasedDate());
-            stm.setString(3, film.getDescription());
-            stm.setInt(4, film.getDuration());
-            stm.setString(5, film.getGenre());
-            stm.setString(6, film.getDirector());
-            stm.setString(7, film.getCast());
-            stm.setString(8, film.getReleasedDate());
-            stm.setString(9, film.getLanguage());
+            stm.setString(1, film.getReleasedDate());
+            stm.setString(2, film.getDescription());
+            stm.setInt(3, film.getDuration());
+            stm.setString(4, film.getGenre());
+            stm.setString(5, film.getDirector());
+            stm.setString(6, film.getCast());
+            stm.setString(7, film.getReleasedDate());
+            stm.setString(8, film.getLanguage());
             stm.setString(9, film.getLinkimg());
             rs= stm.executeUpdate();
 

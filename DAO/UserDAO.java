@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 
 import Model.Admin;
 import Model.Customer;
-import DAO.JDBCConnection.JDBCConnection;
 public class UserDAO {
     public static  ArrayList<Customer> getAllCustormer(){
         ArrayList<Customer> customer = new ArrayList<Customer>();
@@ -158,7 +157,7 @@ public class UserDAO {
         PreparedStatement stm=null;
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "insert into  user ( `fullname`, `dob`, `username`, `password`, `phone`, `point`, `favouriteGenre`,`isadmin`) VALUES (?,?,?,?,?,?,?,?)" ;
+            String sql = "insert into  user ( `id`,`fullname`, `dob`, `username`, `password`, `phone`, `point`, `favouriteGenre`,`isadmin`) VALUES (null,?,?,?,?,?,?,?,?)" ;
             stm = conn.prepareStatement(sql);
             stm.setString(1, customer.getFullname());
             stm.setString(2, customer.getDoB());
@@ -196,17 +195,16 @@ public class UserDAO {
         int rs=0;
         try {
             Connection conn = JDBCConnection.getConnection();
-            String sql = "insert into  user (`id`, `fullname`, `dob`, `username`, `password`, `phone`, `point`, `favouriteGenre`,`isadmin`) VALUES (?,?,?,?,?,?,?,?,?)" ;
+            String sql = "insert into  user (`id`, `fullname`, `dob`, `username`, `password`, `phone`, `point`, `favouriteGenre`,`isadmin`) VALUES (null,?,?,?,?,?,?,?,?)" ;
             PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setString(1, null);
-            stm.setString(2, admin.getFullname());
-            stm.setString(3, admin.getDoB());
-            stm.setString(4, admin.getUsername());
-            stm.setString(5, admin.getPassword());
-            stm.setString(6, admin.getPhone());
-            stm.setInt(7, 0);
-            stm.setString(8, null);
-            stm.setByte(9, (byte)1);
+            stm.setString(1, admin.getFullname());
+            stm.setString(2, admin.getDoB());
+            stm.setString(3, admin.getUsername());
+            stm.setString(4, admin.getPassword());
+            stm.setString(5, admin.getPhone());
+            stm.setInt(6, 0);
+            stm.setString(7, null);
+            stm.setByte(8, (byte)1);
             rs= stm.executeUpdate();
             conn.close();
             stm.close();

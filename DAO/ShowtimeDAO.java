@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import DAO.JDBCConnection.JDBCConnection;
 import Model.Film;
 import Model.Showtime;
 import Model.Theater;
