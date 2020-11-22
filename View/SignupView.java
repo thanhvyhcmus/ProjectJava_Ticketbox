@@ -3,19 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.thanhvy.javaswing;
+package View;
 
+import java.awt.Color;
+import Model.Customer;
+import Controller.SignUpController;
 /**
  *
  * @author ngnth
  */
-public class SignupView extends javax.swing.JFrame {
+public class SignUpView extends javax.swing.JFrame {
 
     /**
-     * Creates new form SignupView
+     * Creates new form SignUpView
      */
-    public SignupView() {
+    public SignUpView() {
         initComponents();
+        setResizable(false);
+        fill_warning.setVisible(false);
+        username_warning.setVisible(false);
     }
 
     /**
@@ -27,140 +33,327 @@ public class SignupView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        signupLabel = new javax.swing.JLabel();
-        nameLabel = new javax.swing.JLabel();
-        phoneLabel = new javax.swing.JLabel();
-        emailLabel = new javax.swing.JLabel();
-        passwordLabel = new javax.swing.JLabel();
-        name = new javax.swing.JTextField();
-        phone = new javax.swing.JTextField();
-        email = new javax.swing.JTextField();
+        jColorChooser1 = new javax.swing.JColorChooser();
+        panel_right = new javax.swing.JPanel();
+        jLab_Genre = new javax.swing.JLabel();
+        dob = new javax.swing.JTextField();
+        jSep_UserName = new javax.swing.JSeparator();
+        genre = new javax.swing.JTextField();
+        jSep_Password = new javax.swing.JSeparator();
+        jSep_Email = new javax.swing.JSeparator();
+        jLab_Phone = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLab_DOB = new javax.swing.JLabel();
+        SignInText = new javax.swing.JLabel();
+        jBut_SignUp = new javax.swing.JButton();
+        fill_warning = new javax.swing.JLabel();
+        jLab_FullName = new javax.swing.JLabel();
+        fullname = new javax.swing.JTextField();
+        jSep_UserName1 = new javax.swing.JSeparator();
+        jLab_UserName = new javax.swing.JLabel();
+        username = new javax.swing.JTextField();
+        jSep_Email1 = new javax.swing.JSeparator();
+        jLab_Password = new javax.swing.JLabel();
+        jSep_Password1 = new javax.swing.JSeparator();
         password = new javax.swing.JPasswordField();
-        signupButton = new javax.swing.JButton();
-        termOfUse = new javax.swing.JCheckBox();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        phone = new javax.swing.JTextField();
+        username_warning = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1030, 560));
+        setSize(new java.awt.Dimension(0, 0));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        signupLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        signupLabel.setText("Sign Up");
+        panel_right.setBackground(new java.awt.Color(32, 33, 35));
+        panel_right.setMaximumSize(new java.awt.Dimension(932, 820));
+        panel_right.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        nameLabel.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
-        nameLabel.setText("Name");
+        jLab_Genre.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLab_Genre.setForeground(new java.awt.Color(51, 52, 54));
+        jLab_Genre.setText("Favorite Genre");
+        panel_right.add(jLab_Genre, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, -1, -1));
 
-        phoneLabel.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
-        phoneLabel.setText("Phone");
-
-        emailLabel.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
-        emailLabel.setText("Email");
-
-        passwordLabel.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
-        passwordLabel.setText("Password");
-
-        name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameActionPerformed(evt);
+        dob.setBackground(new java.awt.Color(32, 33, 35));
+        dob.setForeground(new java.awt.Color(255, 255, 255));
+        dob.setBorder(null);
+        dob.setCaretColor(new java.awt.Color(255, 255, 255));
+        dob.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                dobFocusGained(evt);
             }
         });
-
-        email.addActionListener(new java.awt.event.ActionListener() {
+        dob.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailActionPerformed(evt);
+                dobActionPerformed(evt);
             }
         });
+        panel_right.add(dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, 330, 30));
+        panel_right.add(jSep_UserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 330, 20));
 
-        signupButton.setText("SIGN UP");
-        signupButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signupButtonActionPerformed(evt);
+        genre.setBackground(new java.awt.Color(32, 33, 35));
+        genre.setForeground(new java.awt.Color(255, 255, 255));
+        genre.setBorder(null);
+        genre.setCaretColor(new java.awt.Color(255, 255, 255));
+        genre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                genreFocusGained(evt);
             }
         });
-
-        termOfUse.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        termOfUse.setText("I agree to the Term of Use");
-        termOfUse.addActionListener(new java.awt.event.ActionListener() {
+        genre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                termOfUseActionPerformed(evt);
+                genreActionPerformed(evt);
             }
         });
+        panel_right.add(genre, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 410, 330, 30));
+        panel_right.add(jSep_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, 330, 20));
+        panel_right.add(jSep_Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 370, 330, 20));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(termOfUse, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(emailLabel)
-                                    .addComponent(passwordLabel)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(phoneLabel)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(phone)
-                                    .addComponent(email)
-                                    .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                                    .addComponent(signupLabel)
-                                    .addComponent(name)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(138, 138, 138)
-                        .addComponent(signupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(68, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(signupLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameLabel))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(phoneLabel))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emailLabel))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(passwordLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(termOfUse)
-                .addGap(25, 25, 25)
-                .addComponent(signupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
-        );
+        jLab_Phone.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLab_Phone.setForeground(new java.awt.Color(51, 52, 54));
+        jLab_Phone.setText("Phone Number");
+        panel_right.add(jLab_Phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 300, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel4.setText("Already have an account?");
+        panel_right.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 510, -1, 30));
+
+        jLab_DOB.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLab_DOB.setForeground(new java.awt.Color(153, 153, 255));
+        jLab_DOB.setText("Date Of Birth");
+        panel_right.add(jLab_DOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, -1, -1));
+
+        SignInText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        SignInText.setForeground(new java.awt.Color(153, 153, 255));
+        SignInText.setText("Sign In");
+        SignInText.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SignInText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SignInTextMouseClicked(evt);
+            }
+        });
+        panel_right.add(SignInText, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 510, -1, 30));
+
+        jBut_SignUp.setBackground(new java.awt.Color(126, 87, 194));
+        jBut_SignUp.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jBut_SignUp.setForeground(new java.awt.Color(255, 255, 255));
+        jBut_SignUp.setText("Sign Up");
+        jBut_SignUp.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jBut_SignUp.setBorderPainted(false);
+        jBut_SignUp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBut_SignUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBut_SignUpActionPerformed(evt);
+            }
+        });
+        panel_right.add(jBut_SignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 500, 330, 40));
+        jBut_SignUp.getAccessibleContext().setAccessibleName("JBut_SignUp");
+
+        fill_warning.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        fill_warning.setForeground(new java.awt.Color(255, 102, 0));
+        fill_warning.setText("Please fill in all information!");
+        panel_right.add(fill_warning, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 470, 210, -1));
+
+        jLab_FullName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLab_FullName.setForeground(new java.awt.Color(153, 153, 255));
+        jLab_FullName.setText("Full Name");
+        panel_right.add(jLab_FullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
+
+        fullname.setBackground(new java.awt.Color(32, 33, 35));
+        fullname.setForeground(new java.awt.Color(255, 255, 255));
+        fullname.setBorder(null);
+        fullname.setCaretColor(new java.awt.Color(255, 255, 255));
+        fullname.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fullnameFocusGained(evt);
+            }
+        });
+        fullname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fullnameActionPerformed(evt);
+            }
+        });
+        panel_right.add(fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 330, 30));
+        panel_right.add(jSep_UserName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 330, 20));
+
+        jLab_UserName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLab_UserName.setForeground(new java.awt.Color(51, 52, 54));
+        jLab_UserName.setText("UserName");
+        panel_right.add(jLab_UserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, -1));
+
+        username.setBackground(new java.awt.Color(32, 33, 35));
+        username.setForeground(new java.awt.Color(255, 255, 255));
+        username.setBorder(null);
+        username.setCaretColor(new java.awt.Color(255, 255, 255));
+        username.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                usernameFocusGained(evt);
+            }
+        });
+        username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameActionPerformed(evt);
+            }
+        });
+        panel_right.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 330, 30));
+        panel_right.add(jSep_Email1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 330, 20));
+
+        jLab_Password.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLab_Password.setForeground(new java.awt.Color(51, 52, 54));
+        jLab_Password.setText("Password");
+        panel_right.add(jLab_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, -1, -1));
+        panel_right.add(jSep_Password1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, 330, 20));
+
+        password.setBackground(new java.awt.Color(32, 33, 35));
+        password.setForeground(new java.awt.Color(255, 255, 255));
+        password.setBorder(null);
+        password.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                passwordFocusGained(evt);
+            }
+        });
+        panel_right.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 330, 30));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        panel_right.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel5.setText("Book Now, Go Anytime");
+        panel_right.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 240, 30));
+
+        phone.setBackground(new java.awt.Color(32, 33, 35));
+        phone.setForeground(new java.awt.Color(255, 255, 255));
+        phone.setBorder(null);
+        phone.setCaretColor(new java.awt.Color(255, 255, 255));
+        phone.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                phoneFocusGained(evt);
+            }
+        });
+        phone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phoneActionPerformed(evt);
+            }
+        });
+        panel_right.add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 330, 330, 30));
+
+        username_warning.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        username_warning.setForeground(new java.awt.Color(255, 102, 0));
+        username_warning.setText("Sorry! Username already taken.");
+        panel_right.add(username_warning, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 240, -1));
+
+        getContentPane().add(panel_right, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+    private void genreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nameActionPerformed
+    }//GEN-LAST:event_genreActionPerformed
 
-    private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_signupButtonActionPerformed
+    private void genreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_genreFocusGained
+       jLab_Genre.setForeground(new Color(153,153,255));
+       jLab_FullName.setForeground(new Color(51,52,54));
+       jLab_UserName.setForeground(new Color(51,52,54));
+       jLab_Password.setForeground(new Color(51,52,54));
+       jLab_DOB.setForeground(new Color(51,52,54));
+       jLab_Phone.setForeground(new Color(51,52,54));
+    }//GEN-LAST:event_genreFocusGained
 
-    private void termOfUseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_termOfUseActionPerformed
+    private void fullnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fullnameFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_termOfUseActionPerformed
+       jLab_FullName.setForeground(new Color(153,153,255));
+       jLab_Genre.setForeground(new Color(51,52,54));
+       jLab_UserName.setForeground(new Color(51,52,54));
+       jLab_Password.setForeground(new Color(51,52,54));
+       jLab_DOB.setForeground(new Color(51,52,54));
+       jLab_Phone.setForeground(new Color(51,52,54));
+    }//GEN-LAST:event_fullnameFocusGained
 
-    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+    private void fullnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailActionPerformed
+    }//GEN-LAST:event_fullnameActionPerformed
+
+    private void usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusGained
+        // TODO add your handling code here:
+       jLab_UserName.setForeground(new Color(153,153,255));
+       jLab_Genre.setForeground(new Color(51,52,54));
+       jLab_FullName.setForeground(new Color(51,52,54));
+       jLab_Password.setForeground(new Color(51,52,54));
+       jLab_DOB.setForeground(new Color(51,52,54));
+       jLab_Phone.setForeground(new Color(51,52,54));
+    }//GEN-LAST:event_usernameFocusGained
+
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameActionPerformed
+
+    private void passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusGained
+        // TODO add your handling code here:
+       jLab_Password.setForeground(new Color(153,153,255));
+       jLab_Genre.setForeground(new Color(51,52,54));
+       jLab_FullName.setForeground(new Color(51,52,54));
+       jLab_UserName.setForeground(new Color(51,52,54));
+       jLab_DOB.setForeground(new Color(51,52,54));
+       jLab_Phone.setForeground(new Color(51,52,54));
+    }//GEN-LAST:event_passwordFocusGained
+
+    private void jBut_SignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBut_SignUpActionPerformed
+        // TODO add your handling code here:
+        String full_name = fullname.getText();
+        String user_name = username.getText();
+        String pass = password.getText();
+        String dateofbirth = dob.getText();
+        String phonenum = phone.getText();
+        String favgenre = genre.getText();
+        int check = SignUpController.addAnAccount(new Customer("",full_name,dateofbirth,user_name,pass,phonenum,0,favgenre));
+        if (check == 0){
+            username_warning.setVisible(false);
+            fill_warning.setVisible(true);
+        }
+        else if (check == 2){
+            fill_warning.setVisible(false);
+            username_warning.setVisible(true);
+        }
+        else{
+            new SuccessfulSUView().setVisible(true);
+        }
+    }//GEN-LAST:event_jBut_SignUpActionPerformed
+
+    private void SignInTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SignInTextMouseClicked
+        // TODO add your handling code here:
+        new SignInView().setVisible(true);
+    }//GEN-LAST:event_SignInTextMouseClicked
+
+    private void dobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dobActionPerformed
+
+    private void dobFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dobFocusGained
+        jLab_DOB.setForeground(new Color(153,153,255));
+        jLab_FullName.setForeground(new Color(51,52,54));
+        jLab_UserName.setForeground(new Color(51,52,54));
+        jLab_Password.setForeground(new Color(51,52,54));
+        jLab_Genre.setForeground(new Color(51,52,54));
+        jLab_Phone.setForeground(new Color(51,52,54));
+    }//GEN-LAST:event_dobFocusGained
+
+    private void phoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phoneFocusGained
+        // TODO add your handling code here:
+        jLab_Phone.setForeground(new Color(153,153,255));
+        jLab_FullName.setForeground(new Color(51,52,54));
+        jLab_UserName.setForeground(new Color(51,52,54));
+        jLab_Password.setForeground(new Color(51,52,54));
+        jLab_Genre.setForeground(new Color(51,52,54));
+        jLab_DOB.setForeground(new Color(51,52,54));
+    }//GEN-LAST:event_phoneFocusGained
+
+    private void phoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phoneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,35 +372,51 @@ public class SignupView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SignupView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SignupView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SignupView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SignupView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SignupView().setVisible(true);
+                new SignUpView().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField email;
-    private javax.swing.JLabel emailLabel;
-    private javax.swing.JTextField name;
-    private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel SignInText;
+    private javax.swing.JTextField dob;
+    private javax.swing.JLabel fill_warning;
+    private javax.swing.JTextField fullname;
+    private javax.swing.JTextField genre;
+    private javax.swing.JButton jBut_SignUp;
+    private javax.swing.JColorChooser jColorChooser1;
+    private javax.swing.JLabel jLab_DOB;
+    private javax.swing.JLabel jLab_FullName;
+    private javax.swing.JLabel jLab_Genre;
+    private javax.swing.JLabel jLab_Password;
+    private javax.swing.JLabel jLab_Phone;
+    private javax.swing.JLabel jLab_UserName;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JSeparator jSep_Email;
+    private javax.swing.JSeparator jSep_Email1;
+    private javax.swing.JSeparator jSep_Password;
+    private javax.swing.JSeparator jSep_Password1;
+    private javax.swing.JSeparator jSep_UserName;
+    private javax.swing.JSeparator jSep_UserName1;
+    private javax.swing.JPanel panel_right;
     private javax.swing.JPasswordField password;
-    private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField phone;
-    private javax.swing.JLabel phoneLabel;
-    private javax.swing.JButton signupButton;
-    private javax.swing.JLabel signupLabel;
-    private javax.swing.JCheckBox termOfUse;
+    private javax.swing.JTextField username;
+    private javax.swing.JLabel username_warning;
     // End of variables declaration//GEN-END:variables
 }
