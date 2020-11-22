@@ -7,7 +7,13 @@ public class Theater {
     String name;
     ArrayList<Showtime> schedule;
     String address;
-    Theater(String id,String name,String address,ArrayList<Showtime> schedule) {
+    public Theater(String id,String name,String address){
+        this.name=name;
+        this.id=id;
+        this.address=address;
+        this.schedule=new ArrayList<Showtime>();
+    }
+    public Theater(String id,String name,String address,ArrayList<Showtime> schedule) {
         this.name=name;
         this.id=id;
         this.address=address;

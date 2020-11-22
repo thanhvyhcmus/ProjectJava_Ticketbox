@@ -6,18 +6,18 @@ public class Film {
     String description;
     int duration;
     String genre;
-    String direction;
+    String director;
     String cast;
     String releasedDate;
     String language;
     String linkimg;
-    public Film(String id, String title, String description, int duration,String genre, String direction, String cast, String releasedDate, String language,String linkimg) {
+    public Film(String id, String title, String description, int duration,String genre, String director, String cast, String releasedDate, String language,String linkimg) {
         this.id =id;
         this.title =title;
         this.description =description;
         this.duration =duration;
         this.genre=genre;
-        this.direction=direction;
+        this.director=director;
         this.cast=cast;
         this.releasedDate=releasedDate;
         this.language=language;
@@ -38,8 +38,8 @@ public class Film {
     public void setGenre(String genre) {
         this.genre = genre;
     }
-    public void setDirection(String direction) {
-        this.direction = direction;
+    public void setDirector(String director) {
+        this.director = director;
     }
     public void setCast(String cast) {
         this.cast = cast;
@@ -69,8 +69,8 @@ public class Film {
     public String getGenre() {
         return genre;
     }
-    public String getDirection() {
-        return direction;
+    public String getDirector() {
+        return director;
     }
     public String getCast() {
         return cast;
@@ -81,4 +81,8 @@ public class Film {
     public String getLinkimg() {
         return linkimg;
     }
+    public String getReleasedDate() {
+        return releasedDate;
+    }
+    
 }

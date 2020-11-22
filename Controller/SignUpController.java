@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Customer;
 import DAO.UserDAO;
+
 public class SignUpController {
     public static int addAnAccount(Customer account) {
         char[] s = account.getUsername().toCharArray();

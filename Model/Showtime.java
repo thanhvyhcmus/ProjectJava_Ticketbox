@@ -9,6 +9,14 @@ public class Showtime {
     String startTime;
     ArrayList<ArrayList<Boolean>> seats; // Nếu là false có nghĩa là còn chỗ trống
 
+    public Showtime( String id,Theater theater,Film film,String startTime) {
+        this.id=id;
+        this.film=film;
+        this.startTime=startTime;
+        this.theater=theater;
+        seats = new ArrayList<ArrayList<Boolean>>();
+    }
+    
     public Showtime( String id,Theater theater,Film film,String startTime,int row,int col) {
         this.id=id;
         this.film=film;

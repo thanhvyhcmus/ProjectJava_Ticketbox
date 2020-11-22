@@ -67,7 +67,7 @@ package Model;
     public String getPhone(){
         return phone;
     }
-    public String getId()
+    public String getID()
     {
         return id;
     }

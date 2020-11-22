@@ -51,7 +51,7 @@ public class UserDAO {
             conn = JDBCConnection.getConnection();
             String sql = "update user set id = ?, fullname = ?, dob = ?,username = ?,password = ?, phone= ?,point = ?,favouriteGenre = ?,isadmin = ? where id = ?" ;
             stm = conn.prepareStatement(sql);
-            stm.setString(1, customer.getId());
+            stm.setString(1, customer.getID());
             stm.setString(2, customer.getFullname());
             stm.setString(3, customer.getDoB());
             stm.setString(4, customer.getUsername());
@@ -60,7 +60,7 @@ public class UserDAO {
             stm.setInt(7, customer.getPoints());
             stm.setString(8, customer.getFavouriteGenre());
             stm.setByte(9, customer.getIsadmin());
-            stm.setString(10, customer.getId());
+            stm.setString(10, customer.getID());
             rs= stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
@@ -90,7 +90,7 @@ public class UserDAO {
             conn = JDBCConnection.getConnection();
             String sql = "delete from user  where id = ?" ;
             stm = conn.prepareStatement(sql);
-            stm.setString(1, customer.getId());
+            stm.setString(1, customer.getID());
             rs= stm.executeUpdate();
             conn.close();
             stm.close();
@@ -160,7 +160,7 @@ public class UserDAO {
             conn = JDBCConnection.getConnection();
             String sql = "insert into  user (`id`, `fullname`, `dob`, `username`, `password`, `phone`, `point`, `favouriteGenre`,`isadmin`) VALUES (?,?,?,?,?,?,?,?,?)" ;
             stm = conn.prepareStatement(sql);
-            stm.setString(1, customer.getId());
+            stm.setString(1, customer.getID());
             stm.setString(2, customer.getFullname());
             stm.setString(3, customer.getDoB());
             stm.setString(4, customer.getUsername());
@@ -199,7 +199,7 @@ public class UserDAO {
             Connection conn = JDBCConnection.getConnection();
             String sql = "insert into  user (`id`, `fullname`, `dob`, `username`, `password`, `phone`, `point`, `favouriteGenre`,`isadmin`) VALUES (?,?,?,?,?,?,?,?,?)" ;
             PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setString(1, admin.getId());
+            stm.setString(1, admin.getID());
             stm.setString(2, admin.getFullname());
             stm.setString(3, admin.getDoB());
             stm.setString(4, admin.getUsername());
@@ -226,7 +226,7 @@ public class UserDAO {
             Connection conn = JDBCConnection.getConnection();
             String sql = "delete from user  where id = ?" ;
             PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setString(1, admin.getId());
+            stm.setString(1, admin.getID());
             rs= stm.executeUpdate();
             conn.close();
             stm.close();
