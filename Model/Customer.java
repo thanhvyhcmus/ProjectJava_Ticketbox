@@ -10,7 +10,7 @@ public class Customer  extends User{
         point = 0;
         favouriteGenre = null;
     }
-    public Customer(String id,String fullname, String doB,String username, String password,String phone,int point,String genre)
+    public Customer(int id,String fullname, String doB,String username, String password,String phone,int point,String genre)
     {
         super(id, fullname, doB, phone, username, password);
         isadmin =0;

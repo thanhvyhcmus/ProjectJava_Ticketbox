@@ -1,7 +1,7 @@
 package Model;
 
 public class Film {
-    String id;
+    int id;
     String title;
     String description;
     int duration;
@@ -11,7 +11,7 @@ public class Film {
     String releasedDate;
     String language;
     String linkimg;
-    public Film(String id, String title, String description, int duration,String genre, String director, String cast, String releasedDate, String language,String linkimg) {
+    public Film(int id, String title, String description, int duration,String genre, String director, String cast, String releasedDate, String language,String linkimg) {
         this.id =id;
         this.title =title;
         this.description =description;
@@ -23,7 +23,7 @@ public class Film {
         this.language=language;
         this.linkimg=linkimg;
     }
-    public void setID(String id) {
+    public void setID(int id) {
         this.id = id;
     }
     public void setTitle(String title) {
@@ -63,7 +63,7 @@ public class Film {
     public int getDuration() {
         return duration;
     }
-    public String getID() {
+    public int getID() {
         return id;
     }
     public String getGenre() {

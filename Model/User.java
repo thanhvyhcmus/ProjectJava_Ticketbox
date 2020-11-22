@@ -1,7 +1,7 @@
 package Model;
 
  public abstract class User {
-    protected String id;
+    protected int id;
     protected String fullname;
     protected String doB;
     protected String phone;
@@ -11,14 +11,14 @@ package Model;
    
     
     User() {
-        id="";
+        id=0;
         fullname="";
         doB="";
         phone="";
         username="";
         password="";
     }
-    User(String id,String fullname, String doB,String phone,String username, String password) {
+    User(int id,String fullname, String doB,String phone,String username, String password) {
         this.id = id;
         this.fullname = fullname;
         this.doB = doB;
@@ -67,7 +67,7 @@ package Model;
     public String getPhone(){
         return phone;
     }
-    public String getID()
+    public int getID()
     {
         return id;
     }

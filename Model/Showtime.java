@@ -3,13 +3,13 @@ package Model;
 import java.util.ArrayList;
 
 public class Showtime {
-    String id;
+    int id;
     Film film;
     Theater theater;
     String startTime;
     ArrayList<ArrayList<Boolean>> seats; // Nếu là false có nghĩa là còn chỗ trống
 
-    public Showtime( String id,Theater theater,Film film,String startTime) {
+    public Showtime( int id,Theater theater,Film film,String startTime) {
         this.id=id;
         this.film=film;
         this.startTime=startTime;
@@ -17,7 +17,7 @@ public class Showtime {
         seats = new ArrayList<ArrayList<Boolean>>();
     }
     
-    public Showtime( String id,Theater theater,Film film,String startTime,int row,int col) {
+    public Showtime( int id,Theater theater,Film film,String startTime,int row,int col) {
         this.id=id;
         this.film=film;
         this.startTime=startTime;
@@ -32,7 +32,7 @@ public class Showtime {
     }
     public Showtime()
     {
-        id="";
+        id=0;
         film=null;
         theater=null;
         startTime="";
@@ -46,11 +46,11 @@ public class Showtime {
     {
         this.theater = theater;
     }
-    public String getID()
+    public int getID()
     {
         return id;
     }
-    public void setID(String id)
+    public void setID(int id)
     {
         this.id = id;
     }

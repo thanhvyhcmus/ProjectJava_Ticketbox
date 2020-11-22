@@ -3,17 +3,17 @@ package Model;
 import java.util.ArrayList;
 
 public class Theater {
-    String id;
+    int id;
     String name;
     ArrayList<Showtime> schedule;
     String address;
-    public Theater(String id,String name,String address){
+    public Theater(int id,String name,String address){
         this.name=name;
         this.id=id;
         this.address=address;
         this.schedule=new ArrayList<Showtime>();
     }
-    public Theater(String id,String name,String address,ArrayList<Showtime> schedule) {
+    public Theater(int id,String name,String address,ArrayList<Showtime> schedule) {
         this.name=name;
         this.id=id;
         this.address=address;
@@ -23,11 +23,11 @@ public class Theater {
     {
         this.schedule.add(showtime);
     }
-    public void setID(String id)
+    public void setID(int id)
     {
         this.id=id;
     }
-    public String getID()
+    public int getID()
     {
         return id;
     }
