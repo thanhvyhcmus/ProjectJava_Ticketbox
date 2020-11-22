@@ -172,9 +172,11 @@ public class SignInView extends javax.swing.JFrame {
         }
         else if (check == 1){
             //go to Customer Screen
+            new CustomerView().setVisible(true);
         }
         else if (check == 2){
             //go to Admin Screen
+            new AdminView().setVisible(true);
         }
         
     }//GEN-LAST:event_jBut_SignInActionPerformed
