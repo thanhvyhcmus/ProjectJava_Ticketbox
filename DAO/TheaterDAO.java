@@ -19,7 +19,7 @@ public class TheaterDAO {
             String sql = "select * from theater";
             res = stm.executeQuery(sql);
             while(res.next()){
-                theater.add( new Theater(res.getString(1), res.getString(2), res.getString(3)));
+                theater.add( new Theater(res.getInt(1), res.getString(2), res.getString(3)));
             }
 
         } catch (SQLException ex) {
@@ -51,7 +51,7 @@ public class TheaterDAO {
             stm.setString(1, ID);
             res = stm.executeQuery();
             if(res.next()){
-                theater= new Theater(res.getString(1), res.getString(2), res.getString(3));
+                theater= new Theater(res.getInt(1), res.getString(2), res.getString(3));
             }
 
         } catch (SQLException ex) {

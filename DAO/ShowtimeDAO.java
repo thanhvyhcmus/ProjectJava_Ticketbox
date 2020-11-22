@@ -21,11 +21,11 @@ public class ShowtimeDAO {
             conn = JDBCConnection.getConnection();
             String sql = "select * from showtime where idtheater = ? ";
             stm = conn.prepareStatement(sql);
-            stm.setString(1, theater.getID());
+            stm.setInt(1, theater.getID());
             res = stm.executeQuery();
             while(res.next()){
                 Film film= FilmDAO.searchAFilm(res.getString(3));
-                show.add( new Showtime(res.getString(1), theater, film,res.getString(4)));
+                show.add( new Showtime(res.getInt(1), theater, film,res.getString(4)));
             }
 
         } catch (SQLException ex) {
