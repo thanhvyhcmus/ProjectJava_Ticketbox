@@ -8,6 +8,7 @@ package DAO.JDBCConnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -39,7 +40,7 @@ public class JDBCConnection {
         
         return conn;
     }
-    public void loadDataFromDatabase(){//ham test thu load data user
+    public void loadDataFromDatabase(){
         try {
             Connection conn = getConnection();
             Statement stm = conn.createStatement();
@@ -54,11 +55,64 @@ public class JDBCConnection {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    public static boolean addASeat(String idShowtime,int idRow, int idCol, int price ){
+        int rs=0;
+        Connection conn=null;
+        PreparedStatement stm=null;
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "insert into  seatsofshowtime (`idshowtime`, `idrow`, `idcolumn`, `ticketprice`) VALUES (?,?,?,?)" ;
+            stm = conn.prepareStatement(sql);
+            stm.setString(1, idShowtime);
+            stm.setInt(2, idRow);
+            stm.setInt(3, idCol);
+            stm.setInt(4, price);
+        
+            rs= stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        finally{
+            try
+            {
+                if (stm != null)
+                    stm.close();
+                if(conn != null)
+                    conn.close();
+               
+            }
+            catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        if (rs==0)
+            return false;
+        return true;
+
+    }
     public static void main(String[] args) {
         JDBCConnection jdbc = new JDBCConnection();
+        //int idshowtime = 30000;
+        int price = 40000;
+        for(int k = 30000; k<30010;k++){
+            for(int i = 0; i<7;i++){
+                if(i == 0)
+                    price = 40000;
+                if(i == 3)
+                    price = 60000;
+                if(i == 5)
+                    price = 50000;
+                for(int j = 0; j<10;j++){
+                    JDBCConnection.addASeat(Integer.toString(k), i, j, price);
+            }
+        }
+        }
         
-        jdbc.loadDataFromDatabase();
+
+       
+        //jdbc.loadDataFromDatabase();
     }
     
 }
