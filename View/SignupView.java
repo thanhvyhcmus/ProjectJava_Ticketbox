@@ -311,10 +311,10 @@ public class SignUpView extends javax.swing.JFrame {
         String phonenum = phone.getText();
         String favgenre = genre.getText();
         int check = SignUpController.addAnAccount(new Customer(0, full_name, dateofbirth, user_name, pass, phonenum, 0, favgenre));
-        if (check == 0) {
+        if (check == -1) {
             username_warning.setVisible(false);
             fill_warning.setVisible(true);
-        } else if (check == -1) {
+        } else if (check == 0) {
             fill_warning.setVisible(false);
             username_warning.setVisible(true);
         } else {
