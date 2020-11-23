@@ -22,6 +22,7 @@ public class SignUpView extends javax.swing.JFrame {
         setResizable(false);
         fill_warning.setVisible(false);
         username_warning.setVisible(false);
+        format_warning.setVisible(false);
     }
 
     /**
@@ -31,15 +32,13 @@ public class SignUpView extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jColorChooser1 = new javax.swing.JColorChooser();
         panel_right = new javax.swing.JPanel();
         jLab_Genre = new javax.swing.JLabel();
-        dob = new javax.swing.JTextField();
         jSep_UserName = new javax.swing.JSeparator();
-        genre = new javax.swing.JTextField();
         jSep_Password = new javax.swing.JSeparator();
         jSep_Email = new javax.swing.JSeparator();
         jLab_Phone = new javax.swing.JLabel();
@@ -61,6 +60,13 @@ public class SignUpView extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         phone = new javax.swing.JTextField();
         username_warning = new javax.swing.JLabel();
+        year = new javax.swing.JComboBox<>();
+        month = new javax.swing.JComboBox<>();
+        date = new javax.swing.JComboBox<>();
+        genre_action = new javax.swing.JCheckBox();
+        genre_comedy = new javax.swing.JCheckBox();
+        genre_drama = new javax.swing.JCheckBox();
+        format_warning = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1030, 560));
@@ -68,6 +74,7 @@ public class SignUpView extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panel_right.setBackground(new java.awt.Color(32, 33, 35));
+        panel_right.setForeground(new java.awt.Color(32, 33, 35));
         panel_right.setMaximumSize(new java.awt.Dimension(932, 820));
         panel_right.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -75,39 +82,7 @@ public class SignUpView extends javax.swing.JFrame {
         jLab_Genre.setForeground(new java.awt.Color(51, 52, 54));
         jLab_Genre.setText("Favorite Genre");
         panel_right.add(jLab_Genre, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, -1, -1));
-
-        dob.setBackground(new java.awt.Color(32, 33, 35));
-        dob.setForeground(new java.awt.Color(255, 255, 255));
-        dob.setBorder(null);
-        dob.setCaretColor(new java.awt.Color(255, 255, 255));
-        dob.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                dobFocusGained(evt);
-            }
-        });
-        dob.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dobActionPerformed(evt);
-            }
-        });
-        panel_right.add(dob, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, 330, 30));
         panel_right.add(jSep_UserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 330, 20));
-
-        genre.setBackground(new java.awt.Color(32, 33, 35));
-        genre.setForeground(new java.awt.Color(255, 255, 255));
-        genre.setBorder(null);
-        genre.setCaretColor(new java.awt.Color(255, 255, 255));
-        genre.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                genreFocusGained(evt);
-            }
-        });
-        genre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                genreActionPerformed(evt);
-            }
-        });
-        panel_right.add(genre, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 410, 330, 30));
         panel_right.add(jSep_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, 330, 20));
         panel_right.add(jSep_Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 370, 330, 20));
 
@@ -246,101 +221,81 @@ public class SignUpView extends javax.swing.JFrame {
         username_warning.setText("Sorry! Username already taken.");
         panel_right.add(username_warning, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 240, -1));
 
+        year.setBackground(new java.awt.Color(32, 33, 35));
+        year.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        year.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
+        year.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                monthFocusGained(evt);
+            }
+        });
+        panel_right.add(year, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, 90, -1));
+
+        month.setBackground(new java.awt.Color(32, 33, 35));
+        month.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        month.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        month.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                monthFocusGained(evt);
+            }
+        });
+        panel_right.add(month, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 250, 60, -1));
+
+        date.setBackground(new java.awt.Color(32, 33, 35));
+        date.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        date.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" }));
+        date.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                monthFocusGained(evt);
+            }
+        });
+        panel_right.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 250, 60, -1));
+
+        genre_action.setBackground(new java.awt.Color(32, 33, 35));
+        genre_action.setForeground(new java.awt.Color(51, 52, 54));
+        genre_action.setText("Action");
+        genre_action.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                genre_comedyFocusGained(evt);
+            }
+        });
+        panel_right.add(genre_action, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 420, 80, 20));
+
+        genre_comedy.setBackground(new java.awt.Color(32, 33, 35));
+        genre_comedy.setForeground(new java.awt.Color(51, 52, 54));
+        genre_comedy.setText("Comedy");
+        genre_comedy.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                genre_comedyFocusGained(evt);
+            }
+        });
+        panel_right.add(genre_comedy, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 420, 90, 20));
+
+        genre_drama.setBackground(new java.awt.Color(32, 33, 35));
+        genre_drama.setForeground(new java.awt.Color(51, 52, 54));
+        genre_drama.setText("Drama");
+        genre_drama.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                genre_comedyFocusGained(evt);
+            }
+        });
+        panel_right.add(genre_drama, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 419, 80, 20));
+
+        format_warning.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        format_warning.setForeground(new java.awt.Color(255, 102, 0));
+        format_warning.setText("Oops... Some information is in wrong format!");
+        panel_right.add(format_warning, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 470, 320, -1));
+
         getContentPane().add(panel_right, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void genreActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_genreActionPerformed
+    private void phoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneActionPerformed
         // TODO add your handling code here:
-    }// GEN-LAST:event_genreActionPerformed
+    }//GEN-LAST:event_phoneActionPerformed
 
-    private void genreFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_genreFocusGained
-        jLab_Genre.setForeground(new Color(153, 153, 255));
-        jLab_FullName.setForeground(new Color(51, 52, 54));
-        jLab_UserName.setForeground(new Color(51, 52, 54));
-        jLab_Password.setForeground(new Color(51, 52, 54));
-        jLab_DOB.setForeground(new Color(51, 52, 54));
-        jLab_Phone.setForeground(new Color(51, 52, 54));
-    }// GEN-LAST:event_genreFocusGained
-
-    private void fullnameFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_fullnameFocusGained
-        // TODO add your handling code here:
-        jLab_FullName.setForeground(new Color(153, 153, 255));
-        jLab_Genre.setForeground(new Color(51, 52, 54));
-        jLab_UserName.setForeground(new Color(51, 52, 54));
-        jLab_Password.setForeground(new Color(51, 52, 54));
-        jLab_DOB.setForeground(new Color(51, 52, 54));
-        jLab_Phone.setForeground(new Color(51, 52, 54));
-    }// GEN-LAST:event_fullnameFocusGained
-
-    private void fullnameActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_fullnameActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_fullnameActionPerformed
-
-    private void usernameFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_usernameFocusGained
-        // TODO add your handling code here:
-        jLab_UserName.setForeground(new Color(153, 153, 255));
-        jLab_Genre.setForeground(new Color(51, 52, 54));
-        jLab_FullName.setForeground(new Color(51, 52, 54));
-        jLab_Password.setForeground(new Color(51, 52, 54));
-        jLab_DOB.setForeground(new Color(51, 52, 54));
-        jLab_Phone.setForeground(new Color(51, 52, 54));
-    }// GEN-LAST:event_usernameFocusGained
-
-    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_usernameActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_usernameActionPerformed
-
-    private void passwordFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_passwordFocusGained
-        // TODO add your handling code here:
-        jLab_Password.setForeground(new Color(153, 153, 255));
-        jLab_Genre.setForeground(new Color(51, 52, 54));
-        jLab_FullName.setForeground(new Color(51, 52, 54));
-        jLab_UserName.setForeground(new Color(51, 52, 54));
-        jLab_DOB.setForeground(new Color(51, 52, 54));
-        jLab_Phone.setForeground(new Color(51, 52, 54));
-    }// GEN-LAST:event_passwordFocusGained
-
-    private void jBut_SignUpActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBut_SignUpActionPerformed
-        // TODO add your handling code here:
-        String full_name = fullname.getText();
-        String user_name = username.getText();
-        String pass = password.getText();
-        String dateofbirth = dob.getText();
-        String phonenum = phone.getText();
-        String favgenre = genre.getText();
-        int check = SignUpController.addAnAccount(new Customer(0, full_name, dateofbirth, user_name, pass, phonenum, 0, favgenre));
-        if (check == -1) {
-            username_warning.setVisible(false);
-            fill_warning.setVisible(true);
-        } else if (check == 0) {
-            fill_warning.setVisible(false);
-            username_warning.setVisible(true);
-        } else {
-            new SuccessfulSUView().setVisible(true);
-        }
-    }// GEN-LAST:event_jBut_SignUpActionPerformed
-
-    private void SignInTextMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_SignInTextMouseClicked
-        // TODO add your handling code here:
-        new SignInView().setVisible(true);
-    }// GEN-LAST:event_SignInTextMouseClicked
-
-    private void dobActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_dobActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_dobActionPerformed
-
-    private void dobFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_dobFocusGained
-        jLab_DOB.setForeground(new Color(153, 153, 255));
-        jLab_FullName.setForeground(new Color(51, 52, 54));
-        jLab_UserName.setForeground(new Color(51, 52, 54));
-        jLab_Password.setForeground(new Color(51, 52, 54));
-        jLab_Genre.setForeground(new Color(51, 52, 54));
-        jLab_Phone.setForeground(new Color(51, 52, 54));
-    }// GEN-LAST:event_dobFocusGained
-
-    private void phoneFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_phoneFocusGained
+    private void phoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phoneFocusGained
         // TODO add your handling code here:
         jLab_Phone.setForeground(new Color(153, 153, 255));
         jLab_FullName.setForeground(new Color(51, 52, 54));
@@ -348,11 +303,142 @@ public class SignUpView extends javax.swing.JFrame {
         jLab_Password.setForeground(new Color(51, 52, 54));
         jLab_Genre.setForeground(new Color(51, 52, 54));
         jLab_DOB.setForeground(new Color(51, 52, 54));
-    }// GEN-LAST:event_phoneFocusGained
+        date.setBackground(new Color(32,33,35));
+        month.setBackground(new Color(32,33,35));
+        year.setBackground(new Color(32,33,35));
+        genre_drama.setForeground(new Color(51, 52, 54));
+        genre_comedy.setForeground(new Color(51, 52, 54));
+        genre_action.setForeground(new Color(51, 52, 54));
+    }//GEN-LAST:event_phoneFocusGained
 
-    private void phoneActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_phoneActionPerformed
+    private void passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusGained
         // TODO add your handling code here:
-    }// GEN-LAST:event_phoneActionPerformed
+        jLab_Password.setForeground(new Color(153, 153, 255));
+        jLab_Genre.setForeground(new Color(51, 52, 54));
+        jLab_FullName.setForeground(new Color(51, 52, 54));
+        jLab_UserName.setForeground(new Color(51, 52, 54));
+        jLab_DOB.setForeground(new Color(51, 52, 54));
+        jLab_Phone.setForeground(new Color(51, 52, 54));
+        date.setBackground(new Color(32,33,35));
+        month.setBackground(new Color(32,33,35));
+        year.setBackground(new Color(32,33,35));
+        genre_drama.setForeground(new Color(51, 52, 54));
+        genre_comedy.setForeground(new Color(51, 52, 54));
+        genre_action.setForeground(new Color(51, 52, 54));
+    }//GEN-LAST:event_passwordFocusGained
+
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameActionPerformed
+
+    private void usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusGained
+        // TODO add your handling code here:
+        jLab_UserName.setForeground(new Color(153, 153, 255));
+        jLab_Genre.setForeground(new Color(51, 52, 54));
+        jLab_FullName.setForeground(new Color(51, 52, 54));
+        jLab_Password.setForeground(new Color(51, 52, 54));
+        jLab_DOB.setForeground(new Color(51, 52, 54));
+        jLab_Phone.setForeground(new Color(51, 52, 54));
+        date.setBackground(new Color(32,33,35));
+        month.setBackground(new Color(32,33,35));
+        year.setBackground(new Color(32,33,35));
+        genre_drama.setForeground(new Color(51, 52, 54));
+        genre_comedy.setForeground(new Color(51, 52, 54));
+        genre_action.setForeground(new Color(51, 52, 54));
+    }//GEN-LAST:event_usernameFocusGained
+
+    private void fullnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fullnameActionPerformed
+
+    private void fullnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fullnameFocusGained
+
+        jLab_FullName.setForeground(new Color(153, 153, 255));
+        jLab_Genre.setForeground(new Color(51, 52, 54));
+        jLab_UserName.setForeground(new Color(51, 52, 54));
+        jLab_Password.setForeground(new Color(51, 52, 54));
+        jLab_DOB.setForeground(new Color(51, 52, 54));
+        jLab_Phone.setForeground(new Color(51, 52, 54));
+        date.setBackground(new Color(32,33,35));
+        month.setBackground(new Color(32,33,35));
+        year.setBackground(new Color(32,33,35));
+        genre_drama.setForeground(new Color(51, 52, 54));
+        genre_comedy.setForeground(new Color(51, 52, 54));
+        genre_action.setForeground(new Color(51, 52, 54));
+    }//GEN-LAST:event_fullnameFocusGained
+
+    private void jBut_SignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBut_SignUpActionPerformed
+        // TODO add your handling code here:
+        String full_name = fullname.getText();
+        String user_name = username.getText();
+        String pass = String.valueOf(password.getPassword());
+        String dateofbirth = (String)year.getSelectedItem() + "/" + (String)month.getSelectedItem() + "/" + (String)date.getSelectedItem();
+        System.out.println(dateofbirth);
+        String phonenum = phone.getText();
+        String favgenre = "";
+        if (genre_drama.isSelected())
+            favgenre += genre_drama.getText() + ", ";
+        if (genre_action.isSelected())
+            favgenre += genre_action.getText() + ", ";
+        if (genre_comedy.isSelected())
+            favgenre += genre_comedy.getText() + ", ";
+        if (favgenre.length() != 0){
+            favgenre = favgenre.substring(0, favgenre.length() - 2);
+        }
+        int check = SignUpController.addAnAccount(new Customer(0, full_name, dateofbirth, user_name, pass, phonenum, 0, favgenre));
+        if (check == -1) {
+            username_warning.setVisible(false);
+            format_warning.setVisible(false);
+            fill_warning.setVisible(true);
+        } else if (check == 0) {
+            fill_warning.setVisible(false);
+            format_warning.setVisible(false);
+            username_warning.setVisible(true);
+        } else if (check == 1) {
+            new SuccessfulSUView().setVisible(true);
+        } else{
+            fill_warning.setVisible(false);
+            username_warning.setVisible(false);
+            format_warning.setVisible(true);
+        }
+    }//GEN-LAST:event_jBut_SignUpActionPerformed
+
+    private void SignInTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SignInTextMouseClicked
+        // TODO add your handling code here:
+        new SignInView().setVisible(true);
+    }//GEN-LAST:event_SignInTextMouseClicked
+
+    private void monthFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_monthFocusGained
+        // TODO add your handling code here:
+        jLab_DOB.setForeground(new Color(153, 153, 255));
+        jLab_FullName.setForeground(new Color(51, 52, 54));
+        jLab_UserName.setForeground(new Color(51, 52, 54));
+        jLab_Password.setForeground(new Color(51, 52, 54));
+        jLab_Genre.setForeground(new Color(51, 52, 54));
+        jLab_Phone.setForeground(new Color(51, 52, 54));
+        date.setBackground(new Color(153, 153, 255));
+        month.setBackground(new Color(153, 153, 255));
+        year.setBackground(new Color(153, 153, 255));
+        genre_drama.setForeground(new Color(51, 52, 54));
+        genre_comedy.setForeground(new Color(51, 52, 54));
+        genre_action.setForeground(new Color(51, 52, 54));
+    }//GEN-LAST:event_monthFocusGained
+
+    private void genre_comedyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_genre_comedyFocusGained
+        // TODO add your handling code here:
+        jLab_Genre.setForeground(new Color(153, 153, 255));
+        jLab_FullName.setForeground(new Color(51, 52, 54));
+        jLab_UserName.setForeground(new Color(51, 52, 54));
+        jLab_Password.setForeground(new Color(51, 52, 54));
+        jLab_DOB.setForeground(new Color(51, 52, 54));
+        jLab_Phone.setForeground(new Color(51, 52, 54));
+        date.setBackground(new Color(32,33,35));
+        month.setBackground(new Color(32,33,35));
+        year.setBackground(new Color(32,33,35));
+        genre_drama.setForeground(new Color(153, 153, 255));
+        genre_comedy.setForeground(new Color(153, 153, 255));
+        genre_action.setForeground(new Color(153, 153, 255));
+    }//GEN-LAST:event_genre_comedyFocusGained
 
     /**
      * @param args the command line arguments
@@ -398,10 +484,13 @@ public class SignUpView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel SignInText;
-    private javax.swing.JTextField dob;
+    private javax.swing.JComboBox<String> date;
     private javax.swing.JLabel fill_warning;
+    private javax.swing.JLabel format_warning;
     private javax.swing.JTextField fullname;
-    private javax.swing.JTextField genre;
+    private javax.swing.JCheckBox genre_action;
+    private javax.swing.JCheckBox genre_comedy;
+    private javax.swing.JCheckBox genre_drama;
     private javax.swing.JButton jBut_SignUp;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JLabel jLab_DOB;
@@ -419,10 +508,12 @@ public class SignUpView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSep_Password1;
     private javax.swing.JSeparator jSep_UserName;
     private javax.swing.JSeparator jSep_UserName1;
+    private javax.swing.JComboBox<String> month;
     private javax.swing.JPanel panel_right;
     private javax.swing.JPasswordField password;
     private javax.swing.JTextField phone;
     private javax.swing.JTextField username;
     private javax.swing.JLabel username_warning;
+    private javax.swing.JComboBox<String> year;
     // End of variables declaration//GEN-END:variables
 }

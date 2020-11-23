@@ -165,7 +165,7 @@ public class SignInView extends javax.swing.JFrame {
         // TODO add your handling code here:
         wrong_warning.setVisible(false);
         String user = username.getText();
-        String pass = password.getText();
+        String pass = String.valueOf(password.getPassword());
         int check = LoginController.checkAnAccount(user, pass);
         if (check == 0){
             wrong_warning.setVisible(true);
