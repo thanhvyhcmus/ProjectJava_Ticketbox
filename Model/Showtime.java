@@ -1,20 +1,20 @@
 package Model;
 
 import java.util.ArrayList;
-
+import Model.Seat;
 public class Showtime {
     int id;
     Film film;
     Theater theater;
     String startTime;
-    ArrayList<ArrayList<Boolean>> seats; // Nếu là false có nghĩa là còn chỗ trống
+    ArrayList<Seat> seats; // Nếu là false có nghĩa là còn chỗ trống
 
     public Showtime( int id,Theater theater,Film film,String startTime) {
         this.id=id;
         this.film=film;
         this.startTime=startTime;
         this.theater=theater;
-        seats = new ArrayList<ArrayList<Boolean>>();
+        seats = null;
     }
     
     public Showtime( int id,Theater theater,Film film,String startTime,int row,int col) {
@@ -22,11 +22,22 @@ public class Showtime {
         this.film=film;
         this.startTime=startTime;
         this.theater=theater;
-        seats = new ArrayList<ArrayList<Boolean>>();
+        seats = new ArrayList<Seat>();
         for(int i=0;i<row;i++) {
-            seats.add(new ArrayList<Boolean>());
             for(int j=0;j<col;j++) {
-                seats.get(i).add(false);
+                seats.add(new Seat(id,i,j,0,0));
+            }
+        }
+    }
+    public Showtime( int id,Theater theater,Film film,String startTime,int row,int col,int price) {
+        this.id=id;
+        this.film=film;
+        this.startTime=startTime;
+        this.theater=theater;
+        seats = new ArrayList<Seat>();
+        for(int i=0;i<row;i++) {
+            for(int j=0;j<col;j++) {
+                seats.add(new Seat(id,i,j,0,price));
             }
         }
     }
@@ -54,7 +65,9 @@ public class Showtime {
     {
         this.id = id;
     }
-
-    
+    public void setSeats(ArrayList<Seat> seats )
+    {
+        this.seats = seats;
+    }    
 
 }
