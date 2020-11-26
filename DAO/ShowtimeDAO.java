@@ -116,4 +116,39 @@ public class ShowtimeDAO {
         }
         return show;
     }
+    public static boolean bookTickets(ArrayList<Seat> seats)
+    {
+        Connection conn = null;
+        PreparedStatement stm=null;
+        int res=0;
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "update user set status= ? where idshowtime= ? and idrow=? and idcolumn = ?";
+            for (Seat seat : seats) {
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, seat.getStatus());
+                stm.setInt(2,seat.getIDShowtime());
+                stm.setInt(3,seat.getIDRow());
+                stm.setInt(4,seat.getIDColumn());
+                res += stm.executeUpdate();
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try{
+                if(conn != null)
+                    conn.close();
+                if(stm != null)
+                    stm.close();
+            }catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        if(res== seats.size())
+            return true;
+        return false;
+        
+    }
 }
