@@ -12,7 +12,7 @@ import Model.Seat;
  * ShowtimeDAO
  */
 public class ShowtimeDAO {
-    public static ArrayList<Showtime> getAllShowtimeBy(Theater theater) {
+    public static ArrayList<Showtime> getAllShowtimesBy(Theater theater) {
         ArrayList<Showtime> show = new ArrayList<Showtime>();
         Connection conn = null;
         PreparedStatement stm=null;
@@ -80,7 +80,7 @@ public class ShowtimeDAO {
         }
         return seats;
     }
-    public static ArrayList<Showtime> getAllShowtimeBy(Film film) {
+    public static ArrayList<Showtime> getAllShowtimesBy(Film film) {
         ArrayList<Showtime> show = new ArrayList<Showtime>();
         Connection conn = null;
         PreparedStatement stm=null;
@@ -214,26 +214,5 @@ public class ShowtimeDAO {
             }
         }
         return rs;
-    }
-    public static void main(String[] args) {
-        Theater t= TheaterDAO.searchTheater(10001);
-        Film f = FilmDAO.searchAFilm(10005);
-        ArrayList<Showtime> show = getAllShowtimeBy(f);
-        // for (Showtime showtime : show) {
-        //     System.out.println(showtime);
-        // }
-        ArrayList<Seat> seats= getAllSeatsBy(show.get(1).getID());
-        for (Seat seat : seats) {
-            System.out.println(seat);
-        }
-        ArrayList<Seat> book= new ArrayList<Seat>();
-        for(int i=5;i<10;i++)
-        {
-            seats.get(i).setStatus(10002);
-            book.add(seats.get(i));
-        }
-        bookTickets(book);
-        System.out.println(getReport(t));
-        System.out.println(getReport(f));
     }
 }
