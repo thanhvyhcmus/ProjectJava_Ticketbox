@@ -38,7 +38,7 @@ public class TheaterDAO {
         }
         return theater;
     }
-    public static Theater searchTheater(String ID){
+    public static Theater searchTheater(int ID){
         Theater theater = null;
         Connection conn = null;
         PreparedStatement stm=null;
@@ -47,7 +47,7 @@ public class TheaterDAO {
             conn = JDBCConnection.getConnection();
             String sql = "select * from theater where id = ?";
             stm= conn.prepareStatement(sql);
-            stm.setString(1, ID);
+            stm.setInt(1, ID);
             res = stm.executeQuery();
             if(res.next()){
                 theater= new Theater(res.getInt(1), res.getString(2), res.getString(3));
@@ -70,4 +70,5 @@ public class TheaterDAO {
         }
         return theater;
     }
+
 }

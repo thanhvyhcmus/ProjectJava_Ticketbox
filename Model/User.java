@@ -80,4 +80,7 @@ package Model;
     public byte getIsadmin(){
         return isadmin;
     }
+    public String toString(){
+        return Integer.toString(id)+" "+fullname+" "+username+" "+password+" "+phone+" "+isadmin;
+    }
 }

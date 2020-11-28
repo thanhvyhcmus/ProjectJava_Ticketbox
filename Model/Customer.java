@@ -1,8 +1,8 @@
 package Model;
 
 public class Customer  extends User{
-    int point;
-    String favouriteGenre;
+    private int point;
+    private String favouriteGenre;
 
     Customer()
     {

@@ -24,7 +24,7 @@ public class ShowtimeDAO {
             stm.setInt(1, theater.getID());
             res = stm.executeQuery();
             while(res.next()){
-                Film film= FilmDAO.searchAFilm(res.getString("idfilm"));
+                Film film= FilmDAO.searchAFilm(res.getInt("idfilm"));
                 Showtime st= new Showtime(res.getInt("id"), theater, film,res.getString("starttime"));
                 ArrayList<Seat> seats = ShowtimeDAO.getAllSeatsBy(st.getID());
                 st.setSeats(seats);
@@ -92,7 +92,7 @@ public class ShowtimeDAO {
             stm.setInt(1, film.getID());
             res = stm.executeQuery();
             while(res.next()){
-                Theater theater= TheaterDAO.searchTheater(res.getString("idtheater"));
+                Theater theater= TheaterDAO.searchTheater(res.getInt("idtheater"));
                 Showtime st= new Showtime(res.getInt("id"), theater, film,res.getString("starttime"));
                 ArrayList<Seat> seats = ShowtimeDAO.getAllSeatsBy(st.getID());
                 st.setSeats(seats);
@@ -123,7 +123,7 @@ public class ShowtimeDAO {
         int res=0;
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "update user set status= ? where idshowtime= ? and idrow=? and idcolumn = ?";
+            String sql = "update seatsofshowtime set status= ? where idshowtime= ? and idrow=? and idcolumn = ?";
             for (Seat seat : seats) {
                 stm = conn.prepareStatement(sql);
                 stm.setInt(1, seat.getStatus());
@@ -150,5 +150,90 @@ public class ShowtimeDAO {
             return true;
         return false;
         
+    }
+    public static int getReport(Theater theater) {
+        int rs=0;
+        Connection conn = null;
+        PreparedStatement stm=null;
+        ResultSet res=null;
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "select sum(ticketprice) from seatsofshowtime as se inner join showtime as st on (se.idshowtime = st.id) where st.idtheater = ? and se.status is not null ";
+            stm = conn.prepareStatement(sql);
+            stm.setInt(1, theater.getID());
+            res = stm.executeQuery();
+            if(res.next()){
+                rs=+res.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try{
+                if(conn != null)
+                    conn.close();
+                if(res != null)
+                    res.close();
+                if(stm != null)
+                    stm.close();
+            }catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return rs;
+    }
+    public static int getReport(Film film) {
+        int rs=0;
+        Connection conn = null;
+        PreparedStatement stm=null;
+        ResultSet res=null;
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "select sum(ticketprice) from seatsofshowtime as se inner join showtime as st on (se.idshowtime = st.id) where st.idfilm = ? and se.status is not null ";
+            stm = conn.prepareStatement(sql);
+            stm.setInt(1, film.getID());
+            res = stm.executeQuery();
+            if(res.next()){
+                rs=+res.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try{
+                if(conn != null)
+                    conn.close();
+                if(res != null)
+                    res.close();
+                if(stm != null)
+                    stm.close();
+            }catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return rs;
+    }
+    public static void main(String[] args) {
+        Theater t= TheaterDAO.searchTheater(10001);
+        Film f = FilmDAO.searchAFilm(10005);
+        ArrayList<Showtime> show = getAllShowtimeBy(f);
+        // for (Showtime showtime : show) {
+        //     System.out.println(showtime);
+        // }
+        ArrayList<Seat> seats= getAllSeatsBy(show.get(1).getID());
+        for (Seat seat : seats) {
+            System.out.println(seat);
+        }
+        ArrayList<Seat> book= new ArrayList<Seat>();
+        for(int i=5;i<10;i++)
+        {
+            seats.get(i).setStatus(10002);
+            book.add(seats.get(i));
+        }
+        bookTickets(book);
+        System.out.println(getReport(t));
+        System.out.println(getReport(f));
     }
 }

@@ -116,7 +116,7 @@ public class FilmDAO {
             conn = JDBCConnection.getConnection();
             String sql = "insert into  film  VALUES (null,?,?,?,?,?,?,?,?,?)" ;
             stm = conn.prepareStatement(sql);
-            stm.setString(1, film.getReleasedDate());
+            stm.setString(1, film.getTitle());
             stm.setString(2, film.getDescription());
             stm.setInt(3, film.getDuration());
             stm.setString(4, film.getGenre());
@@ -148,7 +148,7 @@ public class FilmDAO {
             return false;
         return true;
     }
-    public static Film searchAFilm(String ID) 
+    public static Film searchAFilm(int ID) 
     {
         Film film = null;
         Connection conn = null;
@@ -158,7 +158,7 @@ public class FilmDAO {
             conn = JDBCConnection.getConnection();
             String sql = "select * from film where id = ?";
             stm= conn.prepareStatement(sql);
-            stm.setString(1,ID);
+            stm.setInt(1,ID);
             res = stm.executeQuery();
             if(res.next()){
                 film= new Film(res.getInt(1), res.getString(2), res.getString(3),res.getInt(4), res.getString(5), res.getString(6),res.getString(7), res.getString(8), res.getString(9),res.getString(10));
@@ -180,5 +180,7 @@ public class FilmDAO {
             }
         }
         return film;
+        
     }
+
 }   

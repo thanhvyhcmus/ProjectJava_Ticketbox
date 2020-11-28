@@ -3,10 +3,10 @@ package Model;
 import java.util.ArrayList;
 
 public class Theater {
-    int id;
-    String name;
-    ArrayList<Showtime> schedule;
-    String address;
+    private int id;
+    private String name;
+    private ArrayList<Showtime> schedule;
+    private String address;
     public Theater(int id,String name,String address){
         this.name=name;
         this.id=id;
@@ -30,5 +30,14 @@ public class Theater {
     public int getID()
     {
         return id;
+    }
+    public String getName(){
+        return name;
+    }
+    public String getAddress(){
+        return address;
+    }
+    public String toString(){
+        return name+" "+address;
     }
 }

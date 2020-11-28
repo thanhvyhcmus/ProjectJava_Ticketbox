@@ -4,11 +4,11 @@ package Model;
  * Seat
  */
 public class Seat {
-    int idShowtime;
-    int idRow;
-    int idColumn;
-    int status;
-    int ticketPrice;
+    private int idShowtime;
+    private int idRow;
+    private int idColumn;
+    private int status;
+    private int ticketPrice;
     public Seat(int showtime,int row,int column,int status,int price){
         idShowtime=showtime;
         idRow=row;
@@ -40,6 +40,9 @@ public class Seat {
     {
         this.status = status;
     }
-
+    public String toString()
+    {
+        return Integer.toString(this.ticketPrice)+" "+Integer.toString(this.idRow)+" "+Integer.toString(this.idColumn)+" : "+Integer.toString(this.status);
+    }
     
 }

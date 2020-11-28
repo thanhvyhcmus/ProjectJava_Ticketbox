@@ -1,16 +1,16 @@
 package Model;
 
 public class Film {
-    int id;
-    String title;
-    String description;
-    int duration;
-    String genre;
-    String director;
-    String cast;
-    String releasedDate;
-    String language;
-    String linkimg;
+    private int id;
+    private String title;
+    private String description;
+    private int duration;
+    private String genre;
+    private String director;
+    private String cast;
+    private String releasedDate;
+    private String language;
+    private String linkimg;
     public Film(int id, String title, String description, int duration,String genre, String director, String cast, String releasedDate, String language,String linkimg) {
         this.id =id;
         this.title =title;
@@ -83,6 +83,9 @@ public class Film {
     }
     public String getReleasedDate() {
         return releasedDate;
+    }
+    public String toString() {
+        return title + " " + language + " " + genre;
     }
     
 }

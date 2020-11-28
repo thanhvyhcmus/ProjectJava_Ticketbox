@@ -1,7 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
-import Model.Seat;
+// import Model.Seat;
 public class Showtime {
     int id;
     Film film;
@@ -69,5 +69,8 @@ public class Showtime {
     {
         this.seats = seats;
     }    
+    public String toString(){
+        return Integer.toString(id)+" "+theater.getName()+" "+film.getTitle()+" "+startTime;
+    }
 
 }
