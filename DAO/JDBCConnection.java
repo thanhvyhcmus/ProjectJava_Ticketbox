@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class JDBCConnection {
     public static Connection getConnection(){
         final String user="root";
-        final String password="";
+        final String password="22121999";
         final String url = "jdbc:mysql://localhost:3306/ticketbox";
         Connection conn = null;
         try {
