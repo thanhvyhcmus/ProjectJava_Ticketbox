@@ -145,7 +145,7 @@ public class SignInView extends javax.swing.JFrame {
 
         getContentPane().add(panel_left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 511, 560));
 
-        background.setIcon(new javax.swing.ImageIcon("C:\\Users\\ngnth\\Downloads\\13813637.jpg")); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/signin_bg.jpg"))); // NOI18N
         background.setText("jLabel6");
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 560));
 
