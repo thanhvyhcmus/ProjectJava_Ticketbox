@@ -69,7 +69,6 @@ public class SignUpView extends javax.swing.JFrame {
         format_warning = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1030, 560));
         setSize(new java.awt.Dimension(0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -396,6 +395,7 @@ public class SignUpView extends javax.swing.JFrame {
             username_warning.setVisible(true);
         } else if (check == 1) {
             new SuccessfulSUView().setVisible(true);
+            this.dispose();
         } else{
             fill_warning.setVisible(false);
             username_warning.setVisible(false);
@@ -406,6 +406,7 @@ public class SignUpView extends javax.swing.JFrame {
     private void SignInTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SignInTextMouseClicked
         // TODO add your handling code here:
         new SignInView().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_SignInTextMouseClicked
 
     private void monthFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_monthFocusGained

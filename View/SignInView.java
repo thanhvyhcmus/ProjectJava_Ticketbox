@@ -173,10 +173,12 @@ public class SignInView extends javax.swing.JFrame {
         else if (check == 1){
             //go to Customer Screen
             new CustomerView().setVisible(true);
+            this.dispose();
         }
         else if (check == 2){
             //go to Admin Screen
             new AdminView().setVisible(true);
+            this.dispose();
         }
         
     }//GEN-LAST:event_jBut_SignInActionPerformed
@@ -189,6 +191,7 @@ public class SignInView extends javax.swing.JFrame {
     private void SignUpTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SignUpTextMouseClicked
         // TODO add your handling code here:
         new SignUpView().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_SignUpTextMouseClicked
 
     /**
