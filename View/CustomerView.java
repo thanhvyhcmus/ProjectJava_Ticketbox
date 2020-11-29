@@ -48,7 +48,7 @@ public class CustomerView extends javax.swing.JFrame {
         theaterlabel.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         theaterlabel.setForeground(new java.awt.Color(255, 255, 255));
         theaterlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        theaterlabel.setIcon(new javax.swing.ImageIcon("images\\woodenbg.jpg")); // NOI18N
+        theaterlabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/woodenbg.jpg"))); // NOI18N
         theaterlabel.setText(theater.getName());
         theaterlabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         theaterlabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -299,7 +299,6 @@ public class CustomerView extends javax.swing.JFrame {
 //        fi.add(new Film(1,"DORAEMON","des",1,"","","","","","/images/doraemon.jpg"));
         createListMoviePanel(fi);
         mainpanel.add(movieListPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 940, 840));
-
         theaterLab.setBackground(new java.awt.Color(38, 19, 66));
         theaterLab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -402,7 +401,6 @@ public class CustomerView extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify                     
     private javax.swing.JPanel MovieLab;
     private javax.swing.JPanel bg;
