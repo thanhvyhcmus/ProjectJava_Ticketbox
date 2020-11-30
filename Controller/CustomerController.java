@@ -28,6 +28,12 @@ public class CustomerController {
         return DAO.ShowtimeDAO.getAllShowtimesBy(theater);
     }
     public static ArrayList<Showtime> getAllShowtimesBy(String theater,String film){
+//        ArrayList<Showtime> showtimes = new ArrayList<>();
+//        showtimes.add(new Showtime(1,new Theater(1,"",""),new Film(1,"","",1,"","","","","",""),"14:00"));
+//        showtimes.add(new Showtime(1,new Theater(1,"",""),new Film(1,"","",1,"","","","","",""),"14:00"));
+//        showtimes.add(new Showtime(1,new Theater(1,"",""),new Film(1,"","",1,"","","","","",""),"14:00"));
+//        showtimes.add(new Showtime(1,new Theater(1,"",""),new Film(1,"","",1,"","","","","",""),"14:00"));
+//        return showtimes;
         return DAO.ShowtimeDAO.getAllShowtimesBy(theater,film);
     }
     public static ArrayList<Theater> getAllTheaters(){

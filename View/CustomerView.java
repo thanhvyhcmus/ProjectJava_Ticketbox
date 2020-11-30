@@ -11,6 +11,7 @@ import Model.Showtime;
 import Model.Theater;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -255,6 +256,7 @@ public class CustomerView extends javax.swing.JFrame {
         showtimePanel.setVisible(true);
     }
     void createShowTimeLists(javax.swing.JPanel showtimePanel, String film, String theater){
+        System.out.println(film + theater);
         ArrayList<Showtime> showtimes = CustomerController.getAllShowtimesBy(theater,film);
         for (int i = 0; i < showtimes.size(); i ++){
             createShowTimeItems(showtimePanel,showtimes.get(i),i);
@@ -530,6 +532,7 @@ public class CustomerView extends javax.swing.JFrame {
     }
     private javax.swing.JPanel createHomepanel(){
         javax.swing.JPanel mainpanel;
+        javax.swing.JLabel poster;
         javax.swing.JPanel movieListPanel;
         javax.swing.JPanel theaterLab;
         javax.swing.JPanel theaterListPanel;
@@ -541,6 +544,7 @@ public class CustomerView extends javax.swing.JFrame {
         javax.swing.JPanel rightSepMoviePanel;
         javax.swing.JPanel leftSepMoviePanel;
         mainpanel = new javax.swing.JPanel();
+        poster = new javax.swing.JLabel();
         MovieLab = new javax.swing.JPanel();
         movieSelectionLabel = new javax.swing.JLabel();
         rightSepMoviePanel = new javax.swing.JPanel();
@@ -556,6 +560,9 @@ public class CustomerView extends javax.swing.JFrame {
 
         MovieLab.setBackground(new java.awt.Color(38, 19, 66));
         MovieLab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        poster.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/poster.jpg"))); // NOI18N
+        mainpanel.add(poster, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 890, -1));
 
         movieSelectionLabel.setBackground(new java.awt.Color(0, 0, 51));
         movieSelectionLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -589,13 +596,13 @@ public class CustomerView extends javax.swing.JFrame {
 
         MovieLab.add(leftSepMoviePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 300, 5));
 
-        mainpanel.add(MovieLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 25, 960, 40));
+        mainpanel.add(MovieLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 960, 40));
 
         movieListPanel.setBackground(new java.awt.Color(38, 19, 66));
         movieListPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         ArrayList<Film> fi = CustomerController.getAllFilms();
         createListMoviePanel(movieListPanel,fi);
-        mainpanel.add(movieListPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 960, 840));
+        mainpanel.add(movieListPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 285, 960, 840));
         theaterLab.setBackground(new java.awt.Color(38, 19, 66));
         theaterLab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -630,7 +637,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         theaterLab.add(theater_lineleft, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 300, 5));
 
-        mainpanel.add(theaterLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 900, 960, 40));
+        mainpanel.add(theaterLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1135, 960, 40));
 
         theaterListPanel.setBackground(new java.awt.Color(38, 19, 66));
         theaterListPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -638,7 +645,7 @@ public class CustomerView extends javax.swing.JFrame {
         ArrayList<Theater> theaters = CustomerController.getAllTheaters();
         createListTheaterPanel(theaterListPanel,theaters);
 
-        mainpanel.add(theaterListPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 940, 960, 320));
+        mainpanel.add(theaterListPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1175, 960, 320));
         mainscrollpane.setViewportView(mainpanel);
         return mainpanel;
     }
@@ -646,7 +653,6 @@ public class CustomerView extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
