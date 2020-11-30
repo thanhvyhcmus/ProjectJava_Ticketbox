@@ -27,7 +27,7 @@ public class CustomerController {
     public static ArrayList<Showtime> getAllShowtimesBy(Theater theater){
         return DAO.ShowtimeDAO.getAllShowtimesBy(theater);
     }
-    public static ArrayList<Showtime> getAllShowtimesBy(int theater,int film){
+    public static ArrayList<Showtime> getAllShowtimesBy(String theater,String film){
         return DAO.ShowtimeDAO.getAllShowtimesBy(theater,film);
     }
     public static ArrayList<Theater> getAllTheaters(){
