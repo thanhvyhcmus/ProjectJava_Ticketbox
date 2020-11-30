@@ -7,6 +7,7 @@ package View;
 
 import Controller.CustomerController;
 import Model.Film;
+import Model.Showtime;
 import Model.Theater;
 
 import javax.swing.*;
@@ -33,12 +34,12 @@ public class CustomerView extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
-    private void createListTheaterPanel (ArrayList<Theater> theaterlist){
+    private void createListTheaterPanel (javax.swing.JPanel theaterListPanel,ArrayList<Theater> theaterlist){
         for (int i = 0; i < theaterlist.size(); i++){
-            createTheaterPanel(theaterlist.get(i),i);
+            createTheaterPanel(theaterListPanel,theaterlist.get(i),i);
         }
     }
-    private void createTheaterPanel(Theater theater, int pos){
+    private void createTheaterPanel(javax.swing.JPanel theaterListPanel, Theater theater, int pos){
         javax.swing.JLabel theaterlabel;
         javax.swing.JPanel theaterpanel;
         theaterpanel = new javax.swing.JPanel();
@@ -75,16 +76,16 @@ public class CustomerView extends javax.swing.JFrame {
         int posY = 40 + 120*(pos/3);
         theaterListPanel.add(theaterpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(posX, posY, -1, -1));
     }
-    private void createListMoviePanel (ArrayList<Film> filmlist){
+    private void createListMoviePanel (javax.swing.JPanel movieListPanel, ArrayList<Film> filmlist){
         int len = 6;
         if (filmlist.size() < 6){
             len = filmlist.size();
         }
         for (int i = 0; i < 6; i++){
-            addMoviePanel(filmlist.get(i),i);
+            addMoviePanel(movieListPanel, filmlist.get(i),i);
         }
     }
-    private void addMoviePanel(Film film, int pos){
+    private void addMoviePanel(javax.swing.JPanel movieListPanel, Film film, int pos){
         javax.swing.JPanel moviePanel;
         javax.swing.JLabel moviePoster;
         javax.swing.JLabel filmLabel;
@@ -131,69 +132,259 @@ public class CustomerView extends javax.swing.JFrame {
         int posY = 40 + 410*(pos/3);
         movieListPanel.add(moviePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(posX, posY, -1, -1));
     }
+    private javax.swing.JPanel createBookingPanel(){
+        javax.swing.JPanel bookingpanel = new javax.swing.JPanel();
+        javax.swing.JLabel movieLable;
+        javax.swing.JComboBox<String> movieSelection;
+        javax.swing.JLabel poster;
+        javax.swing.JLabel showingtimeLabel;
+        javax.swing.JLabel showtimeSelection;
+        javax.swing.JPanel sidepane;
+        javax.swing.JLabel theaterLabel;
+        javax.swing.JComboBox<String> theaterSelection;
+        javax.swing.JPanel BookTicketLab;
+        javax.swing.JLabel BookTicketText;
+        javax.swing.JPanel leftSep;
+        javax.swing.JPanel rightSep;
+        javax.swing.JPanel showtimePanel;
+        javax.swing.JButton btn_showshowtime;
+        theaterSelection = new javax.swing.JComboBox<>();
+        movieSelection = new javax.swing.JComboBox<>();
+        theaterLabel = new javax.swing.JLabel();
+        showingtimeLabel = new javax.swing.JLabel();
+        movieLable = new javax.swing.JLabel();
+        poster = new javax.swing.JLabel();
+        showtimeSelection = new javax.swing.JLabel();
+        BookTicketLab = new javax.swing.JPanel();
+        BookTicketText = new javax.swing.JLabel();
+        rightSep = new javax.swing.JPanel();
+        leftSep = new javax.swing.JPanel();
+        showtimePanel = new javax.swing.JPanel();
+        btn_showshowtime = new javax.swing.JButton();
+        bookingpanel.setBackground(new java.awt.Color(38, 19, 66));
+        bookingpanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BookTicketLab.setBackground(new java.awt.Color(38, 19, 66));
+        BookTicketLab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BookTicketText.setBackground(new java.awt.Color(0, 0, 51));
+        BookTicketText.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BookTicketText.setForeground(new java.awt.Color(255, 255, 255));
+        BookTicketText.setText("BOOKING TICKET");
+        BookTicketLab.add(BookTicketText, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 309, -1));
+
+        javax.swing.GroupLayout rightSepLayout = new javax.swing.GroupLayout(rightSep);
+        rightSep.setLayout(rightSepLayout);
+        rightSepLayout.setHorizontalGroup(
+                rightSepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 300, Short.MAX_VALUE)
+        );
+        rightSepLayout.setVerticalGroup(
+                rightSepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        BookTicketLab.add(rightSep, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 300, 5));
+
+        javax.swing.GroupLayout leftSepLayout = new javax.swing.GroupLayout(leftSep);
+        leftSep.setLayout(leftSepLayout);
+        leftSepLayout.setHorizontalGroup(
+                leftSepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 300, Short.MAX_VALUE)
+        );
+        leftSepLayout.setVerticalGroup(
+                leftSepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        BookTicketLab.add(leftSep, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 300, 5));
+
+        bookingpanel.add(BookTicketLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 25, 950, 40));
+
+        theaterSelection.setBackground(new java.awt.Color(64, 33, 100));
+        theaterSelection.setFont(new java.awt.Font("Segoe UI", 0, 18));
+        theaterSelection.setForeground(new java.awt.Color(255, 255, 255));
+        String[] theaternamelist = getTheaterNameList();
+        theaterSelection.setModel(new javax.swing.DefaultComboBoxModel<>(theaternamelist));
+        bookingpanel.add(theaterSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 140, 280, 40));
+
+        movieSelection.setBackground(new java.awt.Color(64, 33, 100));
+        movieSelection.setFont(new java.awt.Font("Segoe UI", 0, 18));
+        theaterSelection.setForeground(new java.awt.Color(255, 255, 255));
+        String[] movienamelist = getFilmNameList();
+        movieSelection.setModel(new javax.swing.DefaultComboBoxModel<>(movienamelist));
+        bookingpanel.add(movieSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 260, 40));
+
+        theaterLabel.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        theaterLabel.setForeground(new java.awt.Color(255, 255, 255));
+        theaterLabel.setText("THEATER");
+        bookingpanel.add(theaterLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 160, 40));
+
+        movieLable.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        movieLable.setForeground(new java.awt.Color(255, 255, 255));
+        movieLable.setText("MOVIE");
+        bookingpanel.add(movieLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 160, 40));
+
+        showtimePanel.setBackground(new java.awt.Color(38, 19, 66));
+        showtimePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        showingtimeLabel.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        showingtimeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        showingtimeLabel.setText("SHOWING TIME");
+        showtimePanel.add(showingtimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 230, 40));
+
+        bookingpanel.add(showtimePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 780, 320));
+
+        btn_showshowtime.setBackground(new java.awt.Color(126, 87, 194));
+        btn_showshowtime.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        btn_showshowtime.setForeground(new java.awt.Color(255, 255, 255));
+        btn_showshowtime.setText("SHOW SHOWTIME");
+        btn_showshowtime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_showshowtimeActionPerformed(evt, showtimePanel,movieSelection,theaterSelection);
+            }
+        });
+        bookingpanel.add(btn_showshowtime, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 190, 60));
+        showtimePanel.setVisible(false);
+        return bookingpanel;
+    }
+    private void btn_showshowtimeActionPerformed(java.awt.event.ActionEvent evt, javax.swing.JPanel showtimePanel,javax.swing.JComboBox<String> movieSelection, javax.swing.JComboBox<String> theaterSelection ) {
+        // TODO add your handling code here:
+        String film = (String) movieSelection.getSelectedItem();
+        String theater = (String) theaterSelection.getSelectedItem();
+        createShowTimeLists(showtimePanel,film,theater);
+        showtimePanel.setVisible(true);
+    }
+    void createShowTimeLists(javax.swing.JPanel showtimePanel, String film, String theater){
+        ArrayList<Showtime> showtimes = CustomerController.getAllShowtimesBy(theater,film);
+        for (int i = 0; i < showtimes.size(); i ++){
+            createShowTimeItems(showtimePanel,showtimes.get(i),i);
+        }
+    }
+    void createShowTimeItems(javax.swing.JPanel showtimePanel, Showtime showtime, int pos){
+        javax.swing.JLabel showtimeSelection;
+        showtimeSelection = new javax.swing.JLabel();
+        showtimeSelection.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
+        showtimeSelection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ticketbg.png"))); // NOI18N
+        showtimeSelection.setText(showtime.getStartTime());
+        showtimeSelection.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        int posX = 30 + (pos%4)*200;
+        int posY = 90 + (pos/4)*80;
+        showtimePanel.add(showtimeSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(posX, posY, 117, -1));
+
+    }
+    String[] getFilmNameList(){
+        ArrayList<Film> fi = CustomerController.getAllFilms();
+        String[] lst = new String[fi.size()];
+        for (int i = 0; i < fi.size(); i++){
+            lst[i] = fi.get(i).getTitle();
+        }
+        return lst;
+    }
+    String[] getTheaterNameList(){
+        ArrayList<Theater> th = CustomerController.getAllTheaters();
+                String[] lst = new String[th.size()];
+        for (int i = 0; i < th.size(); i++){
+            lst[i] = th.get(i).getName();
+        }
+        return lst;
+    }
+
     private void initComponents() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         bg = new javax.swing.JPanel();
         sidepane = new javax.swing.JPanel();
-        btn_home = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        btn_bookticket = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        btn_manageaccount = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        btn_movies = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        btn_theaters = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         mainscrollpane = new javax.swing.JScrollPane();
-        mainpanel = new javax.swing.JPanel();
-        MovieLab = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jPanel18 = new javax.swing.JPanel();
-        jPanel19 = new javax.swing.JPanel();
-        movieListPanel = new javax.swing.JPanel();
-        theaterLab = new javax.swing.JPanel();
-        theatertext = new javax.swing.JLabel();
-        theater_lineright = new javax.swing.JPanel();
-        theater_lineleft = new javax.swing.JPanel();
-        theaterListPanel = new javax.swing.JPanel();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        mainpanel = createHomepanel();
+        bookingpanel = createBookingPanel();
+        sidepane = createSidepanel();
+
+        bg.add(sidepane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 332, 700));
+
+        mainscrollpane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+//        mainscrollpane.getHorizontalScrollBar().setBackground(new java.awt.Color(38, 19, 66));
+        mainscrollpane.setViewportView(mainpanel);
+        bg.add(mainscrollpane, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 960, 700));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(647, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>
+    private javax.swing.JPanel createSidepanel(){
+        javax.swing.JPanel sidepane = new javax.swing.JPanel();
+        javax.swing.JLabel homeLable;
+        javax.swing.JLabel bookticketLogo;
+        javax.swing.JLabel bookticketLabel;
+        javax.swing.JLabel applogo;
+        javax.swing.JLabel manageaccountLogo;
+        javax.swing.JLabel manageaccountLabel;
+        javax.swing.JPanel btn_home;
+        javax.swing.JPanel btn_bookticket;
+        javax.swing.JPanel btn_manageaccount;
+        javax.swing.JPanel btn_movies;
+        javax.swing.JPanel btn_theaters;
+        javax.swing.JLabel homeLogo;
+        javax.swing.JLabel movieLogo;
+        javax.swing.JLabel movieLabel;
+        javax.swing.JLabel theaterLogo;
+        javax.swing.JLabel theaterLabel;
         sidepane.setBackground(new java.awt.Color(54, 33, 89));
         sidepane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
+        btn_home = new javax.swing.JPanel();
+        homeLogo = new javax.swing.JLabel();
+        homeLable = new javax.swing.JLabel();
+        btn_bookticket = new javax.swing.JPanel();
+        bookticketLogo = new javax.swing.JLabel();
+        bookticketLabel = new javax.swing.JLabel();
+        btn_manageaccount = new javax.swing.JPanel();
+        manageaccountLogo = new javax.swing.JLabel();
+        manageaccountLabel = new javax.swing.JLabel();
+        applogo = new javax.swing.JLabel();
+        btn_movies = new javax.swing.JPanel();
+        movieLogo = new javax.swing.JLabel();
+        movieLabel = new javax.swing.JLabel();
+        btn_theaters = new javax.swing.JPanel();
+        theaterLogo = new javax.swing.JLabel();
+        theaterLabel = new javax.swing.JLabel();
+        javax.swing.JPanel[] btns = {btn_home,btn_bookticket,btn_movies,btn_theaters,btn_manageaccount};
         btn_home.setBackground(new java.awt.Color(85, 65, 118));
         btn_home.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_home.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_homeMouseClicked(evt);
+                btnMouseClicked(evt,btn_home,btns,home_onclick,mainpanel);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_homeMouseEntered(evt);
+                btnMouseEntered(evt,btn_home);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_homeMouseExited(evt);
+                btnMouseExited(evt,btn_home,home_onclick);
             }
         });
         btn_home.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_32px.png"))); // NOI18N
-        btn_home.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 16, -1, 42));
+        homeLogo.setForeground(new java.awt.Color(255, 255, 255));
+        homeLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_32px.png"))); // NOI18N
+        btn_home.add(homeLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 16, -1, 42));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Home");
-        btn_home.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 16, 120, 42));
+        homeLable.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        homeLable.setForeground(new java.awt.Color(255, 255, 255));
+        homeLable.setText("Home");
+        btn_home.add(homeLable, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 16, 120, 42));
 
         sidepane.add(btn_home, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 350, 70));
 
@@ -201,25 +392,25 @@ public class CustomerView extends javax.swing.JFrame {
         btn_bookticket.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_bookticket.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_bookticketMouseClicked(evt);
+                btnMouseClicked(evt,btn_bookticket, btns, bookticket_onclick,bookingpanel);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_bookticketMouseEntered(evt);
+                btnMouseEntered(evt,btn_bookticket);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_bookticketMouseExited(evt);
+                btnMouseExited(evt,btn_bookticket,home_onclick);
             }
         });
         btn_bookticket.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bookticket.png"))); // NOI18N
-        btn_bookticket.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 16, -1, 42));
+        bookticketLogo.setForeground(new java.awt.Color(255, 255, 255));
+        bookticketLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bookticket.png"))); // NOI18N
+        btn_bookticket.add(bookticketLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 16, -1, 42));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Book Ticket");
-        btn_bookticket.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 16, 120, 42));
+        bookticketLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        bookticketLabel.setForeground(new java.awt.Color(255, 255, 255));
+        bookticketLabel.setText("Book Ticket");
+        btn_bookticket.add(bookticketLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 16, 120, 42));
 
         sidepane.add(btn_bookticket, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 360, 70));
 
@@ -227,54 +418,54 @@ public class CustomerView extends javax.swing.JFrame {
         btn_manageaccount.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_manageaccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_manageaccountMouseClicked(evt);
+                btnMouseClicked(evt,btn_manageaccount,btns,personal_onclick,mainpanel);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_manageaccountMouseEntered(evt);
+                btnMouseEntered(evt,btn_manageaccount);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_manageaccountMouseExited(evt);
+                btnMouseExited(evt,btn_manageaccount,personal_onclick);
             }
         });
         btn_manageaccount.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/infologo.png"))); // NOI18N
-        btn_manageaccount.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 16, -1, 42));
+        manageaccountLogo.setForeground(new java.awt.Color(255, 255, 255));
+        manageaccountLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/infologo.png"))); // NOI18N
+        btn_manageaccount.add(manageaccountLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 16, -1, 42));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Manage Account");
-        btn_manageaccount.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 16, 171, 42));
+        manageaccountLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        manageaccountLabel.setForeground(new java.awt.Color(255, 255, 255));
+        manageaccountLabel.setText("Manage Account");
+        btn_manageaccount.add(manageaccountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 16, 171, 42));
 
         sidepane.add(btn_manageaccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 361, 70));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
-        sidepane.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, -1));
+        applogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        sidepane.add(applogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, -1));
 
         btn_movies.setBackground(new java.awt.Color(64,33,100));
         btn_movies.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_movies.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_moviesMouseClicked(evt);
+                btnMouseClicked(evt,btn_movies,btns,movie_onclick,mainpanel);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_moviesMouseEntered(evt);
+                btnMouseEntered(evt,btn_movies);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_moviesMouseExited(evt);
+                btnMouseExited(evt,btn_movies,movie_onclick);
             }
         });
         btn_movies.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/movielogo.png"))); // NOI18N
-        btn_movies.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 16, -1, 42));
+        movieLogo.setForeground(new java.awt.Color(255, 255, 255));
+        movieLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/movielogo.png"))); // NOI18N
+        btn_movies.add(movieLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 16, -1, 42));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Movies");
-        btn_movies.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 16, 120, 42));
+        movieLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        movieLabel.setForeground(new java.awt.Color(255, 255, 255));
+        movieLabel.setText("Movies");
+        btn_movies.add(movieLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 16, 120, 42));
 
         sidepane.add(btn_movies, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 361, 70));
 
@@ -282,77 +473,128 @@ public class CustomerView extends javax.swing.JFrame {
         btn_theaters.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_theaters.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_theatersMouseClicked(evt);
+                btnMouseClicked(evt,btn_theaters,btns,theater_onclick,mainpanel);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_theatersMouseEntered(evt);
+                btnMouseEntered(evt,btn_theaters);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_theatersMouseExited(evt);
+                btnMouseExited(evt,btn_theaters,theater_onclick);
             }
         });
         btn_theaters.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/theaterlogo.png"))); // NOI18N
-        btn_theaters.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 16, -1, 42));
+        theaterLogo.setForeground(new java.awt.Color(255, 255, 255));
+        theaterLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/theaterlogo.png"))); // NOI18N
+        btn_theaters.add(theaterLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 16, -1, 42));
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Theaters");
-        btn_theaters.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 16, 120, 42));
+        theaterLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        theaterLabel.setForeground(new java.awt.Color(255, 255, 255));
+        theaterLabel.setText("Theaters");
+        btn_theaters.add(theaterLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 16, 120, 42));
 
         sidepane.add(btn_theaters, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 360, 70));
+        return sidepane;
+    }
+    private void btnMouseEntered(java.awt.event.MouseEvent evt, javax.swing.JPanel btn) {
+        // TODO add your handling code here:
+        btn.setBackground(new java.awt.Color(101, 84, 176));
+    }
 
-        bg.add(sidepane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 332, 700));
+    private void btnMouseExited(java.awt.event.MouseEvent evt, javax.swing.JPanel btn, boolean checkonclick) {
+        // TODO add your handling code here:
+        if (checkonclick){
+            btn.setBackground(new java.awt.Color(85,65,118));
+        }
+        else
+            btn.setBackground(new java.awt.Color(64,33,100));
+    }
 
-        mainscrollpane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-//        mainscrollpane.getHorizontalScrollBar().setBackground(new java.awt.Color(38, 19, 66));
+    private void btnMouseClicked(java.awt.event.MouseEvent evt, javax.swing.JPanel btn_click, javax.swing.JPanel[] btns, boolean clickstatus, javax.swing.JPanel choosepane) {
+        // TODO add your handling code here:
+        mainscrollpane.setViewportView(choosepane);
+        for (int i =0; i < btns.length; i++){
+            btns[i].setBackground(new java.awt.Color(64,33,100));
+        }
+        btn_click.setBackground(new java.awt.Color(85,65,118));
+        home_onclick = false;
+        bookticket_onclick = false;
+        movie_onclick = false;
+        theater_onclick = false;
+        personal_onclick = false;
+        clickstatus = true;
+    }
 
+    private void theaterlabelMouseClicked(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
+    }
+    private javax.swing.JPanel createHomepanel(){
+        javax.swing.JPanel mainpanel;
+        javax.swing.JPanel movieListPanel;
+        javax.swing.JPanel theaterLab;
+        javax.swing.JPanel theaterListPanel;
+        javax.swing.JPanel theater_lineleft;
+        javax.swing.JPanel theater_lineright;
+        javax.swing.JLabel theatertext;
+        javax.swing.JPanel MovieLab;
+        javax.swing.JLabel movieSelectionLabel;
+        javax.swing.JPanel rightSepMoviePanel;
+        javax.swing.JPanel leftSepMoviePanel;
+        mainpanel = new javax.swing.JPanel();
+        MovieLab = new javax.swing.JPanel();
+        movieSelectionLabel = new javax.swing.JLabel();
+        rightSepMoviePanel = new javax.swing.JPanel();
+        leftSepMoviePanel = new javax.swing.JPanel();
+        movieListPanel = new javax.swing.JPanel();
+        theaterLab = new javax.swing.JPanel();
+        theatertext = new javax.swing.JLabel();
+        theater_lineright = new javax.swing.JPanel();
+        theater_lineleft = new javax.swing.JPanel();
+        theaterListPanel = new javax.swing.JPanel();
         mainpanel.setBackground(new java.awt.Color(38, 19, 66));
         mainpanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         MovieLab.setBackground(new java.awt.Color(38, 19, 66));
         MovieLab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel16.setBackground(new java.awt.Color(0, 0, 51));
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("MOVIE SELECTIONS");
-        MovieLab.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 309, -1));
+        movieSelectionLabel.setBackground(new java.awt.Color(0, 0, 51));
+        movieSelectionLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        movieSelectionLabel.setForeground(new java.awt.Color(255, 255, 255));
+        movieSelectionLabel.setText("MOVIE SELECTIONS");
+        MovieLab.add(movieSelectionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 309, -1));
 
-        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
-        jPanel18.setLayout(jPanel18Layout);
-        jPanel18Layout.setHorizontalGroup(
-                jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout rightSepMoviePanelLayout = new javax.swing.GroupLayout(rightSepMoviePanel);
+        rightSepMoviePanel.setLayout(rightSepMoviePanelLayout);
+        rightSepMoviePanelLayout.setHorizontalGroup(
+                rightSepMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGap(0, 300, Short.MAX_VALUE)
         );
-        jPanel18Layout.setVerticalGroup(
-                jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        rightSepMoviePanelLayout.setVerticalGroup(
+                rightSepMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGap(0, 5, Short.MAX_VALUE)
         );
 
-        MovieLab.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 300, 5));
+        MovieLab.add(rightSepMoviePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 300, 5));
 
-        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-                jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout leftSepMoviePanelLayout = new javax.swing.GroupLayout(leftSepMoviePanel);
+        leftSepMoviePanel.setLayout(leftSepMoviePanelLayout);
+        leftSepMoviePanelLayout.setHorizontalGroup(
+                leftSepMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGap(0, 300, Short.MAX_VALUE)
         );
-        jPanel19Layout.setVerticalGroup(
-                jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        leftSepMoviePanelLayout.setVerticalGroup(
+                leftSepMoviePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGap(0, 5, Short.MAX_VALUE)
         );
 
-        MovieLab.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 300, 5));
+        MovieLab.add(leftSepMoviePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 300, 5));
 
         mainpanel.add(MovieLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 25, 960, 40));
 
         movieListPanel.setBackground(new java.awt.Color(38, 19, 66));
         movieListPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         ArrayList<Film> fi = CustomerController.getAllFilms();
-        createListMoviePanel(fi);
+        createListMoviePanel(movieListPanel,fi);
         mainpanel.add(movieListPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 960, 840));
         theaterLab.setBackground(new java.awt.Color(38, 19, 66));
         theaterLab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -394,172 +636,11 @@ public class CustomerView extends javax.swing.JFrame {
         theaterListPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ArrayList<Theater> theaters = CustomerController.getAllTheaters();
-        createListTheaterPanel(theaters);
+        createListTheaterPanel(theaterListPanel,theaters);
 
         mainpanel.add(theaterListPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 940, 960, 320));
-
         mainscrollpane.setViewportView(mainpanel);
-
-        bg.add(mainscrollpane, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 960, 700));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(647, Short.MAX_VALUE))
-        );
-
-        pack();
-    }// </editor-fold>                        
-
-    private void theaterlabelMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-    }
-    private void btn_homeMouseEntered(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        this.
-                btn_home.setBackground(new java.awt.Color(101, 84, 176));
-    }
-
-    private void btn_homeMouseExited(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        if (home_onclick){
-            btn_home.setBackground(new java.awt.Color(85,65,118));
-        }
-        else
-            btn_home.setBackground(new java.awt.Color(64,33,100));
-    }
-
-    private void btn_homeMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        btn_home.setBackground(new java.awt.Color(85,65,118));
-        btn_bookticket.setBackground(new java.awt.Color(64,33,100));
-        btn_movies.setBackground(new java.awt.Color(64,33,100));
-        btn_theaters.setBackground(new java.awt.Color(64,33,100));
-        btn_manageaccount.setBackground(new java.awt.Color(64,33,100));
-        home_onclick = true;
-        bookticket_onclick = false;
-        movie_onclick = false;
-        theater_onclick = false;
-        personal_onclick = false;
-    }
-    private void btn_bookticketMouseEntered(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        this.
-                btn_bookticket.setBackground(new java.awt.Color(101, 84, 176));
-    }
-
-    private void btn_bookticketMouseExited(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        if (bookticket_onclick){
-            btn_bookticket.setBackground(new java.awt.Color(85,65,118));
-        }
-        else
-            btn_bookticket.setBackground(new java.awt.Color(64,33,100));
-    }
-
-    private void btn_bookticketMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        btn_home.setBackground(new java.awt.Color(64,33,100));
-        btn_bookticket.setBackground(new java.awt.Color(85,65,118));
-        btn_movies.setBackground(new java.awt.Color(64,33,100));
-        btn_theaters.setBackground(new java.awt.Color(64,33,100));
-        btn_manageaccount.setBackground(new java.awt.Color(64,33,100));
-        home_onclick = false;
-        bookticket_onclick = true;
-        movie_onclick = false;
-        theater_onclick = false;
-        personal_onclick = false;
-    }
-    private void btn_moviesMouseEntered(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        this.
-                btn_movies.setBackground(new java.awt.Color(101, 84, 176));
-    }
-
-    private void btn_moviesMouseExited(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        if (movie_onclick){
-            btn_movies.setBackground(new java.awt.Color(85,65,118));
-        }
-        else
-            btn_movies.setBackground(new java.awt.Color(64,33,100));
-    }
-
-    private void btn_moviesMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        btn_home.setBackground(new java.awt.Color(64,33,100));
-        btn_bookticket.setBackground(new java.awt.Color(64,33,100));
-        btn_movies.setBackground(new java.awt.Color(85,65,118));
-        btn_theaters.setBackground(new java.awt.Color(64,33,100));
-        btn_manageaccount.setBackground(new java.awt.Color(64,33,100));
-        home_onclick = false;
-        bookticket_onclick = false;
-        movie_onclick = true;
-        theater_onclick = false;
-        personal_onclick = false;
-    }
-    private void btn_theatersMouseEntered(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        this.
-                btn_theaters.setBackground(new java.awt.Color(101, 84, 176));
-    }
-
-    private void btn_theatersMouseExited(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        if (theater_onclick){
-            btn_theaters.setBackground(new java.awt.Color(85,65,118));
-        }
-        else
-            btn_theaters.setBackground(new java.awt.Color(64,33,100));
-    }
-
-    private void btn_theatersMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        btn_home.setBackground(new java.awt.Color(64,33,100));
-        btn_bookticket.setBackground(new java.awt.Color(64,33,100));
-        btn_movies.setBackground(new java.awt.Color(64,33,100));
-        btn_theaters.setBackground(new java.awt.Color(85,65,118));
-        btn_manageaccount.setBackground(new java.awt.Color(64,33,100));
-        home_onclick = false;
-        bookticket_onclick = false;
-        movie_onclick = false;
-        theater_onclick = true;
-        personal_onclick = false;
-    }
-    private void btn_manageaccountMouseEntered(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        this.
-                btn_manageaccount.setBackground(new java.awt.Color(101, 84, 176));
-    }
-
-    private void btn_manageaccountMouseExited(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        if (personal_onclick){
-            btn_manageaccount.setBackground(new java.awt.Color(85,65,118));
-        }
-        else
-            btn_manageaccount.setBackground(new java.awt.Color(64,33,100));
-    }
-
-    private void btn_manageaccountMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        btn_home.setBackground(new java.awt.Color(64,33,100));
-        btn_bookticket.setBackground(new java.awt.Color(64,33,100));
-        btn_movies.setBackground(new java.awt.Color(64,33,100));
-        btn_theaters.setBackground(new java.awt.Color(64,33,100));
-        btn_manageaccount.setBackground(new java.awt.Color(85,65,118));
-        home_onclick = false;
-        bookticket_onclick = false;
-        movie_onclick = false;
-        theater_onclick = false;
-        personal_onclick = true;
+        return mainpanel;
     }
     /**
      * @param args the command line arguments
@@ -595,37 +676,12 @@ public class CustomerView extends javax.swing.JFrame {
             }
         });
     }
-    // Variables declaration - do not modify                     
-    private javax.swing.JPanel MovieLab;
-    private javax.swing.JPanel bg;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel btn_home;
-    private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel btn_bookticket;
-    private javax.swing.JPanel btn_manageaccount;
-    private javax.swing.JPanel btn_movies;
-    private javax.swing.JPanel btn_theaters;
-    private javax.swing.JPanel mainpanel;
-    private javax.swing.JScrollPane mainscrollpane;
-    private javax.swing.JPanel movieListPanel;
+    // Variables declaration - do not modify
+    public javax.swing.JPanel bg;
+    public javax.swing.JPanel mainpanel;
+    public javax.swing.JScrollPane mainscrollpane;
     private javax.swing.JPanel sidepane;
-    private javax.swing.JPanel theaterLab;
-    private javax.swing.JPanel theaterListPanel;
-    private javax.swing.JPanel theater_lineleft;
-    private javax.swing.JPanel theater_lineright;
-    private javax.swing.JLabel theatertext;
+    public javax.swing.JPanel bookingpanel;
     private boolean home_onclick = true;
     private boolean theater_onclick = false;
     private boolean movie_onclick = false;

@@ -61,6 +61,10 @@ public class Showtime {
     {
         return id;
     }
+    public String getStartTime()
+    {
+        return startTime;
+    }
     public void setID(int id)
     {
         this.id = id;

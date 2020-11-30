@@ -7,6 +7,7 @@ package View;
 
 import java.awt.Color;
 import Controller.LoginController;
+
 /**
  *
  * @author ngnth
