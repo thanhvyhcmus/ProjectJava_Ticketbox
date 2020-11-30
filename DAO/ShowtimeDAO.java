@@ -48,7 +48,7 @@ public class ShowtimeDAO {
         }
         return show;
     }
-    public static ArrayList<Showtime> getAllShowtimesBy(Theater theater,Film film) {
+    public static ArrayList<Showtime> getAllShowtimesBy(int theater,int film) {
         ArrayList<Showtime> show = new ArrayList<Showtime>();
         Connection conn = null;
         PreparedStatement stm=null;
@@ -57,12 +57,14 @@ public class ShowtimeDAO {
             conn = JDBCConnection.getConnection();
             String sql = "select * from showtime where idtheater = ? and idfilm = ? ";
             stm = conn.prepareStatement(sql);
-            stm.setInt(1, theater.getID());
-            stm.setInt(2, film.getID());
+            stm.setInt(1, theater);
+            stm.setInt(2, film);
 
             res = stm.executeQuery();
             while(res.next()){
-                Showtime st= new Showtime(res.getInt("id"), theater, film,res.getString("starttime"));
+                Film f = FilmDAO.searchAFilm(film);
+                Theater t= TheaterDAO.searchTheater(theater);
+                Showtime st= new Showtime(res.getInt("id"), t, f,res.getString("starttime"));
                 ArrayList<Seat> seats = ShowtimeDAO.getAllSeatsBy(st.getID());
                 st.setSeats(seats);
                 show.add(st);
