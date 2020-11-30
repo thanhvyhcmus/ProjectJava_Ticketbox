@@ -182,5 +182,39 @@ public class FilmDAO {
         return film;
         
     }
+    public static Film searchAFilm(String name) 
+    {
+        Film film = null;
+        Connection conn = null;
+        PreparedStatement stm=null;
+        ResultSet res=null;
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "select * from film where title = ?";
+            stm= conn.prepareStatement(sql);
+            stm.setString(1,name);
+            res = stm.executeQuery();
+            if(res.next()){
+                film= new Film(res.getInt(1), res.getString(2), res.getString(3),res.getInt(4), res.getString(5), res.getString(6),res.getString(7), res.getString(8), res.getString(9),res.getString(10));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try{
+                if(conn != null)
+                    conn.close();
+                if(res != null)
+                    res.close();
+                if(stm != null)
+                    stm.close();
+            }catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return film;
+        
+    }
 
 }   

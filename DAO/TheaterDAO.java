@@ -70,5 +70,37 @@ public class TheaterDAO {
         }
         return theater;
     }
+    public static Theater searchTheater(String name){
+        Theater theater = null;
+        Connection conn = null;
+        PreparedStatement stm=null;
+        ResultSet res=null;
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "select * from theater where name = ?";
+            stm= conn.prepareStatement(sql);
+            stm.setString(1, name);
+            res = stm.executeQuery();
+            if(res.next()){
+                theater= new Theater(res.getInt(1), res.getString(2), res.getString(3));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try{
+                if(conn != null)
+                    conn.close();
+                if(res != null)
+                    res.close();
+                if(stm != null)
+                    stm.close();
+            }catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return theater;
+    }
 
 }
