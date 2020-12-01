@@ -138,7 +138,6 @@ public class CustomerView extends javax.swing.JFrame {
         javax.swing.JLabel movieLable;
         javax.swing.JComboBox<String> movieSelection;
         javax.swing.JLabel poster;
-        javax.swing.JLabel showingtimeLabel;
         javax.swing.JLabel showtimeSelection;
         javax.swing.JPanel sidepane;
         javax.swing.JLabel theaterLabel;
@@ -152,7 +151,6 @@ public class CustomerView extends javax.swing.JFrame {
         theaterSelection = new javax.swing.JComboBox<>();
         movieSelection = new javax.swing.JComboBox<>();
         theaterLabel = new javax.swing.JLabel();
-        showingtimeLabel = new javax.swing.JLabel();
         movieLable = new javax.swing.JLabel();
         poster = new javax.swing.JLabel();
         showtimeSelection = new javax.swing.JLabel();
@@ -228,11 +226,6 @@ public class CustomerView extends javax.swing.JFrame {
 
         showtimePanel.setBackground(new java.awt.Color(38, 19, 66));
         showtimePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        showingtimeLabel.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
-        showingtimeLabel.setForeground(new java.awt.Color(255, 255, 255));
-        showingtimeLabel.setText("SHOWING TIME");
-        showtimePanel.add(showingtimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 230, 40));
-
         bookingpanel.add(showtimePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 780, 320));
 
         btn_showshowtime.setBackground(new java.awt.Color(126, 87, 194));
@@ -250,13 +243,20 @@ public class CustomerView extends javax.swing.JFrame {
     }
     private void btn_showshowtimeActionPerformed(java.awt.event.ActionEvent evt, javax.swing.JPanel showtimePanel,javax.swing.JComboBox<String> movieSelection, javax.swing.JComboBox<String> theaterSelection ) {
         // TODO add your handling code here:
+        showtimePanel.removeAll();
+        showtimePanel.revalidate();
+        showtimePanel.repaint();
         String film = (String) movieSelection.getSelectedItem();
         String theater = (String) theaterSelection.getSelectedItem();
         createShowTimeLists(showtimePanel,film,theater);
         showtimePanel.setVisible(true);
     }
     void createShowTimeLists(javax.swing.JPanel showtimePanel, String film, String theater){
-        System.out.println(film + theater);
+        javax.swing.JLabel showingtimeLabel = new javax.swing.JLabel();
+        showingtimeLabel.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        showingtimeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        showingtimeLabel.setText("SHOWING TIME");
+        showtimePanel.add(showingtimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 230, 40));
         ArrayList<Showtime> showtimes = CustomerController.getAllShowtimesBy(theater,film);
         for (int i = 0; i < showtimes.size(); i ++){
             createShowTimeItems(showtimePanel,showtimes.get(i),i);
@@ -368,7 +368,7 @@ public class CustomerView extends javax.swing.JFrame {
         btn_home.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_home.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMouseClicked(evt,btn_home,btns,home_onclick,mainpanel);
+                btnMouseClicked(evt,btn_home,btns,0,mainpanel);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnMouseEntered(evt,btn_home);
@@ -394,13 +394,13 @@ public class CustomerView extends javax.swing.JFrame {
         btn_bookticket.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_bookticket.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMouseClicked(evt,btn_bookticket, btns, bookticket_onclick,bookingpanel);
+                btnMouseClicked(evt,btn_bookticket, btns, 1,bookingpanel);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnMouseEntered(evt,btn_bookticket);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnMouseExited(evt,btn_bookticket,home_onclick);
+                btnMouseExited(evt,btn_bookticket,bookticket_onclick);
             }
         });
         btn_bookticket.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -420,7 +420,7 @@ public class CustomerView extends javax.swing.JFrame {
         btn_manageaccount.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_manageaccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMouseClicked(evt,btn_manageaccount,btns,personal_onclick,mainpanel);
+                btnMouseClicked(evt,btn_manageaccount,btns,4,mainpanel);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnMouseEntered(evt,btn_manageaccount);
@@ -449,7 +449,7 @@ public class CustomerView extends javax.swing.JFrame {
         btn_movies.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_movies.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMouseClicked(evt,btn_movies,btns,movie_onclick,mainpanel);
+                btnMouseClicked(evt,btn_movies,btns,2,mainpanel);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnMouseEntered(evt,btn_movies);
@@ -475,7 +475,7 @@ public class CustomerView extends javax.swing.JFrame {
         btn_theaters.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_theaters.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMouseClicked(evt,btn_theaters,btns,theater_onclick,mainpanel);
+                btnMouseClicked(evt,btn_theaters,btns,3,mainpanel);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnMouseEntered(evt,btn_theaters);
@@ -503,7 +503,7 @@ public class CustomerView extends javax.swing.JFrame {
         btn.setBackground(new java.awt.Color(101, 84, 176));
     }
 
-    private void btnMouseExited(java.awt.event.MouseEvent evt, javax.swing.JPanel btn, boolean checkonclick) {
+    private void btnMouseExited(java.awt.event.MouseEvent evt, javax.swing.JPanel btn, Boolean checkonclick) {
         // TODO add your handling code here:
         if (checkonclick){
             btn.setBackground(new java.awt.Color(85,65,118));
@@ -512,7 +512,7 @@ public class CustomerView extends javax.swing.JFrame {
             btn.setBackground(new java.awt.Color(64,33,100));
     }
 
-    private void btnMouseClicked(java.awt.event.MouseEvent evt, javax.swing.JPanel btn_click, javax.swing.JPanel[] btns, boolean clickstatus, javax.swing.JPanel choosepane) {
+    private void btnMouseClicked(java.awt.event.MouseEvent evt, javax.swing.JPanel btn_click, javax.swing.JPanel[] btns, int clickstatus, javax.swing.JPanel choosepane) {
         // TODO add your handling code here:
         mainscrollpane.setViewportView(choosepane);
         for (int i =0; i < btns.length; i++){
@@ -524,7 +524,23 @@ public class CustomerView extends javax.swing.JFrame {
         movie_onclick = false;
         theater_onclick = false;
         personal_onclick = false;
-        clickstatus = true;
+        switch (clickstatus){
+            case 0:
+                home_onclick = true;
+                break;
+            case 1:
+                bookticket_onclick = true;
+                break;
+            case 2:
+                movie_onclick = true;
+                break;
+            case 3:
+                theater_onclick = true;
+                break;
+            case 4:
+                personal_onclick = true;
+                break;
+        }
     }
 
     private void theaterlabelMouseClicked(java.awt.event.MouseEvent evt) {
@@ -688,10 +704,10 @@ public class CustomerView extends javax.swing.JFrame {
     public javax.swing.JScrollPane mainscrollpane;
     private javax.swing.JPanel sidepane;
     public javax.swing.JPanel bookingpanel;
-    private boolean home_onclick = true;
-    private boolean theater_onclick = false;
-    private boolean movie_onclick = false;
-    private boolean bookticket_onclick = false;
-    private boolean personal_onclick = false;
+    private Boolean home_onclick = true;
+    private Boolean theater_onclick = false;
+    private Boolean movie_onclick = false;
+    private Boolean bookticket_onclick = false;
+    private Boolean personal_onclick = false;
     // End of variables declaration                   
 }
