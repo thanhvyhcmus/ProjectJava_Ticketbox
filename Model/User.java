@@ -1,6 +1,6 @@
 package Model;
 
- public abstract class User {
+ public class User {
     protected int id;
     protected String fullname;
     protected String doB;
@@ -25,6 +25,15 @@ package Model;
         this.phone = phone;
         this.username=username;
         this.password=password;
+    }
+    public User(int id,String fullname, String doB,String phone,String username, String password,byte isadmin) {
+        this.id = id;
+        this.fullname = fullname;
+        this.doB = doB;
+        this.phone = phone;
+        this.username=username;
+        this.password=password;
+        this.isadmin = isadmin;
     }
     public boolean checkPassword(String pass)
     {

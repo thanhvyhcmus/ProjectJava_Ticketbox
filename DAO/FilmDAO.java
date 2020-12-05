@@ -190,9 +190,9 @@ public class FilmDAO {
         ResultSet res=null;
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "select * from film where title = ?";
+            String sql = "select * from film where title like ?";
             stm= conn.prepareStatement(sql);
-            stm.setString(1,name);
+            stm.setString(1,"%"+name+"%");
             res = stm.executeQuery();
             if(res.next()){
                 film= new Film(res.getInt(1), res.getString(2), res.getString(3),res.getInt(4), res.getString(5), res.getString(6),res.getString(7), res.getString(8), res.getString(9),res.getString(10));
@@ -216,5 +216,6 @@ public class FilmDAO {
         return film;
         
     }
+
 
 }   
