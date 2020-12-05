@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import Model.Admin;
 import Model.Customer;
+import Model.User;
 public class UserDAO {
     public static  ArrayList<Customer> getAllCustormer(){
         ArrayList<Customer> customer = new ArrayList<Customer>();
@@ -17,7 +18,7 @@ public class UserDAO {
         try {
             conn = JDBCConnection.getConnection();
             stm = conn.createStatement();
-            String sql = "select * from user";
+            String sql = "select * from user where isadmin = 0";
             res = stm.executeQuery(sql);
             while(res.next()){
                 customer.add( new Customer(res.getInt(1), res.getString(2), res.getString(3),res.getString(4),res.getString(5),res.getString(6),res.getInt(7),res.getString(8)));
@@ -39,8 +40,69 @@ public class UserDAO {
             }
         }
         return customer;
-    }
+    }    
+    public static  ArrayList<Admin> getAllAdmin(){
+        ArrayList<Admin> admin = new ArrayList<Admin>();
+        Connection conn = null;
+        Statement stm=null;
+        ResultSet res=null;
+        try {
+            conn = JDBCConnection.getConnection();
+            stm = conn.createStatement();
+            String sql = "select * from user where isadmin = 1";
+            res = stm.executeQuery(sql);
+            while(res.next()){
+                admin.add( new Admin(res.getInt("id"), res.getString("fullname"), res.getString("dob"),res.getString("phone"),res.getString("username"),res.getString("password")));
+            }
 
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try{
+                if(conn != null)
+                    conn.close();
+                if(res != null)
+                    res.close();
+                if(stm != null)
+                    stm.close();
+            }catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return admin;
+    }
+    public static  ArrayList<User> getAllUser(){
+        ArrayList<User> user = new ArrayList<User>();
+        Connection conn = null;
+        Statement stm=null;
+        ResultSet res=null;
+        try {
+            conn = JDBCConnection.getConnection();
+            stm = conn.createStatement();
+            String sql = "select * from user where isadmin = 1";
+            res = stm.executeQuery(sql);
+            while(res.next()){
+                user.add( new User(res.getInt("id"), res.getString("fullname"), res.getString("dob"),res.getString("phone"),res.getString("username"),res.getString("password"),res.getByte("isadmin")));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try{
+                if(conn != null)
+                    conn.close();
+                if(res != null)
+                    res.close();
+                if(stm != null)
+                    stm.close();
+            }catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return user;
+    }
     public static boolean updateACustomer(Customer customer){
         int rs=0;
         Connection conn=null;
@@ -79,6 +141,7 @@ public class UserDAO {
         return true;
 
     }
+
     public static boolean deleteACustomer(Customer customer){
         int rs=0;
         Connection conn=null; 
@@ -236,6 +299,177 @@ public class UserDAO {
         return true;
 
     }
+    public static boolean addAnUser(User user){
+        int rs=0;
+        try {
+            Connection conn = JDBCConnection.getConnection();
+            String sql = "insert into  user (`id`, `fullname`, `dob`, `username`, `password`, `phone`, `point`, `favouriteGenre`,`isadmin`) VALUES (null,?,?,?,?,?,?,?,?)" ;
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, user.getFullname());
+            stm.setString(2, user.getDoB());
+            stm.setString(3, user.getUsername());
+            stm.setString(4, user.getPassword());
+            stm.setString(5, user.getPhone());
+            stm.setInt(6, 0);
+            stm.setString(7, null);
+            stm.setByte(8,user.getIsadmin());
+            rs= stm.executeUpdate();
+            conn.close();
+            stm.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        if (rs==0)
+            return false;
+        return true;
+
+    }
+    public static boolean deleteAnUser(int ID){
+        int rs=0;
+        try {
+            Connection conn = JDBCConnection.getConnection();
+            String sql = "delete from user  where id = ?" ;
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setInt(1, ID);
+            rs= stm.executeUpdate();
+            conn.close();
+            stm.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        if (rs==0)
+            return false;
+        return true;
+
+    }
+    public static boolean updateAnUser(User user){
+        int rs=0;
+        Connection conn=null;
+        PreparedStatement stm=null;
+
+        try {
+            conn = JDBCConnection.getConnection();
+            String sql = "update user set  fullname = ?, dob = ?,username = ?,password = ?, phone= ? where id = ?" ;
+            stm = conn.prepareStatement(sql);
+            stm.setString(1, user.getFullname());
+            stm.setString(2, user.getDoB());
+            stm.setString(3, user.getUsername());
+            stm.setString(4, user.getPassword());
+            stm.setString(5, user.getPhone());
+            stm.setInt(6, user.getID());
+            rs= stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try{
+                if(stm!=null)
+                    stm.close();
+                if(conn!=null)
+                    conn.close();    
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        if (rs==0)
+            return false;
+        return true;
+
+    }
+    public static User searchAnUser(int id,int type)
+    {
+        User user= null;
+        ResultSet res=null;
+        PreparedStatement stm=null;
+        Connection conn=null;
+        String sql=null;
+        try{
+            conn=JDBCConnection.getConnection();
+            if(type!=0)
+            {
+                sql="select * from user where id = ? and isadmin = ?";
+                stm= conn.prepareStatement(sql);
+                stm.setInt(1,id);
+                stm.setByte(2,(byte)(type-1));
+            }
+            else
+            {
+                sql = "select * from user where id = ?";
+                stm= conn.prepareStatement(sql);
+                stm.setInt(1,id);
+            }
+            res = stm.executeQuery();
+            if(res.next())
+            {
+                user = new User(res.getInt("id"),res.getString("fullname"),res.getString("dob"),res.getString("phone"),res.getString("username"),res.getString("password"),res.getByte("isadmin"));
+            }
+        }catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try
+            {
+                if(conn != null)
+                    conn.close();
+                if (stm != null)
+                    stm.close();
+                if(res != null) 
+                    res.close();
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+        }    
+        return user;   
+
+    }
+    public static User searchAnUser(String username,int type)
+    {
+        User user= null;
+        ResultSet res=null;
+        PreparedStatement stm=null;
+        Connection conn=null;
+        String sql=null;
+        try{
+            conn=JDBCConnection.getConnection();
+            if(type!=0)
+            {
+                sql="select * from user where username like ? and isadmin = ?";
+                stm= conn.prepareStatement(sql);
+                stm.setString(1,"%"+username+"%");
+                stm.setByte(2,(byte)(type-1));
+            }
+            else
+            {
+                sql = "select * from user where username like ? ";
+                stm= conn.prepareStatement(sql);
+                stm.setString(1,"%"+username+"%");
+            }
+            res = stm.executeQuery();
+            if(res.next())
+            {
+                user = new User(res.getInt("id"),res.getString("fullname"),res.getString("dob"),res.getString("phone"),res.getString("username"),res.getString("password"),res.getByte("isadmin"));
+            }
+        }catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try
+            {
+                if(conn != null)
+                    conn.close();
+                if (stm != null)
+                    stm.close();
+                if(res != null) 
+                    res.close();
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+        }    
+        return user;   
+    }    
+
 }
     
 
