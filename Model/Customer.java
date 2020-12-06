@@ -37,4 +37,9 @@ public class Customer  extends User{
         return id+" "+ fullname+" "+doB+" "+username+" "+password+" "+phone+" "+Integer.toString(point)+" "+favouriteGenre+" "+Byte.toString(isadmin);
     }
 
+    @Override
+    public Object[] getObject(){
+        return new Object[]{getID(),getFullname(),getDoB(),getUsername(),getPhone(),getPoints(),getFavouriteGenre(),0};
+    }
+
 }

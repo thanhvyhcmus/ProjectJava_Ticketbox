@@ -80,10 +80,13 @@ public class UserDAO {
         try {
             conn = JDBCConnection.getConnection();
             stm = conn.createStatement();
-            String sql = "select * from user where isadmin = 1";
+            String sql = "select * from user ";
             res = stm.executeQuery(sql);
             while(res.next()){
-                user.add( new User(res.getInt("id"), res.getString("fullname"), res.getString("dob"),res.getString("phone"),res.getString("username"),res.getString("password"),res.getByte("isadmin")));
+                if(res.getByte("isadmin")==0)
+                    user.add(new Customer(res.getInt("id"),res.getString("fullname"),res.getString("dob"),res.getString("username") , res.getString("password"),res.getString("phone"),res.getInt("point"),res.getString("genre")));
+                else
+                    user.add(new Admin(res.getInt("id"), res.getString("fullname"), res.getString("dob"),res.getString("phone"),res.getString("username") , res.getString("password"))); 
             }
 
         } catch (SQLException ex) {

@@ -1,6 +1,6 @@
 package Model;
 
- public class User {
+ public abstract class  User {
     protected int id;
     protected String fullname;
     protected String doB;
@@ -92,4 +92,5 @@ package Model;
     public String toString(){
         return Integer.toString(id)+" "+fullname+" "+username+" "+password+" "+phone+" "+isadmin;
     }
+    public abstract Object[] getObject();
 }
