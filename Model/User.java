@@ -93,4 +93,5 @@ package Model;
         return Integer.toString(id)+" "+fullname+" "+username+" "+password+" "+phone+" "+isadmin;
     }
     public abstract Object[] getObject();
+    public abstract String getGenre();
 }

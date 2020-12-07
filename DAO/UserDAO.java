@@ -82,11 +82,18 @@ public class UserDAO {
             stm = conn.createStatement();
             String sql = "select * from user ";
             res = stm.executeQuery(sql);
+            System.out.println(res);
             while(res.next()){
-                if(res.getByte("isadmin")==0)
-                    user.add(new Customer(res.getInt("id"),res.getString("fullname"),res.getString("dob"),res.getString("username") , res.getString("password"),res.getString("phone"),res.getInt("point"),res.getString("genre")));
-                else
+                if(res.getByte("isadmin")==0){
+                    System.out.println(0);
+                    user.add(new Customer(res.getInt("id"),res.getString("fullname"),res.getString("dob"),res.getString("username") , res.getString("password"),res.getString("phone"),res.getInt("point"),res.getString("favouritegenre")));
+                
+                }
+                else{
+                    System.out.println(1);
                     user.add(new Admin(res.getInt("id"), res.getString("fullname"), res.getString("dob"),res.getString("phone"),res.getString("username") , res.getString("password"))); 
+            
+                }
             }
 
         } catch (SQLException ex) {
@@ -406,7 +413,12 @@ public class UserDAO {
             res = stm.executeQuery();
             if(res.next())
             {
-                user = new User(res.getInt("id"),res.getString("fullname"),res.getString("dob"),res.getString("phone"),res.getString("username"),res.getString("password"),res.getByte("isadmin"));
+                if(res.getByte("isadmin")==0)
+                    user = (new Customer(res.getInt("id"),res.getString("fullname"),res.getString("dob"),res.getString("username") , res.getString("password"),res.getString("phone"),res.getInt("point"),res.getString("favouriteGenre")));
+                else
+                    user = new Admin(res.getInt("id"), res.getString("fullname"), res.getString("dob"),res.getString("phone"),res.getString("username") , res.getString("password")); 
+            
+                //user = new User(res.getInt("id"),res.getString("fullname"),res.getString("dob"),res.getString("phone"),res.getString("username"),res.getString("password"),res.getByte("isadmin"));
             }
         }catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
@@ -427,9 +439,10 @@ public class UserDAO {
         return user;   
 
     }
-    public static User searchAnUser(String username,int type)
+    public static ArrayList<User> searchUsers(String username,int type)
     {
-        User user= null;
+        ArrayList<User> user = new ArrayList<User>();
+        //User user= null;
         ResultSet res=null;
         PreparedStatement stm=null;
         Connection conn=null;
@@ -452,7 +465,17 @@ public class UserDAO {
             res = stm.executeQuery();
             if(res.next())
             {
-                user = new User(res.getInt("id"),res.getString("fullname"),res.getString("dob"),res.getString("phone"),res.getString("username"),res.getString("password"),res.getByte("isadmin"));
+                if(res.getByte("isadmin")==0){
+                    System.out.println(0);
+                    user.add(new Customer(res.getInt("id"),res.getString("fullname"),res.getString("dob"),res.getString("username") , res.getString("password"),res.getString("phone"),res.getInt("point"),res.getString("favouritegenre")));
+                
+                }
+                else{
+                    System.out.println(1);
+                    user.add(new Admin(res.getInt("id"), res.getString("fullname"), res.getString("dob"),res.getString("phone"),res.getString("username") , res.getString("password"))); 
+            
+                }
+                //user = new User(res.getInt("id"),res.getString("fullname"),res.getString("dob"),res.getString("phone"),res.getString("username"),res.getString("password"),res.getByte("isadmin"));
             }
         }catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);

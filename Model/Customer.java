@@ -41,5 +41,7 @@ public class Customer  extends User{
     public Object[] getObject(){
         return new Object[]{getID(),getFullname(),getDoB(),getUsername(),getPhone(),getPoints(),getFavouriteGenre(),0};
     }
-
+    public String getGenre(){
+        return getFavouriteGenre();
+    }
 }
