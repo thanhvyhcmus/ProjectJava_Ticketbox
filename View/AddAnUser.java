@@ -524,14 +524,7 @@ public class AddAnUser extends javax.swing.JFrame {
             favgenre += genre_comedy.getText() + ", ";
             if (favgenre.length() != 0){
                 favgenre = favgenre.substring(0, favgenre.length() - 2);
-            boolean check = AdminController.addACustomer(new Customer(0, full_name, dateofbirth, user_name, "12345", phonenum, 0, favgenre));
-            if(!check){
-                JOptionPane.showMessageDialog(this, "Something went wrong", "Information", JOptionPane.ERROR_MESSAGE);
-            }
-            else{
-                JOptionPane.showMessageDialog(this, "Sign up succesfully", "Information", JOptionPane.INFORMATION_MESSAGE);
-            
-            }   
+   
         }
     }
         

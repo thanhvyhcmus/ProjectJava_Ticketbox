@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class JDBCConnection {
     public static Connection getConnection(){
         final String user="root";
-        final String password="22121999";
+        final String password="";
         final String url = "jdbc:mysql://localhost:3306/ticketbox";
         Connection conn = null;
         try {
@@ -94,22 +94,8 @@ public class JDBCConnection {
 
     }
     public static void main(String[] args) {
-        JDBCConnection jdbc = new JDBCConnection();
-        //int idshowtime = 30000;
-        int price = 40000;
-        for(int k = 30000; k<30010;k++){
-            for(int i = 0; i<7;i++){
-                if(i == 0)
-                    price = 40000;
-                if(i == 3)
-                    price = 60000;
-                if(i == 5)
-                    price = 50000;
-                for(int j = 0; j<10;j++){
-                    JDBCConnection.addASeat(Integer.toString(k), i, j, price);
-            }
-        }
-        }
+
+        System.out.println("cc");
         
 
        
