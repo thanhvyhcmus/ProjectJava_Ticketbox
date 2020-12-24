@@ -8,7 +8,7 @@ public class Showtime {
     Theater theater;
     String startTime;
     ArrayList<Seat> seats; // Nếu là false có nghĩa là còn chỗ trống
-
+    String date;
     public Showtime( int id,Theater theater,Film film,String startTime) {
         this.id=id;
         this.film=film;

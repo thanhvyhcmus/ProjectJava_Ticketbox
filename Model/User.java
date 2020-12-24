@@ -65,6 +65,10 @@ package Model;
     {
         this.fullname=full_name;
     }
+    public void setPhone(String phone)
+    {
+        this.phone=phone;
+    }
     public String getDoB()
     {
         return this.doB;
