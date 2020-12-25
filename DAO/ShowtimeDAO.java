@@ -2,6 +2,7 @@ package DAO;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -264,7 +265,7 @@ public class ShowtimeDAO {
         ResultSet res=null;
         int rs=-1;
         try{
-            String sql = "select * from showtime where starttime like ? and date like ? and idtheater=?";
+            String sql = "select * from showtime where starttime = ? and date = ? and idtheater=?";
             stm = conn.prepareStatement(sql);
             stm.setString(1, startime);            
             stm.setString(2, date);
@@ -288,6 +289,7 @@ public class ShowtimeDAO {
                 ex.printStackTrace();
             }
         }
+        System.out.println(rs);
         return rs;
     }
     private static String[] generateDate(String begin,String end)
@@ -315,8 +317,8 @@ public class ShowtimeDAO {
         try {
             String[] listDate = generateDate(daybegin,dayend);
             conn = JDBCConnection.getConnection();
-            sql = "insert into  showtime  VALUES (null,?,?,?,null,null,?)" ;    
-            for (String d : listDate) {
+            sql = "insert into  showtime (idfilm,idtheater,starttime,date) VALUES (?,?,?,?)" ;    
+            for (String d : listDate) { 
                 System.out.println(d);
                 if(check_existing_showtime(starttime, d,idtheater, conn)==-1)
                 {
@@ -332,10 +334,10 @@ public class ShowtimeDAO {
                 {
                     if(ignore==false)
                     {
-                    sql="update showtime set idfilm=? where id=?"    ;
+                    sql="update showtime set idfilm = ? where id = ?"    ;
                     stm= conn.prepareStatement(sql);
-                    stm.setInt(2, idfilm);
-                    stm.setInt(1,check_existing_showtime(starttime, d,idtheater, conn) );
+                    stm.setInt(1, idfilm);
+                    stm.setInt(2,check_existing_showtime(starttime, d,idtheater, conn) );
                     res+=stm.executeUpdate();
                     }
                 }
@@ -399,8 +401,6 @@ public class ShowtimeDAO {
             res= stm.executeQuery();
             while(res.next()){
                 Showtime st= new Showtime(res.getInt("id"), t, f,res.getString("starttime"));
-                ArrayList<Seat> seats = ShowtimeDAO.getAllSeatsBy(st.getID());
-                st.setSeats(seats);
                 show.add(st);
             }
 
@@ -420,8 +420,8 @@ public class ShowtimeDAO {
         }
         return show;
     }
-    public static ArrayList<Showtime >getAllShowtimeByTheater(int idtheater,String date){
-        ArrayList<Showtime> show=new ArrayList<Showtime>();
+    public static HashMap<String,ArrayList<Showtime>> getAllShowtimeByTheater(int idtheater,String date){
+        HashMap<String,ArrayList<Showtime>> list = new HashMap<String,ArrayList<Showtime>>();
         Connection con=null;
         PreparedStatement stm = null;
         ResultSet res=null;
@@ -436,9 +436,16 @@ public class ShowtimeDAO {
             while(res.next()){
                 Film f = FilmDAO.searchAFilm(res.getInt("idfilm"));
                 Showtime st= new Showtime(res.getInt("id"), t, f,res.getString("starttime"));
-                ArrayList<Seat> seats = ShowtimeDAO.getAllSeatsBy(st.getID());
-                st.setSeats(seats);
-                show.add(st);
+
+                if(list.containsKey(f.getTitle()))
+                {
+                    list.get(f.getTitle()).add(st);
+                }
+                else{
+                    list.put(f.getTitle(), new ArrayList<Showtime>());
+                    list.get(f.getTitle()).add(st);
+
+                }
             }
 
         }catch(SQLException ex)
@@ -455,10 +462,10 @@ public class ShowtimeDAO {
             }catch(SQLException ex)
                 {ex.printStackTrace();}
         }
-        return show;
+        return list;
     }
-    public static ArrayList<Showtime >getAllShowtimeByFilm(int idfilm,String date){
-        ArrayList<Showtime> show=new ArrayList<Showtime>();
+    public static HashMap<String,ArrayList<Showtime>> getAllShowtimeByFilm(int idfilm,String date){
+        HashMap<String,ArrayList<Showtime>> show=new HashMap<String,ArrayList<Showtime>>();
         Connection con=null;
         PreparedStatement stm = null;
         ResultSet res=null;
@@ -473,9 +480,15 @@ public class ShowtimeDAO {
             while(res.next()){
                 Theater t = TheaterDAO.searchTheater(res.getInt("idtheater"));
                 Showtime st= new Showtime(res.getInt("id"), t, f,res.getString("starttime"));
-                ArrayList<Seat> seats = ShowtimeDAO.getAllSeatsBy(st.getID());
-                st.setSeats(seats);
-                show.add(st);
+                if(show.containsKey(t.getName()))
+                {
+                    show.get(t.getName()).add(st);
+                }
+                else{
+                    show.put(t.getName(), new ArrayList<Showtime>());
+                    show.get(t.getName()).add(st);
+
+                }
             }
 
         }catch(SQLException ex)
@@ -576,11 +589,6 @@ public class ShowtimeDAO {
     }
     
     public static void main(String[] args){
-        int[] rs = ShowtimeDAO.getRevenue(10005, -1, null, "2021-01-01", "2021-01-02");
-        for (int i : rs) {
-            System.out.println(i);
-        }
- 
-        
+        System.out.println(addShowtimes(10001, 10001, "13:00:00", "2021-01-01", "2021-01-02", false));
     }
 }
