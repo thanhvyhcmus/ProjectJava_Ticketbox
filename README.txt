@@ -19,3 +19,12 @@ idfilm or idtheater or starttime = null nghĩa là bỏ qua trường đó mình
 
 25/12/2020
 -LGoodDatePicker : add lib vào để sử dụng calendar
+- cái hàm addshowtimes ko biết sai thế nào mà khi bị trùng giờ chiếu thì nó bị lổi ví dụ như chèn xuất chiếu vào lúc 10h ngày 1/1/2021 cho rạp 10001, rạp này đã dùng h chiếu này rồi nên nó bị lỗi nếu t muốn ghi trùng lên suất chiếu đó nghĩa là ignore = false thì ko ghi trùng đc (check_existing t thấy lun cho =-1)
+- vì screen sẽ có dạng này chọn rạp -> chọn date rồi sau đó hiển thị thế này:
+DOraemon:
+	8h   10h  20h
+Saigonintherain:
+	10h	21h
+Nên hàm getAllShowtimeByTheater(idtheater,date) phải group theo film để lấy ds các film chiếu trong ngày này rồi sau đó dùng làm getAllShowtimeBy(idtheater,idfilm,date) này để gọi tiếp
+Kết quả trả về có dạng [[listshowtime của Doraemon// mỗi element trong này phải có tên phim vì lúc trả về chỉ có list mình lấy lst[1] thì nó trả ra ds các showtimes làm sao mình biết đó là ds showtimes của film gì][...Saigonintherain][]]
+-tương tự với hàm getAllShowtimeByFilm(idfilm,date)
