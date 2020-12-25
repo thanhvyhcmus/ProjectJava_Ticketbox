@@ -7,55 +7,40 @@ package View;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
-import Controller.AdminController;
-import Model.*;
-import javax.swing.ButtonGroup;
-import javax.swing.JOptionPane;
+import DAO.TheaterDAO;
+import DAO.ShowtimeDAO;
+import com.github.lgooddatepicker.components.DatePickerSettings;
 /**
  *
  * @author nguye
  */
-public class MannageUsers extends javax.swing.JFrame {
+public class ManageShowtimes extends javax.swing.JFrame {
 
     /**
      * Creates new form MannageUsers
      */
-    DefaultTableModel deftab;
+    
     int mpX, mpY;
-    public MannageUsers() {
+    public ManageShowtimes() {
         initComponents();
+       
         
-        deftab = new DefaultTableModel(){
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false; //To change body of generated methods, choose Tools | Templates.
-            }
-        };
-        ArrayList<User> lstUsers = AdminController.getAllUsers();
-        tab.setModel(deftab);
-        deftab.addColumn("ID");
-        deftab.addColumn("Full Name");
         
-        deftab.addColumn("DOB");
-        deftab.addColumn("Username");
-        deftab.addColumn("Phone");
-        deftab.addColumn("Point");
-        deftab.addColumn("Favourite Genre");
-        deftab.addColumn("Is Admin");
-        deftab.setRowCount(0);
-        for(User s:lstUsers){
-            System.out.println(s.getObject());
-            deftab.addRow(s.getObject());
-            
-        }
+        
         
               
         
         //System.out.println(getClass().getResource("/images/exit.png"));
         //System.out.println(getClass().getResource("/images/logo.png"));
     }
-
+    public ArrayList<ArrayList<Showtime>> getShowtimes(){
+        Theater theater = (Theater)cb_theater.getSelectedItem();
+        String d = date.toString();
+        //return (ShowtimeDAO.getAllShowtimeByTheater(theater.getID(), d));
+        
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,26 +72,24 @@ public class MannageUsers extends javax.swing.JFrame {
         btn_revenue = new javax.swing.JPanel();
         lab_revenue = new javax.swing.JLabel();
         body = new javax.swing.JPanel();
-        menu_search = new javax.swing.JPanel();
-        menu_btns = new javax.swing.JPanel();
-        search = new javax.swing.JPanel();
-        txtSearch = new javax.swing.JTextField();
-        btnSearch = new javax.swing.JButton();
-        type = new javax.swing.JPanel();
-        checkboxAdmin = new javax.swing.JPanel();
-        cboxAdmin = new javax.swing.JCheckBox();
-        checkboxCus = new javax.swing.JPanel();
-        cboxCus = new javax.swing.JCheckBox();
-        menu_crud = new javax.swing.JPanel();
-        crud = new javax.swing.JPanel();
-        btnRefresh = new javax.swing.JLabel();
-        btnAdd = new javax.swing.JLabel();
-        btnDel = new javax.swing.JLabel();
-        btnUpdate = new javax.swing.JLabel();
-        menu_main = new javax.swing.JPanel();
-        blank = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tab = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        cb_theater = new javax.swing.JComboBox<>();
+        ArrayList<Theater> lstTheaters = TheaterDAO.getAllTheaters();
+        for(int i = 0; i<lstTheaters.size();i++)             
+        cb_theater.addItem(lstTheaters.get(i));
+
+        jLabel3 = new javax.swing.JLabel();
+        date = new com.github.lgooddatepicker.components.DatePicker();
+        date.setDateToToday();
+        DatePickerSettings settings1 = date.getSettings();
+        settings1.setColor(DatePickerSettings.DateArea.BackgroundMonthAndYearNavigationButtons, new Color(64,33,100));
+        settings1.setColor(DatePickerSettings.DateArea.TextCalendarPanelLabelsOnHover, new Color(64,33,100));
+        settings1.setColor(DatePickerSettings.DateArea.TextMonthAndYearMenuLabels, new Color(64,33,100));
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -239,13 +222,13 @@ public class MannageUsers extends javax.swing.JFrame {
         });
         btn_home.setLayout(new java.awt.BorderLayout());
 
-        lab_home.setBackground(new java.awt.Color(64, 33, 100));
-        lab_home.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        lab_home.setForeground(new java.awt.Color(255, 255, 255));
         lab_home.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lab_home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
         lab_home.setText("Home");
+        lab_home.setBackground(new java.awt.Color(64, 33, 100));
         lab_home.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lab_home.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        lab_home.setForeground(new java.awt.Color(255, 255, 255));
         btn_home.add(lab_home, java.awt.BorderLayout.CENTER);
 
         main_menu.add(btn_home);
@@ -352,198 +335,46 @@ public class MannageUsers extends javax.swing.JFrame {
         body.setBackground(new java.awt.Color(255, 255, 255));
         body.setLayout(new java.awt.BorderLayout());
 
-        menu_search.setBackground(new java.awt.Color(255, 255, 255));
-        menu_search.setPreferredSize(new java.awt.Dimension(800, 50));
-        menu_search.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 10));
+        jPanel1.setMinimumSize(new java.awt.Dimension(10, 100));
+        jPanel1.setLayout(new java.awt.GridLayout(2, 1));
 
-        menu_btns.setBackground(new java.awt.Color(255, 255, 255));
-        menu_btns.setPreferredSize(new java.awt.Dimension(500, 30));
-        menu_btns.setLayout(new java.awt.BorderLayout(5, 0));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING, 100, 15));
 
-        search.setBackground(new java.awt.Color(255, 255, 255));
-        search.setPreferredSize(new java.awt.Dimension(300, 50));
-        search.setLayout(new java.awt.BorderLayout());
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add-showtime.png"))); // NOI18N
+        jLabel1.setText("Add Showtimes");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(122, 72, 221));
+        jPanel3.add(jLabel1);
 
-        txtSearch.setPreferredSize(new java.awt.Dimension(190, 20));
-        search.add(txtSearch, java.awt.BorderLayout.WEST);
+        jPanel1.add(jPanel3);
 
-        btnSearch.setBackground(new java.awt.Color(255, 255, 255));
-        btnSearch.setForeground(new java.awt.Color(122, 72, 221));
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
-        btnSearch.setText("Search");
-        btnSearch.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnSearch.setPreferredSize(new java.awt.Dimension(50, 30));
-        btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnSearchMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnSearchMouseExited(evt);
-            }
-        });
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
-        search.add(btnSearch, java.awt.BorderLayout.CENTER);
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 40, 5));
 
-        menu_btns.add(search, java.awt.BorderLayout.WEST);
+        jLabel2.setText("Theater");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(122, 72, 221));
+        jPanel4.add(jLabel2);
 
-        type.setLayout(new java.awt.BorderLayout());
+        cb_theater.setPreferredSize(new java.awt.Dimension(200, 25));
+        jPanel4.add(cb_theater);
 
-        checkboxAdmin.setBackground(new java.awt.Color(255, 255, 255));
-        checkboxAdmin.setPreferredSize(new java.awt.Dimension(90, 30));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(122, 72, 221));
+        jLabel3.setText("Date");
+        jPanel4.add(jLabel3);
 
-        cboxAdmin.setBackground(new java.awt.Color(255, 255, 255));
-        cboxAdmin.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        cboxAdmin.setSelected(true);
-        cboxAdmin.setText("Admin");
-        cboxAdmin.setRolloverEnabled(false);
-        cboxAdmin.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                cboxAdminStateChanged(evt);
-            }
-        });
-        checkboxAdmin.add(cboxAdmin);
+        date.setMinimumSize(new java.awt.Dimension(150, 20));
+        date.setPreferredSize(new java.awt.Dimension(170, 30));
+        jPanel4.add(date);
 
-        type.add(checkboxAdmin, java.awt.BorderLayout.WEST);
+        jPanel1.add(jPanel4);
 
-        checkboxCus.setBackground(new java.awt.Color(255, 255, 255));
+        body.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        cboxCus.setBackground(new java.awt.Color(255, 255, 255));
-        cboxCus.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        cboxCus.setSelected(true);
-        cboxCus.setText("Customer");
-        cboxCus.setRolloverEnabled(false);
-        cboxCus.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                cboxCusStateChanged(evt);
-            }
-        });
-        checkboxCus.add(cboxCus);
-
-        type.add(checkboxCus, java.awt.BorderLayout.CENTER);
-
-        menu_btns.add(type, java.awt.BorderLayout.CENTER);
-
-        menu_search.add(menu_btns);
-
-        body.add(menu_search, java.awt.BorderLayout.PAGE_START);
-
-        menu_crud.setBackground(new java.awt.Color(255, 255, 255));
-        menu_crud.setPreferredSize(new java.awt.Dimension(150, 100));
-
-        crud.setBackground(new java.awt.Color(255, 255, 255));
-        crud.setPreferredSize(new java.awt.Dimension(100, 200));
-        crud.setLayout(new java.awt.GridLayout(4, 1, 5, 5));
-
-        btnRefresh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnRefresh.setForeground(new java.awt.Color(122, 72, 221));
-        btnRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh.png"))); // NOI18N
-        btnRefresh.setText("Refresh");
-        btnRefresh.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRefreshMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnRefreshMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnRefreshMouseExited(evt);
-            }
-        });
-        crud.add(btnRefresh);
-
-        btnAdd.setBackground(new java.awt.Color(255, 255, 255));
-        btnAdd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnAdd.setForeground(new java.awt.Color(122, 72, 221));
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
-        btnAdd.setText("Add");
-        btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAddMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAddMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAddMouseExited(evt);
-            }
-        });
-        crud.add(btnAdd);
-
-        btnDel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnDel.setForeground(new java.awt.Color(122, 72, 221));
-        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete1.png"))); // NOI18N
-        btnDel.setText("Delete");
-        btnDel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnDelMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnDelMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnDelMouseExited(evt);
-            }
-        });
-        crud.add(btnDel);
-
-        btnUpdate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnUpdate.setForeground(new java.awt.Color(122, 72, 221));
-        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
-        btnUpdate.setText("Update");
-        btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnUpdateMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnUpdateMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnUpdateMouseExited(evt);
-            }
-        });
-        crud.add(btnUpdate);
-
-        menu_crud.add(crud);
-
-        body.add(menu_crud, java.awt.BorderLayout.LINE_END);
-
-        menu_main.setBackground(new java.awt.Color(255, 255, 255));
-        menu_main.setLayout(new java.awt.BorderLayout(10, 10));
-
-        blank.setBackground(new java.awt.Color(255, 255, 255));
-        menu_main.add(blank, java.awt.BorderLayout.WEST);
-
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setBorder(null);
-
-        tab.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        tab.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        tab.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Title 1"
-            }
-        ));
-        tab.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tab.setMinimumSize(new java.awt.Dimension(15, 64));
-        tab.setPreferredSize(new java.awt.Dimension(350, 350));
-        tab.setRowHeight(25);
-        tab.setSelectionBackground(new Color(122,72,221)
-        );
-        tab.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tab.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tab.setShowGrid(false);
-        jScrollPane1.setViewportView(tab);
-
-        menu_main.add(jScrollPane1, java.awt.BorderLayout.CENTER);
-
-        body.add(menu_main, java.awt.BorderLayout.CENTER);
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        body.add(jPanel2, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(body, java.awt.BorderLayout.CENTER);
 
@@ -553,7 +384,7 @@ public class MannageUsers extends javax.swing.JFrame {
 
     private void btn_exitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseEntered
         // TODO add your handling code here:
-        btn_exit.setBackground(new Color(37,12,65));
+        btn_exit.setBackground(Color.red);
     }//GEN-LAST:event_btn_exitMouseEntered
 
     private void btn_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseClicked
@@ -573,7 +404,7 @@ public class MannageUsers extends javax.swing.JFrame {
 
     private void btn_minMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_minMouseEntered
         // TODO add your handling code here:
-        btn_min.setBackground(Color.red);
+        btn_min.setBackground(new Color(37,12,65));
     }//GEN-LAST:event_btn_minMouseEntered
 
     private void btn_minMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_minMouseExited
@@ -671,155 +502,6 @@ public class MannageUsers extends javax.swing.JFrame {
         btn_revenue.setBackground(new Color(64,33,100));
     }//GEN-LAST:event_btn_revenueMouseExited
 
-    private void cboxAdminStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cboxAdminStateChanged
-        // TODO add your handling code here:
-        showTable();
-    }//GEN-LAST:event_cboxAdminStateChanged
-
-    private void cboxCusStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cboxCusStateChanged
-        // TODO add your handling code here:
-        showTable();
-    }//GEN-LAST:event_cboxCusStateChanged
-
-    private void btnRefreshMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRefreshMouseEntered
-        // TODO add your handling code here:
-        btnRefresh.setFont(new java.awt.Font("Tahoma", 1, 14));
-    }//GEN-LAST:event_btnRefreshMouseEntered
-
-    private void btnRefreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRefreshMouseClicked
-        // TODO add your handling code here:
-        cboxAdmin.setSelected(true);
-        cboxCus.setSelected(true);
-        txtSearch.setText("");
-        ArrayList<User> lstUsers = AdminController.getAllUsers();
-        deftab.setRowCount(0);
-        for(User s:lstUsers){
-            System.out.println(s.getObject());
-            deftab.addRow(s.getObject());
-        }
-            
-    }//GEN-LAST:event_btnRefreshMouseClicked
-
-    private void btnRefreshMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRefreshMouseExited
-        // TODO add your handling code here:
-        btnRefresh.setFont(new java.awt.Font("Tahoma", 0, 14));
-    }//GEN-LAST:event_btnRefreshMouseExited
-
-    private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-        // TODO add your handling code here:
-        new AddAnUser(this).setVisible(true);
-    }//GEN-LAST:event_btnAddMouseClicked
-
-    private void btnAddMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseEntered
-        // TODO add your handling code here:
-        btnAdd.setFont(new java.awt.Font("Tahoma", 1, 14));
-        
-    }//GEN-LAST:event_btnAddMouseEntered
-
-    private void btnAddMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseExited
-        // TODO add your handling code here:
-        btnAdd.setFont(new java.awt.Font("Tahoma", 0, 14));
-    }//GEN-LAST:event_btnAddMouseExited
-
-    private void btnDelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDelMouseClicked
-        // TODO add your handling code here:
-        int row = tab.getSelectedRow();
-        if(row==-1){
-            JOptionPane.showMessageDialog(this, "Please choose one row to delete","Remind",JOptionPane.INFORMATION_MESSAGE);
-        }
-        else{
-            int confirm= JOptionPane.showConfirmDialog(this, "Do you really want to delete this row");
-            if (confirm == JOptionPane.YES_OPTION){
-                int idDel = Integer.valueOf(String.valueOf(tab.getValueAt(row, 0)));
-                AdminController.deleteAnUser(idDel);
-            }
-        }
-        
-        showTable();
-    }//GEN-LAST:event_btnDelMouseClicked
-
-    private void btnDelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDelMouseEntered
-        // TODO add your handling code here:
-        btnDel.setFont(new java.awt.Font("Tahoma", 1, 14));
-    }//GEN-LAST:event_btnDelMouseEntered
-
-    private void btnDelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDelMouseExited
-        // TODO add your handling code here:
-        btnDel.setFont(new java.awt.Font("Tahoma", 0, 14));
-    }//GEN-LAST:event_btnDelMouseExited
-
-    private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
-        // TODO add your handling code here:
-        int row = tab.getSelectedRow();
-        if(row==-1){
-            JOptionPane.showMessageDialog(this, "Please choose one row to edit","Remind",JOptionPane.INFORMATION_MESSAGE);
-        }
-        else{
-            int id = Integer.valueOf(String.valueOf(tab.getValueAt(row, 0)));
-            new EditAnUser(this,id).setVisible(true);
-            //this.dispose();
-        }
-    }//GEN-LAST:event_btnUpdateMouseClicked
-
-    private void btnUpdateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseEntered
-        // TODO add your handling code here:
-        btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 14));
-    }//GEN-LAST:event_btnUpdateMouseEntered
-
-    private void btnUpdateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseExited
-        // TODO add your handling code here:
-        btnUpdate.setFont(new java.awt.Font("Tahoma", 0, 14));
-    }//GEN-LAST:event_btnUpdateMouseExited
-
-    private void btnSearchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseEntered
-        // TODO add your handling code here:
-        btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12));
-        
-    }//GEN-LAST:event_btnSearchMouseEntered
-
-    private void btnSearchMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseExited
-        // TODO add your handling code here:
-        btnSearch.setFont(new java.awt.Font("Tahoma", 0, 12));
-    }//GEN-LAST:event_btnSearchMouseExited
-
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
-        String key = txtSearch.getText();
-        System.out.println(key);
-        if(key.equals("")){
-            
-            JOptionPane.showMessageDialog(this, "Please enter ID or Username of accounts you need to find","Remind",JOptionPane.INFORMATION_MESSAGE);
-        
-        }
-        else{
-            int type = 0 ;
-            if(cboxAdmin.isSelected()&&cboxCus.isSelected())
-                type=0;
-            if(!cboxAdmin.isSelected()&&cboxCus.isSelected())
-                type=1;
-            if(cboxAdmin.isSelected()&&!cboxCus.isSelected())
-                type=2;
-            try{
-                int id = Integer.parseInt(key);
-                User s = AdminController.searchAnUser(id,type);
-                deftab.setRowCount(0);
-                if(s!=null)
-                    deftab.addRow(s.getObject());
-            }catch(NumberFormatException nfe){
-                System.out.println(nfe);
-                ArrayList<User> lstUsers = AdminController.searchUsers(key,type);
-                deftab.setRowCount(0);
-                for(User s:lstUsers){
-                    System.out.println(s.getObject());
-                    deftab.addRow(s.getObject());
-            
-        }
-            }
-            
-            
-        }
-    }//GEN-LAST:event_btnSearchActionPerformed
-
     private void lab_minMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lab_minMouseClicked
         // TODO add your handling code here:
         setState(this.ICONIFIED);
@@ -846,41 +528,7 @@ public class MannageUsers extends javax.swing.JFrame {
         // TODO add your handling code here:
         setLocation(getLocation().x + evt.getX() - mpX,getLocation().y + evt.getY() - mpY );
     }//GEN-LAST:event_formMouseDragged
-    public void showTable() {
-        deftab.setRowCount(0);
-        if(cboxAdmin.isSelected() && cboxCus.isSelected()){
-            ArrayList<User> lstUsers = AdminController.getAllUsers();
-            deftab.setRowCount(0);
-            for(User s:lstUsers){
-                System.out.println(s.getObject());
-                deftab.addRow(s.getObject());
-            
-            }
-        }
-        if(cboxAdmin.isSelected()&&!cboxCus.isSelected()){
-            ArrayList<Admin> lstUsers = AdminController.getAllAdmin();
-            deftab.setRowCount(0);
-            for(User s:lstUsers){
-                System.out.println(s.getObject());
-                deftab.addRow(s.getObject());
-            
-            }
-        }
-        if(!cboxAdmin.isSelected()&&cboxCus.isSelected()){
-            ArrayList<Customer> lstUsers = AdminController.getAllCustormer();
-            deftab.setRowCount(0);
-            for(User s:lstUsers){
-                System.out.println(s.getObject());
-                deftab.addRow(s.getObject());
-            
-            }
-        }
-        if(!cboxAdmin.isSelected()&&!cboxCus.isSelected()){
-            
-            deftab.setRowCount(0);
-            
-        }
-    }
+     
     /**
      * @param args the command line arguments
      */
@@ -899,32 +547,27 @@ public class MannageUsers extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MannageUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageShowtimes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MannageUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageShowtimes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MannageUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageShowtimes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MannageUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageShowtimes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MannageUsers().setVisible(true);
+                new ManageShowtimes().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel blank;
     private javax.swing.JPanel body;
-    private javax.swing.JLabel btnAdd;
-    private javax.swing.JLabel btnDel;
-    private javax.swing.JLabel btnRefresh;
-    private javax.swing.JButton btnSearch;
-    private javax.swing.JLabel btnUpdate;
     private javax.swing.JPanel btn_accounts;
     private javax.swing.JPanel btn_exit;
     private javax.swing.JPanel btn_films;
@@ -933,15 +576,18 @@ public class MannageUsers extends javax.swing.JFrame {
     private javax.swing.JPanel btn_min;
     private javax.swing.JPanel btn_revenue;
     private javax.swing.JPanel btn_showtimes;
-    private javax.swing.JCheckBox cboxAdmin;
-    private javax.swing.JCheckBox cboxCus;
-    private javax.swing.JPanel checkboxAdmin;
-    private javax.swing.JPanel checkboxCus;
-    private javax.swing.JPanel crud;
+    private javax.swing.JComboBox<Theater> cb_theater;
+    private com.github.lgooddatepicker.components.DatePicker date;
     private javax.swing.JPanel header;
     private javax.swing.JPanel header_bottom;
     private javax.swing.JPanel header_top;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lab_accounts;
     private javax.swing.JLabel lab_exit;
     private javax.swing.JLabel lab_films;
@@ -951,14 +597,6 @@ public class MannageUsers extends javax.swing.JFrame {
     private javax.swing.JLabel lab_revenue;
     private javax.swing.JLabel lab_showtimes;
     private javax.swing.JPanel main_menu;
-    private javax.swing.JPanel menu_btns;
-    private javax.swing.JPanel menu_crud;
-    private javax.swing.JPanel menu_main;
-    private javax.swing.JPanel menu_search;
     private javax.swing.JPanel menu_top;
-    private javax.swing.JPanel search;
-    private javax.swing.JTable tab;
-    private javax.swing.JTextField txtSearch;
-    private javax.swing.JPanel type;
     // End of variables declaration//GEN-END:variables
 }

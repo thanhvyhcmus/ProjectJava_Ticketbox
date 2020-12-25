@@ -23,6 +23,10 @@ public class Film {
         this.language=language;
         this.linkimg=linkimg;
     }
+    public Film(int id, String title){
+        this.id =id;
+        this.title =title;
+    }
     public void setID(int id) {
         this.id = id;
     }

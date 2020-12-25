@@ -13,6 +13,10 @@ public class Theater {
         this.address=address;
         this.schedule=new ArrayList<Showtime>();
     }
+    public Theater(int id,String name){
+        this.name=name;
+        this.id=id;
+    }
     public Theater(int id,String name,String address,ArrayList<Showtime> schedule) {
         this.name=name;
         this.id=id;

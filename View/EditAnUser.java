@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  * @author nguye
  */
 public class EditAnUser extends javax.swing.JFrame {
-
+    int mpX, mpY;
     /**
      * Creates new form AddAnUser
      */
@@ -141,6 +141,16 @@ public class EditAnUser extends javax.swing.JFrame {
         setBackground(new java.awt.Color(64, 33, 100));
         setMinimumSize(new java.awt.Dimension(575, 402));
         setUndecorated(true);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(64, 33, 100));
         jPanel1.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -363,11 +373,6 @@ public class EditAnUser extends javax.swing.JFrame {
 
         date.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         date.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" }));
-        date.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateActionPerformed(evt);
-            }
-        });
         jPanel16.add(date);
 
         jPanel6.add(jPanel16, java.awt.BorderLayout.CENTER);
@@ -516,7 +521,7 @@ public class EditAnUser extends javax.swing.JFrame {
 
     private void btn_exitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseEntered
         // TODO add your handling code here:
-        btn_exit.setBackground(new Color(37,12,65));
+        btn_exit.setBackground(Color.red);
     }//GEN-LAST:event_btn_exitMouseEntered
 
     private void btn_exitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseExited
@@ -552,7 +557,7 @@ public class EditAnUser extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Something went wrong", "Information", JOptionPane.ERROR_MESSAGE);
             }
             else{
-                JOptionPane.showMessageDialog(this, "Sign up succesfully", "Information", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Update succesfully", "Information", JOptionPane.INFORMATION_MESSAGE);
             
             }
         }
@@ -648,9 +653,16 @@ public class EditAnUser extends javax.swing.JFrame {
         lab_cphone.setVisible(false);
     }//GEN-LAST:event_phoneFocusLost
 
-    private void dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateActionPerformed
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dateActionPerformed
+        mpX = evt.getX();
+        mpY = evt.getY();
+    }//GEN-LAST:event_formMousePressed
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        // TODO add your handling code here:
+        setLocation(getLocation().x + evt.getX() - mpX,getLocation().y + evt.getY() - mpY );
+    }//GEN-LAST:event_formMouseDragged
 
     /**
      * @param args the command line arguments

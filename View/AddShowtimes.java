@@ -21,6 +21,7 @@ import java.util.ArrayList;
  */
 public class AddShowtimes extends javax.swing.JFrame {
 
+    int mpX, mpY;
     /**
      * Creates new form AddAnUser
      */
@@ -98,6 +99,16 @@ public class AddShowtimes extends javax.swing.JFrame {
         setBackground(new java.awt.Color(64, 33, 100));
         setMinimumSize(new java.awt.Dimension(575, 402));
         setUndecorated(true);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(64, 33, 100));
         jPanel1.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -175,6 +186,7 @@ public class AddShowtimes extends javax.swing.JFrame {
         jPanel28.setPreferredSize(new java.awt.Dimension(150, 84));
 
         cb_film.setPreferredSize(new java.awt.Dimension(170, 25));
+        cb_film.setToolTipText("Film");
         jPanel28.add(cb_film);
 
         jPanel21.add(jPanel28);
@@ -183,6 +195,7 @@ public class AddShowtimes extends javax.swing.JFrame {
         jPanel31.setPreferredSize(new java.awt.Dimension(150, 84));
 
         cb_theater.setPreferredSize(new java.awt.Dimension(170, 25));
+        cb_theater.setToolTipText("Theater");
         jPanel31.add(cb_theater);
 
         jPanel21.add(jPanel31);
@@ -191,6 +204,7 @@ public class AddShowtimes extends javax.swing.JFrame {
         jPanel32.setPreferredSize(new java.awt.Dimension(150, 84));
 
         cb_starttime.setPreferredSize(new java.awt.Dimension(170, 25));
+        cb_starttime.setToolTipText("Starttime");
         jPanel32.add(cb_starttime);
 
         jPanel21.add(jPanel32);
@@ -204,9 +218,9 @@ public class AddShowtimes extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(64, 33, 100));
         jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
+        jLabel3.setText("Begining Date");
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Begining Date");
         jPanel5.add(jLabel3);
 
         daybegin.setMinimumSize(new java.awt.Dimension(150, 20));
@@ -266,8 +280,8 @@ public class AddShowtimes extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_exitMouseClicked
 
     private void btn_exitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseEntered
-        // TODO add your handling code here:
-        btn_exit.setBackground(new Color(37,12,65));
+        // TODO add your handling code here:(37,12,65)
+        btn_exit.setBackground(Color.red);
     }//GEN-LAST:event_btn_exitMouseEntered
 
     private void btn_exitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseExited
@@ -285,13 +299,25 @@ public class AddShowtimes extends javax.swing.JFrame {
             return;
             
         }
-        if(daybegin.getDate().compareTo(dayend.getDate())>=0){
+        if(daybegin.getDate().compareTo(dayend.getDate())>0){
             mess.setText("The begining day and end day are invalid. Please choose them again! ");
             return;
         }
         int res = ShowtimeDAO.addShowtimes(film.getID(),theater.getID(), starttime, daybegin.toString(), dayend.toString(), ignore.isSelected());
         mess.setText("There are "+res+" showtimes added");
     }//GEN-LAST:event_saveActionPerformed
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        // TODO add your handling code here:
+        mpX = evt.getX();
+        mpY = evt.getY();
+    }//GEN-LAST:event_formMousePressed
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        // TODO add your handling code here:
+        setLocation(getLocation().x + evt.getX() - mpX,getLocation().y + evt.getY() - mpY );
+        
+    }//GEN-LAST:event_formMouseDragged
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

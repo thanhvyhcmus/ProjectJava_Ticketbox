@@ -1,1 +1,0 @@
-cần add file AbsoluteLayout.jar trong thư mục này vào library trước khi compile 

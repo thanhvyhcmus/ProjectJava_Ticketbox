@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  * @author nguye
  */
 public class AddAnUser extends javax.swing.JFrame {
-
+    int mpX, mpY;
     /**
      * Creates new form AddAnUser
      */
@@ -107,6 +107,16 @@ public class AddAnUser extends javax.swing.JFrame {
         setBackground(new java.awt.Color(64, 33, 100));
         setMinimumSize(new java.awt.Dimension(575, 402));
         setUndecorated(true);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(64, 33, 100));
         jPanel1.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -160,7 +170,7 @@ public class AddAnUser extends javax.swing.JFrame {
         jBut_SignUp.setBackground(new java.awt.Color(255, 255, 255));
         jBut_SignUp.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jBut_SignUp.setForeground(new java.awt.Color(64, 33, 100));
-        jBut_SignUp.setText("Sign Up");
+        jBut_SignUp.setText("Add");
         jBut_SignUp.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBut_SignUp.setBorderPainted(false);
         jBut_SignUp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -474,7 +484,7 @@ public class AddAnUser extends javax.swing.JFrame {
 
     private void btn_exitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseEntered
         // TODO add your handling code here:
-        btn_exit.setBackground(new Color(37,12,65));
+        btn_exit.setBackground(Color.red);
     }//GEN-LAST:event_btn_exitMouseEntered
 
     private void btn_exitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseExited
@@ -524,7 +534,14 @@ public class AddAnUser extends javax.swing.JFrame {
             favgenre += genre_comedy.getText() + ", ";
             if (favgenre.length() != 0){
                 favgenre = favgenre.substring(0, favgenre.length() - 2);
-   
+            boolean check = AdminController.addACustomer(new Customer(0, full_name, dateofbirth, user_name, "12345", phonenum, 0, favgenre));
+            if(!check){
+                JOptionPane.showMessageDialog(this, "Something went wrong", "Information", JOptionPane.ERROR_MESSAGE);
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Add succesfully", "Information", JOptionPane.INFORMATION_MESSAGE);
+            
+            }   
         }
     }
         
@@ -598,6 +615,17 @@ public class AddAnUser extends javax.swing.JFrame {
         }
         lab_cphone.setVisible(false);
     }//GEN-LAST:event_phoneFocusLost
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        // TODO add your handling code here:
+        mpX = evt.getX();
+        mpY = evt.getY();
+    }//GEN-LAST:event_formMousePressed
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        // TODO add your handling code here:
+        setLocation(getLocation().x + evt.getX() - mpX,getLocation().y + evt.getY() - mpY );
+    }//GEN-LAST:event_formMouseDragged
 
     /**
      * @param args the command line arguments
