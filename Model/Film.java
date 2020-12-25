@@ -85,7 +85,7 @@ public class Film {
         return releasedDate;
     }
     public String toString() {
-        return title + " " + language + " " + genre;
+        return title;
     }
     
 }

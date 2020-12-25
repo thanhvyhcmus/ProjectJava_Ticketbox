@@ -1,3 +1,6 @@
+
+
+24/12/2020
 ShowtimeDao: trong trường showtime có bổ sung thêm ngày chiếu date nên có nhiều thay đổi
 1- addShowtimes(idfilm,idtheater,starttime,daybegin,dayend,ignore//boolean)
 hàm này add vào bảng showtimes các suất chiếu có các thông tin film,theater,starttime từ ngày daybegin cho đến dayend(mới bổ sung trường date cho một suất chiếu ám chỉ ngày chiếu hai trường numberofrows và colums có để default rồi là 5,8 nên ko cần truyền vào).
@@ -13,3 +16,6 @@ return 2 cái: tổng số ghế sold/tổng số ghế( 1 rạp là 5*8 ghế)
 doanh thu kiếm đc: sum
 idfilm or idtheater or starttime = null nghĩa là bỏ qua trường đó mình lấy tất cả
 7- HashPassword (làm sau)
+
+25/12/2020
+-LGoodDatePicker : add lib vào để sử dụng calendar

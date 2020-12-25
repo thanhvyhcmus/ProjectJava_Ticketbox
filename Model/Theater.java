@@ -38,6 +38,6 @@ public class Theater {
         return address;
     }
     public String toString(){
-        return name+" "+address;
+        return name;
     }
 }
