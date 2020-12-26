@@ -5,6 +5,9 @@
  */
 package View;
 
+import java.awt.Color;
+import java.awt.Component;
+
 /**
  *
  * @author ngnth
@@ -14,8 +17,11 @@ public class AdminView extends javax.swing.JFrame {
     /**
      * Creates new form CustomerView
      */
-    public AdminView() {
+    public AdminView(String fname) {
+        
         initComponents();
+        name.setText("Hi, "+fname+"!");
+        //jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(224, 64, 251)));
     }
 
     /**
@@ -27,31 +33,506 @@ public class AdminView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        header = new javax.swing.JPanel();
+        header_top = new javax.swing.JPanel();
+        menu_top = new javax.swing.JPanel();
+        btn_exit = new javax.swing.JPanel();
+        lab_exit = new javax.swing.JLabel();
+        btn_min = new javax.swing.JPanel();
+        lab_min = new javax.swing.JLabel();
+        btn_max = new javax.swing.JPanel();
+        lab_max = new javax.swing.JLabel();
+        header_bottom = new javax.swing.JPanel();
+        main_menu = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        name = new javax.swing.JLabel();
+        logout_pannel = new javax.swing.JPanel();
+        logout = new javax.swing.JLabel();
+        body = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        users = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        films = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        showtimes = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        revenue = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(64, 33, 100));
+        setUndecorated(true);
 
-        jLabel1.setText("Admin View Test");
+        header.setBackground(new java.awt.Color(64, 33, 100));
+        header.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        header.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(505, 505, 505)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(488, Short.MAX_VALUE))
+        header_top.setBackground(new java.awt.Color(64, 33, 100));
+        header_top.setPreferredSize(new java.awt.Dimension(400, 30));
+        header_top.setLayout(new java.awt.BorderLayout());
+
+        menu_top.setBackground(new java.awt.Color(64, 33, 100));
+        menu_top.setLayout(new java.awt.BorderLayout());
+
+        btn_exit.setBackground(new java.awt.Color(64, 33, 100));
+        btn_exit.setMinimumSize(new java.awt.Dimension(25, 25));
+        btn_exit.setPreferredSize(new java.awt.Dimension(50, 30));
+        btn_exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_exitMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_exitMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_exitMouseExited(evt);
+            }
+        });
+        btn_exit.setLayout(new java.awt.BorderLayout());
+
+        lab_exit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lab_exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
+        lab_exit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_exit.add(lab_exit, java.awt.BorderLayout.CENTER);
+
+        menu_top.add(btn_exit, java.awt.BorderLayout.EAST);
+
+        btn_min.setBackground(new java.awt.Color(64, 33, 100));
+        btn_min.setPreferredSize(new java.awt.Dimension(50, 30));
+        btn_min.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_minMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_minMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_minMouseExited(evt);
+            }
+        });
+        btn_min.setLayout(new java.awt.BorderLayout());
+
+        lab_min.setBackground(new java.awt.Color(24, 24, 24));
+        lab_min.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lab_min.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/min.png"))); // NOI18N
+        lab_min.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lab_min.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lab_minMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lab_minMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lab_minMouseExited(evt);
+            }
+        });
+        btn_min.add(lab_min, java.awt.BorderLayout.CENTER);
+
+        menu_top.add(btn_min, java.awt.BorderLayout.WEST);
+
+        btn_max.setBackground(new java.awt.Color(64, 33, 100));
+        btn_max.setPreferredSize(new java.awt.Dimension(50, 30));
+        btn_max.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_maxMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_maxMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_maxMouseExited(evt);
+            }
+        });
+        btn_max.setLayout(new java.awt.BorderLayout());
+
+        lab_max.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lab_max.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/max.png"))); // NOI18N
+        btn_max.add(lab_max, java.awt.BorderLayout.CENTER);
+
+        menu_top.add(btn_max, java.awt.BorderLayout.CENTER);
+
+        header_top.add(menu_top, java.awt.BorderLayout.LINE_END);
+
+        header.add(header_top, java.awt.BorderLayout.PAGE_START);
+
+        header_bottom.setBackground(new java.awt.Color(64, 33, 100));
+        header_bottom.setAlignmentX(Component.CENTER_ALIGNMENT);
+        header_bottom.setMinimumSize(new java.awt.Dimension(800, 30));
+        header_bottom.setPreferredSize(new java.awt.Dimension(800, 50));
+        header_bottom.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+
+        main_menu.setBackground(new java.awt.Color(64, 33, 100));
+        main_menu.setPreferredSize(new java.awt.Dimension(400, 30));
+        main_menu.setLayout(new java.awt.GridLayout(1, 2));
+
+        jPanel1.setBackground(new java.awt.Color(64, 33, 100));
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        name.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        name.setForeground(new java.awt.Color(255, 255, 255));
+        name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        name.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                nameMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                nameMouseExited(evt);
+            }
+        });
+        jPanel1.add(name, java.awt.BorderLayout.CENTER);
+
+        main_menu.add(jPanel1);
+
+        logout_pannel.setBackground(new java.awt.Color(64, 33, 100));
+        logout_pannel.setLayout(new java.awt.BorderLayout());
+
+        logout.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        logout.setForeground(new java.awt.Color(255, 255, 255));
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.png"))); // NOI18N
+        logout.setText("Log out");
+        logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logoutMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logoutMouseExited(evt);
+            }
+        });
+        logout_pannel.add(logout, java.awt.BorderLayout.CENTER);
+
+        main_menu.add(logout_pannel);
+
+        header_bottom.add(main_menu);
+
+        header.add(header_bottom, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(header, java.awt.BorderLayout.PAGE_START);
+
+        body.setBackground(new java.awt.Color(255, 255, 255));
+        body.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(64, 33, 100)));
+        body.setLayout(new java.awt.BorderLayout());
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setPreferredSize(new java.awt.Dimension(800, 130));
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(64, 33, 100));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("MANAGE TICKETBOX");
+        jPanel2.add(jLabel1, java.awt.BorderLayout.CENTER);
+
+        body.add(jPanel2, java.awt.BorderLayout.PAGE_START);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setPreferredSize(new java.awt.Dimension(800, 130));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 798, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(245, Short.MAX_VALUE))
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 130, Short.MAX_VALUE)
         );
+
+        body.add(jPanel3, java.awt.BorderLayout.PAGE_END);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setPreferredSize(new java.awt.Dimension(800, 200));
+        jPanel4.setLayout(new java.awt.GridLayout(1, 4, 20, 40));
+
+        jPanel5.setBackground(new java.awt.Color(209, 196, 233));
+        jPanel5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel5.setName(""); // NOI18N
+        jPanel5.setLayout(new java.awt.BorderLayout());
+
+        users.setBackground(new java.awt.Color(255, 255, 255));
+        users.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        users.setForeground(new java.awt.Color(64, 33, 100));
+        users.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        users.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
+        users.setText("Manage Users");
+        users.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        users.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        users.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        users.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usersMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                usersMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                usersMouseExited(evt);
+            }
+        });
+        jPanel5.add(users, java.awt.BorderLayout.CENTER);
+
+        jPanel4.add(jPanel5);
+
+        jPanel6.setBackground(new java.awt.Color(209, 196, 233));
+        jPanel6.setLayout(new java.awt.BorderLayout());
+
+        films.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        films.setForeground(new java.awt.Color(64, 33, 100));
+        films.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        films.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/film1.png"))); // NOI18N
+        films.setText("Manage Films");
+        films.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        films.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        films.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        films.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        films.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                filmsMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                filmsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                filmsMouseExited(evt);
+            }
+        });
+        jPanel6.add(films, java.awt.BorderLayout.CENTER);
+
+        jPanel4.add(jPanel6);
+
+        jPanel7.setBackground(new java.awt.Color(209, 196, 233));
+        jPanel7.setLayout(new java.awt.BorderLayout());
+
+        showtimes.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        showtimes.setForeground(new java.awt.Color(64, 33, 100));
+        showtimes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        showtimes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/showtime1.png"))); // NOI18N
+        showtimes.setText("Manage Showtimes");
+        showtimes.setToolTipText("");
+        showtimes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        showtimes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        showtimes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        showtimes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        showtimes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showtimesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                showtimesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                showtimesMouseExited(evt);
+            }
+        });
+        jPanel7.add(showtimes, java.awt.BorderLayout.CENTER);
+
+        jPanel4.add(jPanel7);
+
+        jPanel8.setBackground(new java.awt.Color(209, 196, 233));
+        jPanel8.setLayout(new java.awt.BorderLayout());
+
+        revenue.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        revenue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        revenue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/revenue1.png"))); // NOI18N
+        revenue.setText("Manage Revenue");
+        revenue.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        revenue.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        revenue.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        revenue.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        revenue.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                revenueMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                revenueMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                revenueMouseExited(evt);
+            }
+        });
+        jPanel8.add(revenue, java.awt.BorderLayout.CENTER);
+
+        jPanel4.add(jPanel8);
+
+        body.add(jPanel4, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(body, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+
+    }//GEN-LAST:event_btn_exitMouseClicked
+
+    private void btn_exitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseEntered
+        // TODO add your handling code here:
+        btn_exit.setBackground(Color.red);
+    }//GEN-LAST:event_btn_exitMouseEntered
+
+    private void btn_exitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseExited
+        // TODO add your handling code here:
+        btn_exit.setBackground(new Color(64,33,100));
+    }//GEN-LAST:event_btn_exitMouseExited
+
+    private void lab_minMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lab_minMouseClicked
+        // TODO add your handling code here:
+        setState(this.ICONIFIED);
+
+    }//GEN-LAST:event_lab_minMouseClicked
+
+    private void lab_minMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lab_minMouseEntered
+        // TODO add your handling code here:
+        btn_min.setBackground(new Color(37,12,65));
+    }//GEN-LAST:event_lab_minMouseEntered
+
+    private void lab_minMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lab_minMouseExited
+        // TODO add your handling code here:
+        btn_min.setBackground(new Color(64,33,100));
+    }//GEN-LAST:event_lab_minMouseExited
+
+    private void btn_minMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_minMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_minMouseClicked
+
+    private void btn_minMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_minMouseEntered
+        // TODO add your handling code here:
+        btn_min.setBackground(Color.red);
+    }//GEN-LAST:event_btn_minMouseEntered
+
+    private void btn_minMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_minMouseExited
+        // TODO add your handling code here:
+        btn_min.setBackground(new Color(64,33,100));
+    }//GEN-LAST:event_btn_minMouseExited
+
+    private void btn_maxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_maxMouseClicked
+        // TODO add your handling code here:
+        if(this.getExtendedState()!=MAXIMIZED_BOTH){
+            this.setExtendedState(MAXIMIZED_BOTH);
+        }
+        else{
+            this.setExtendedState(NORMAL);
+        }
+    }//GEN-LAST:event_btn_maxMouseClicked
+
+    private void btn_maxMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_maxMouseEntered
+        // TODO add your handling code here:
+        btn_max.setBackground(new Color(37,12,65));
+    }//GEN-LAST:event_btn_maxMouseEntered
+
+    private void btn_maxMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_maxMouseExited
+        // TODO add your handling code here:
+        btn_max.setBackground(new Color(64,33,100));
+    }//GEN-LAST:event_btn_maxMouseExited
+
+    private void usersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersMouseEntered
+        // TODO add your handling code here:
+        users.setFont(new java.awt.Font("Segoe UI", 1, 16));
+        jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(224, 64, 251)));
+    }//GEN-LAST:event_usersMouseEntered
+
+    private void usersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new MannageUsers().setVisible(true);
+    }//GEN-LAST:event_usersMouseClicked
+
+    private void usersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersMouseExited
+        // TODO add your handling code here:
+        jPanel5.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        users.setFont(new java.awt.Font("Segoe UI", 0, 16));
+    }//GEN-LAST:event_usersMouseExited
+
+    private void filmsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filmsMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new ManageShowtimes().setVisible(true);
+    }//GEN-LAST:event_filmsMouseClicked
+
+    private void filmsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filmsMouseEntered
+        // TODO add your handling code here:
+        films.setFont(new java.awt.Font("Segoe UI", 1, 16));
+        jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(224, 64, 251)));
+    }//GEN-LAST:event_filmsMouseEntered
+
+    private void filmsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filmsMouseExited
+        // TODO add your handling code here:
+        jPanel6.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        films.setFont(new java.awt.Font("Segoe UI", 0, 16));
+    }//GEN-LAST:event_filmsMouseExited
+
+    private void showtimesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showtimesMouseEntered
+        // TODO add your handling code here:
+        showtimes.setFont(new java.awt.Font("Segoe UI", 1, 16));
+        jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(224, 64, 251)));
+    }//GEN-LAST:event_showtimesMouseEntered
+
+    private void showtimesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showtimesMouseExited
+        // TODO add your handling code here:
+        jPanel7.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        showtimes.setFont(new java.awt.Font("Segoe UI", 0, 16));
+    }//GEN-LAST:event_showtimesMouseExited
+
+    private void showtimesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showtimesMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new ManageShowtimes().setVisible(true);
+    }//GEN-LAST:event_showtimesMouseClicked
+
+    private void revenueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_revenueMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new ManageRevenue().setVisible(true);
+    }//GEN-LAST:event_revenueMouseClicked
+
+    private void revenueMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_revenueMouseExited
+        // TODO add your handling code here:
+        revenue.setFont(new java.awt.Font("Segoe UI", 0, 16));
+        jPanel8.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+    }//GEN-LAST:event_revenueMouseExited
+
+    private void revenueMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_revenueMouseEntered
+        // TODO add your handling code here:
+        revenue.setFont(new java.awt.Font("Segoe UI", 1, 16));
+        jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(224, 64, 251)));
+    }//GEN-LAST:event_revenueMouseEntered
+
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new SignInView().setVisible(true);
+    }//GEN-LAST:event_logoutMouseClicked
+
+    private void logoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseEntered
+        // TODO add your handling code here:
+        logout.setFont(new java.awt.Font("Segoe UI", 1, 14));
+    }//GEN-LAST:event_logoutMouseEntered
+
+    private void logoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseExited
+        // TODO add your handling code here:
+        logout.setFont(new java.awt.Font("Segoe UI", 0, 14));
+    }//GEN-LAST:event_logoutMouseExited
+
+    private void nameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameMouseEntered
+        // TODO add your handling code here:
+        name.setFont(new java.awt.Font("Segoe UI", 1, 14));
+    }//GEN-LAST:event_nameMouseEntered
+
+    private void nameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameMouseExited
+        // TODO add your handling code here:
+        name.setFont(new java.awt.Font("Segoe UI", 0, 14));
+    }//GEN-LAST:event_nameMouseExited
 
     /**
      * @param args the command line arguments
@@ -84,12 +565,39 @@ public class AdminView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminView().setVisible(true);
+                new AdminView("Nguyen Thi Thuy Linh").setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel body;
+    private javax.swing.JPanel btn_exit;
+    private javax.swing.JPanel btn_max;
+    private javax.swing.JPanel btn_min;
+    private javax.swing.JLabel films;
+    private javax.swing.JPanel header;
+    private javax.swing.JPanel header_bottom;
+    private javax.swing.JPanel header_top;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JLabel lab_exit;
+    private javax.swing.JLabel lab_max;
+    private javax.swing.JLabel lab_min;
+    private javax.swing.JLabel logout;
+    private javax.swing.JPanel logout_pannel;
+    private javax.swing.JPanel main_menu;
+    private javax.swing.JPanel menu_top;
+    private javax.swing.JLabel name;
+    private javax.swing.JLabel revenue;
+    private javax.swing.JLabel showtimes;
+    private javax.swing.JLabel users;
     // End of variables declaration//GEN-END:variables
 }
