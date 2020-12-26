@@ -12,12 +12,12 @@ import Controller.SignUpController;
  *
  * @author ngnth
  */
-public class SignUpView extends javax.swing.JFrame {
+public class SignupView extends javax.swing.JFrame {
 
     /**
-     * Creates new form SignUpView
+     * Creates new form SignupView
      */
-    public SignUpView() {
+    public SignupView() {
         initComponents();
         setResizable(false);
         fill_warning.setVisible(false);
@@ -45,7 +45,7 @@ public class SignUpView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLab_DOB = new javax.swing.JLabel();
         SignInText = new javax.swing.JLabel();
-        jBut_SignUp = new javax.swing.JButton();
+        jBut_Signup = new javax.swing.JButton();
         fill_warning = new javax.swing.JLabel();
         jLab_FullName = new javax.swing.JLabel();
         fullname = new javax.swing.JTextField();
@@ -68,6 +68,7 @@ public class SignUpView extends javax.swing.JFrame {
         genre_drama = new javax.swing.JCheckBox();
         format_warning = new javax.swing.JLabel();
 
+        setTitle("TicketBox");
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1030, 560));
         setSize(new java.awt.Dimension(0, 0));
@@ -112,20 +113,20 @@ public class SignUpView extends javax.swing.JFrame {
         });
         panel_right.add(SignInText, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 510, -1, 30));
 
-        jBut_SignUp.setBackground(new java.awt.Color(126, 87, 194));
-        jBut_SignUp.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        jBut_SignUp.setForeground(new java.awt.Color(255, 255, 255));
-        jBut_SignUp.setText("Sign Up");
-        jBut_SignUp.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jBut_SignUp.setBorderPainted(false);
-        jBut_SignUp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBut_SignUp.addActionListener(new java.awt.event.ActionListener() {
+        jBut_Signup.setBackground(new java.awt.Color(126, 87, 194));
+        jBut_Signup.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jBut_Signup.setForeground(new java.awt.Color(255, 255, 255));
+        jBut_Signup.setText("Sign Up");
+        jBut_Signup.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jBut_Signup.setBorderPainted(false);
+        jBut_Signup.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBut_Signup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBut_SignUpActionPerformed(evt);
+                jBut_SignupActionPerformed(evt);
             }
         });
-        panel_right.add(jBut_SignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 500, 330, 40));
-        jBut_SignUp.getAccessibleContext().setAccessibleName("JBut_SignUp");
+        panel_right.add(jBut_Signup, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 500, 330, 40));
+        jBut_Signup.getAccessibleContext().setAccessibleName("JBut_Signup");
 
         fill_warning.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
         fill_warning.setForeground(new java.awt.Color(255, 102, 0));
@@ -367,7 +368,7 @@ public class SignUpView extends javax.swing.JFrame {
         genre_action.setForeground(new Color(51, 52, 54));
     }//GEN-LAST:event_fullnameFocusGained
 
-    private void jBut_SignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBut_SignUpActionPerformed
+    private void jBut_SignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBut_SignupActionPerformed
         // TODO add your handling code here:
         String full_name = fullname.getText();
         String user_name = username.getText();
@@ -402,7 +403,7 @@ public class SignUpView extends javax.swing.JFrame {
             username_warning.setVisible(false);
             format_warning.setVisible(true);
         }
-    }//GEN-LAST:event_jBut_SignUpActionPerformed
+    }//GEN-LAST:event_jBut_SignupActionPerformed
 
     private void SignInTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SignInTextMouseClicked
         // TODO add your handling code here:
@@ -462,16 +463,16 @@ public class SignUpView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(SignupView.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(SignupView.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(SignupView.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null,
+            java.util.logging.Logger.getLogger(SignupView.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         }
         // </editor-fold>
@@ -479,7 +480,7 @@ public class SignUpView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SignUpView().setVisible(true);
+                new SignupView().setVisible(true);
             }
         });
     }
@@ -493,7 +494,7 @@ public class SignUpView extends javax.swing.JFrame {
     private javax.swing.JCheckBox genre_action;
     private javax.swing.JCheckBox genre_comedy;
     private javax.swing.JCheckBox genre_drama;
-    private javax.swing.JButton jBut_SignUp;
+    private javax.swing.JButton jBut_Signup;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JLabel jLab_DOB;
     private javax.swing.JLabel jLab_FullName;

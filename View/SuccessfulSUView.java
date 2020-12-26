@@ -40,6 +40,7 @@ public class SuccessfulSUView extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
+        setTitle("TicketBox");
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -97,6 +98,7 @@ public class SuccessfulSUView extends javax.swing.JFrame {
     private void jBut_SignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBut_SignInActionPerformed
         // TODO add your handling code here:
         new SignInView().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jBut_SignInActionPerformed
 
     /**

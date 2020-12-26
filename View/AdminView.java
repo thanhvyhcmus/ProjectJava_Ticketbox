@@ -18,7 +18,7 @@ public class AdminView extends javax.swing.JFrame {
      * Creates new form CustomerView
      */
     public AdminView(String fname) {
-        
+
         initComponents();
         name.setText("Hi, "+fname+"!");
         //jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(224, 64, 251)));
@@ -541,7 +541,7 @@ public class AdminView extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
