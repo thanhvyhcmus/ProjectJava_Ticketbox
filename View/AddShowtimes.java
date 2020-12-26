@@ -22,11 +22,13 @@ import java.util.ArrayList;
 public class AddShowtimes extends javax.swing.JFrame {
 
     int mpX, mpY;
+    ManageShowtimes parent;
     /**
      * Creates new form AddAnUser
      */
     //AddShowtimes parent =null;
-    public AddShowtimes() {
+    public AddShowtimes(ManageShowtimes parent) {
+        this.parent = parent;
         initComponents();
         
 
@@ -254,6 +256,11 @@ public class AddShowtimes extends javax.swing.JFrame {
         ignore.setForeground(new java.awt.Color(255, 255, 255));
         ignore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ignore.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        ignore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ignoreActionPerformed(evt);
+            }
+        });
         jPanel27.add(ignore, java.awt.BorderLayout.PAGE_START);
 
         mess.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -275,7 +282,9 @@ public class AddShowtimes extends javax.swing.JFrame {
 
     private void btn_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseClicked
         // TODO add your handling code here:
-        System.exit(0);
+        //System.exit(0);
+        parent.getShowtimes();
+        this.dispose();
 
     }//GEN-LAST:event_btn_exitMouseClicked
 
@@ -318,37 +327,41 @@ public class AddShowtimes extends javax.swing.JFrame {
         setLocation(getLocation().x + evt.getX() - mpX,getLocation().y + evt.getY() - mpY );
         
     }//GEN-LAST:event_formMouseDragged
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddShowtimes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddShowtimes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddShowtimes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddShowtimes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddShowtimes().setVisible(true);
-            }
-        });
-    }
+    private void ignoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ignoreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ignoreActionPerformed
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(AddShowtimes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(AddShowtimes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(AddShowtimes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(AddShowtimes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new AddShowtimes().setVisible(true);
+//            }
+//        });
+//    }
     /**
      * @param args the command line arguments
      */
