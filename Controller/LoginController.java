@@ -1,6 +1,8 @@
 package Controller;
 
 import DAO.UserDAO;
+import Model.Admin;
+import Model.Customer;
 
 public class LoginController {
     public static int checkAnAccount(String username, String password) {
@@ -22,4 +24,12 @@ public class LoginController {
         }
         return UserDAO.checkAnAccount(username, password);
     }
+    public static Customer getCustomer(String username,String password){
+        return UserDAO.getCustomer(username, password);
+    }
+    public static Admin getAdmin(String username,String password){
+        return UserDAO.getAdmin(username, password);
+    }
+
+    
 }

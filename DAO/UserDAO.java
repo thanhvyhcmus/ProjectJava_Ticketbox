@@ -227,6 +227,43 @@ public class UserDAO {
         
         return rs;
     }
+    public static int getACustomer(String username,String password){
+        int rs=0;
+        PreparedStatement stm=null;
+        Connection conn=null;
+        ResultSet res=null;
+        try {
+            
+            conn = JDBCConnection.getConnection();
+            String sql = "select isadmin from user where username=? and password= ?";
+            stm = conn.prepareStatement(sql);
+            stm.setString(1, username);
+            stm.setString(2,password);
+            res= stm.executeQuery();
+            if (res.next())
+                rs=res.getInt(1)+1;
+                
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally {
+            try
+            {
+                if(stm != null)
+                    stm.close();
+                if(conn != null)
+                    conn.close();
+                if(res != null)
+                    res.close();
+            }catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        
+        return rs;
+    }
+
 //     //check cho cả admin va customer
 // //(0: sai, 1: Cus, 2: admin)
     public static boolean addACustomer(Customer customer){
@@ -529,6 +566,76 @@ public class UserDAO {
     public static String hashPassword(String password) throws NoSuchAlgorithmException
     {
         return toHexString(getSHA(password));
+    }
+    public static Customer getCustomer(String username,String password){
+        Customer rs=null;
+        PreparedStatement stm=null;
+        Connection conn=null;
+        ResultSet res=null;
+        try {
+            
+            conn = JDBCConnection.getConnection();
+            String sql = "select * from user where username=? and password= ? and isadmin =0";
+            stm = conn.prepareStatement(sql);
+            stm.setString(1, username);
+            stm.setString(2,password);
+            res= stm.executeQuery();
+            if (res.next())
+                rs=new Customer(res.getInt("id"),res.getString("fullname"),res.getString("dob"),res.getString("username") , res.getString("password"),res.getString("phone"),res.getInt("point"),res.getString("favouritegenre"));
+                
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally {
+            try
+            {
+                if(stm != null)
+                    stm.close();
+                if(conn != null)
+                    conn.close();
+                if(res != null)
+                    res.close();
+            }catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return rs;
+    }
+    public static Admin getAdmin(String username,String password){
+        Admin rs=null;
+        PreparedStatement stm=null;
+        Connection conn=null;
+        ResultSet res=null;
+        try {
+            
+            conn = JDBCConnection.getConnection();
+            String sql = "select * from user where username=? and password= ? and isadmin =1";
+            stm = conn.prepareStatement(sql);
+            stm.setString(1, username);
+            stm.setString(2,password);
+            res= stm.executeQuery();
+            if (res.next())
+                rs=new Admin(res.getInt("id"), res.getString("fullname"), res.getString("dob"),res.getString("phone"),res.getString("username") , res.getString("password"));
+                
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally {
+            try
+            {
+                if(stm != null)
+                    stm.close();
+                if(conn != null)
+                    conn.close();
+                if(res != null)
+                    res.close();
+            }catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return rs;
     }
 }
  
