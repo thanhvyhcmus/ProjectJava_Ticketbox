@@ -5,3 +5,7 @@
 .idea
 *.class
 DAO/JDBCConnection.java
+out/production/ProjectJava_Ticketbox/images/ticket.png
+out/production/ProjectJava_Ticketbox/images/seat.png
+out/production/ProjectJava_Ticketbox/images/seat_disable.png
+out/production/ProjectJava_Ticketbox/images/trash.png

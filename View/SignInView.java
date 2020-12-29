@@ -6,7 +6,11 @@
 package View;
 
 import java.awt.Color;
+
+import Controller.CustomerController;
 import Controller.LoginController;
+import Model.Admin;
+import Model.Customer;
 
 /**
  *
@@ -173,12 +177,14 @@ public class SignInView extends javax.swing.JFrame {
         }
         else if (check == 1){
             //go to Customer Screen
-            new CustomerView().setVisible(true);
+            Customer customer = LoginController.getCustomer(user,pass);
+            new CustomerView(customer).setVisible(true);
             this.dispose();
         }
         else if (check == 2){
             //go to Admin Screen
-            new AdminView().setVisible(true);
+            Admin admin = LoginController.getAdmin(user,pass);
+            new AdminView(admin).setVisible(true);
             this.dispose();
         }
         

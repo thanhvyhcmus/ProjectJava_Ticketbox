@@ -6,6 +6,7 @@
 package View;
 
 import Controller.CustomerController;
+import Model.Customer;
 import Model.Film;
 import Model.Showtime;
 import Model.Theater;
@@ -24,7 +25,8 @@ public class CustomerView extends javax.swing.JFrame {
     /**
      * Creates new form CustomerView
      */
-    public CustomerView() {
+    public CustomerView(Customer cus) {
+        customer = cus;
         initComponents();
     }
 
@@ -132,6 +134,260 @@ public class CustomerView extends javax.swing.JFrame {
         int posX = 0 + 320*(pos%3);
         int posY = 40 + 410*(pos/3);
         movieListPanel.add(moviePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(posX, posY, -1, -1));
+    }
+    private javax.swing.JPanel createFilmPanel(Film film){
+        javax.swing.JLabel cast;
+        javax.swing.JLabel castLab;
+        javax.swing.JLabel dateLab;
+        com.github.lgooddatepicker.components.DatePicker datePicker;
+        javax.swing.JTextArea description;
+        javax.swing.JLabel descriptionLab;
+        javax.swing.JLabel director;
+        javax.swing.JLabel directorLab;
+        javax.swing.JLabel durationLab;
+        javax.swing.JPanel filmInfoPanel;
+        javax.swing.JPanel filmLab;
+        javax.swing.JPanel filmPanel;
+        javax.swing.JLabel filmTitle;
+        javax.swing.JLabel genre;
+        javax.swing.JLabel genreLab;
+        javax.swing.JPanel leftSep;
+        javax.swing.JLabel poster;
+        javax.swing.JLabel releaseDate;
+        javax.swing.JLabel releaseDateLab;
+        javax.swing.JPanel rightSep;
+        javax.swing.JLabel showingtimeLabel;
+        javax.swing.JPanel showtimePanel;
+        javax.swing.JLabel showtimeSelection;
+        javax.swing.JLabel time;
+        filmPanel = new javax.swing.JPanel();
+        filmLab = new javax.swing.JPanel();
+        filmTitle = new javax.swing.JLabel();
+        rightSep = new javax.swing.JPanel();
+        leftSep = new javax.swing.JPanel();
+        filmInfoPanel = new javax.swing.JPanel();
+        poster = new javax.swing.JLabel();
+        directorLab = new javax.swing.JLabel();
+        director = new javax.swing.JLabel();
+        castLab = new javax.swing.JLabel();
+        genreLab = new javax.swing.JLabel();
+        genre = new javax.swing.JLabel();
+        releaseDateLab = new javax.swing.JLabel();
+        releaseDate = new javax.swing.JLabel();
+        durationLab = new javax.swing.JLabel();
+        time = new javax.swing.JLabel();
+        descriptionLab = new javax.swing.JLabel();
+        cast = new javax.swing.JLabel();
+        description = new javax.swing.JTextArea();
+        datePicker = new com.github.lgooddatepicker.components.DatePicker();
+        dateLab = new javax.swing.JLabel();
+        showtimePanel = new javax.swing.JPanel();
+        showtimeSelection = new javax.swing.JLabel();
+        showingtimeLabel = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("TicketBox");
+
+        filmPanel.setBackground(new java.awt.Color(38, 19, 66));
+        filmPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        filmLab.setBackground(new java.awt.Color(38, 19, 66));
+        filmLab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        filmTitle.setText("SAI GON IN THE RAIN");
+        filmTitle.setBackground(new java.awt.Color(0, 0, 51));
+        filmTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        filmTitle.setForeground(new java.awt.Color(255, 255, 255));
+        filmLab.add(filmTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 309, -1));
+
+        javax.swing.GroupLayout rightSepLayout = new javax.swing.GroupLayout(rightSep);
+        rightSep.setLayout(rightSepLayout);
+        rightSepLayout.setHorizontalGroup(
+                rightSepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 300, Short.MAX_VALUE)
+        );
+        rightSepLayout.setVerticalGroup(
+                rightSepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        filmLab.add(rightSep, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 300, 5));
+
+        javax.swing.GroupLayout leftSepLayout = new javax.swing.GroupLayout(leftSep);
+        leftSep.setLayout(leftSepLayout);
+        leftSepLayout.setHorizontalGroup(
+                leftSepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 300, Short.MAX_VALUE)
+        );
+        leftSepLayout.setVerticalGroup(
+                leftSepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        filmLab.add(leftSep, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 300, 5));
+
+        filmPanel.add(filmLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 25, 950, 40));
+
+        filmInfoPanel.setBackground(new java.awt.Color(38, 19, 66));
+
+        poster.setIcon(new javax.swing.ImageIcon(getClass().getResource(film.getLinkimg()))); // NOI18N
+
+        directorLab.setText("Director: ");
+        directorLab.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        directorLab.setForeground(new java.awt.Color(255, 255, 255));
+
+        director.setText(film.getDirector());
+        director.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        director.setForeground(new java.awt.Color(255, 255, 255));
+
+        castLab.setText("Cast:");
+        castLab.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        castLab.setForeground(new java.awt.Color(255, 255, 255));
+
+        genreLab.setText("Genre:");
+        genreLab.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        genreLab.setForeground(new java.awt.Color(255, 255, 255));
+
+        genre.setText(film.getGenre());
+        genre.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        genre.setForeground(new java.awt.Color(255, 255, 255));
+
+        releaseDateLab.setText("Release Date:");
+        releaseDateLab.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        releaseDateLab.setForeground(new java.awt.Color(255, 255, 255));
+
+        releaseDate.setText(film.getReleasedDate());
+        releaseDate.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        releaseDate.setForeground(new java.awt.Color(255, 255, 255));
+
+        durationLab.setText("Duration:");
+        durationLab.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        durationLab.setForeground(new java.awt.Color(255, 255, 255));
+
+        time.setText(Integer.toString(film.getDuration()));
+        time.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        time.setForeground(new java.awt.Color(255, 255, 255));
+
+        descriptionLab.setText("Description:");
+        descriptionLab.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        descriptionLab.setForeground(new java.awt.Color(255, 255, 255));
+
+        cast.setText(film.getCast());
+        cast.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        cast.setForeground(new java.awt.Color(255, 255, 255));
+
+        description.setColumns(20);
+        description.setEditable(false);
+        description.setLineWrap(true);
+        description.setRows(5);
+        description.setText(film.getDescription());
+        description.setWrapStyleWord(true);
+        description.setAutoscrolls(false);
+        description.setBackground(new java.awt.Color(38, 19, 66));
+        description.setBorder(null);
+        description.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        description.setForeground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout filmInfoPanelLayout = new javax.swing.GroupLayout(filmInfoPanel);
+        filmInfoPanel.setLayout(filmInfoPanelLayout);
+        filmInfoPanelLayout.setHorizontalGroup(
+                filmInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(filmInfoPanelLayout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(poster)
+                                .addGap(43, 43, 43)
+                                .addGroup(filmInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(filmInfoPanelLayout.createSequentialGroup()
+                                                .addComponent(directorLab, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(director, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(34, 34, 34))
+                                        .addGroup(filmInfoPanelLayout.createSequentialGroup()
+                                                .addComponent(genreLab, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(genre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addContainerGap())
+                                        .addGroup(filmInfoPanelLayout.createSequentialGroup()
+                                                .addComponent(durationLab, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addContainerGap())
+                                        .addGroup(filmInfoPanelLayout.createSequentialGroup()
+                                                .addComponent(releaseDateLab, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, 0)
+                                                .addComponent(releaseDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addContainerGap())
+                                        .addGroup(filmInfoPanelLayout.createSequentialGroup()
+                                                .addGroup(filmInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(filmInfoPanelLayout.createSequentialGroup()
+                                                                .addComponent(castLab, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(cast, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addComponent(descriptionLab, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        filmInfoPanelLayout.setVerticalGroup(
+                filmInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(filmInfoPanelLayout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addGroup(filmInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(directorLab, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(director, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(filmInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(castLab, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cast, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(filmInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(genreLab, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(genre, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(filmInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(durationLab, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(filmInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(releaseDateLab, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(releaseDate, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(descriptionLab, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filmInfoPanelLayout.createSequentialGroup()
+                                .addContainerGap(86, Short.MAX_VALUE)
+                                .addComponent(poster)
+                                .addGap(49, 49, 49))
+        );
+
+        filmPanel.add(filmInfoPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 890, 470));
+
+        datePicker.setText("Pick a date");
+        datePicker.setBackground(new java.awt.Color(38, 19, 66));
+        filmPanel.add(datePicker, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 600, -1, -1));
+
+        dateLab.setText("Dates");
+        dateLab.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        dateLab.setForeground(new java.awt.Color(255, 255, 255));
+        filmPanel.add(dateLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 540, 230, 40));
+
+        showtimePanel.setBackground(new java.awt.Color(38, 19, 66));
+        showtimePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        showtimeSelection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ticketbg.png"))); // NOI18N
+        showtimeSelection.setText("18:00");
+        showtimeSelection.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
+        showtimeSelection.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        showtimePanel.add(showtimeSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 117, -1));
+
+        showingtimeLabel.setText("Dates");
+        showingtimeLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        showingtimeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        showtimePanel.add(showingtimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 540, 230, 40));
+
+        filmPanel.add(showtimePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 680, 890, 260));
+        return filmPanel;
     }
     private javax.swing.JPanel createAccountPanel(){
         JPanel jPanel2 = new javax.swing.JPanel();
@@ -714,14 +970,13 @@ public class CustomerView extends javax.swing.JFrame {
         sidepane.add(btn_manageaccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 360, 70));
 
         infoPanel.setBackground(new java.awt.Color(72, 19, 128));
-        infoPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        infoPanel.setInheritsPopupMenu(true);
         infoPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         helloLab.setFont(new java.awt.Font("Segoe Script", 1, 22)); // NOI18N
         helloLab.setForeground(new java.awt.Color(255, 255, 255));
         helloLab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        helloLab.setText("Hello Vy");
+        String[] name = customer.getFullname().split(" ");
+        helloLab.setText("Hello " + name[name.length - 1]);
         infoPanel.add(helloLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 70));
 
         btn_logout.setBackground(new java.awt.Color(127, 120, 210));
@@ -755,6 +1010,9 @@ public class CustomerView extends javax.swing.JFrame {
     }
 
     private void btn_logoutMouseClicked(MouseEvent evt) {
+        customer = null;
+        this.dispose();
+        new SignInView().setVisible(true);
     }
 
     private void btnMouseEntered(java.awt.event.MouseEvent evt, javax.swing.JPanel btn) {
@@ -945,11 +1203,11 @@ public class CustomerView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomerView().setVisible(true);
+                new CustomerView(new Customer(1,"Nguyễn Phạm Thanh Vy","","","","",0,"")).setVisible(true);
             }
         });
     }
-    // Variables declaration - do not modify
+    private Customer customer;
     public javax.swing.JPanel bg;
     public javax.swing.JPanel mainpanel;
     public javax.swing.JScrollPane mainscrollpane;
