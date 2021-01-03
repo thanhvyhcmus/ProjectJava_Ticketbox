@@ -7,7 +7,7 @@ package View;
 
 import java.awt.Color;
 import java.awt.Component;
-
+import Model.Admin;
 /**
  *
  * @author ngnth
@@ -17,10 +17,11 @@ public class AdminView extends javax.swing.JFrame {
     /**
      * Creates new form CustomerView
      */
-    public AdminView(String fname) {
-
+    Admin admin = null;
+    public AdminView(Admin admin) {
+        this.admin = admin;
         initComponents();
-        name.setText("Hi, "+fname+"!");
+        name.setText("Hi, "+admin.getFullname()+"!");
         //jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(224, 64, 251)));
     }
 
@@ -444,8 +445,9 @@ public class AdminView extends javax.swing.JFrame {
 
     private void usersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersMouseClicked
         // TODO add your handling code here:
+        
+        new MannageUsers(admin).setVisible(true);
         this.dispose();
-        new MannageUsers().setVisible(true);
     }//GEN-LAST:event_usersMouseClicked
 
     private void usersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersMouseExited
@@ -456,8 +458,8 @@ public class AdminView extends javax.swing.JFrame {
 
     private void filmsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filmsMouseClicked
         // TODO add your handling code here:
+        new ManageFilms(admin).setVisible(true);
         this.dispose();
-        new ManageShowtimes().setVisible(true);
     }//GEN-LAST:event_filmsMouseClicked
 
     private void filmsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filmsMouseEntered
@@ -486,14 +488,14 @@ public class AdminView extends javax.swing.JFrame {
 
     private void showtimesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showtimesMouseClicked
         // TODO add your handling code here:
+        new ManageShowtimes(admin).setVisible(true);
         this.dispose();
-        new ManageShowtimes().setVisible(true);
     }//GEN-LAST:event_showtimesMouseClicked
 
     private void revenueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_revenueMouseClicked
         // TODO add your handling code here:
+        new ManageRevenue(admin).setVisible(true);
         this.dispose();
-        new ManageRevenue().setVisible(true);
     }//GEN-LAST:event_revenueMouseClicked
 
     private void revenueMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_revenueMouseExited
@@ -510,8 +512,8 @@ public class AdminView extends javax.swing.JFrame {
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
-        this.dispose();
         new SignInView().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_logoutMouseClicked
 
     private void logoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseEntered
@@ -534,41 +536,7 @@ public class AdminView extends javax.swing.JFrame {
         name.setFont(new java.awt.Font("Segoe UI", 0, 14));
     }//GEN-LAST:event_nameMouseExited
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AdminView("Nguyen Thi Thuy Linh").setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel body;

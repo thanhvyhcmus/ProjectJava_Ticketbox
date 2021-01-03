@@ -6,8 +6,6 @@
 package View;
 
 import java.awt.Color;
-
-import Controller.CustomerController;
 import Controller.LoginController;
 import Model.Admin;
 import Model.Customer;
@@ -197,7 +195,7 @@ public class SignInView extends javax.swing.JFrame {
 
     private void SignUpTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SignUpTextMouseClicked
         // TODO add your handling code here:
-        new SignupView().setVisible(true);
+        new SignUpView().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_SignUpTextMouseClicked
 

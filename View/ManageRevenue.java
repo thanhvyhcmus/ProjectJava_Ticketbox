@@ -21,19 +21,12 @@ public class ManageRevenue extends javax.swing.JFrame {
     /**
      * Creates new form MannageUsers
      */
-    
+    Admin admin= null;
     int mpX, mpY;
-    public ManageRevenue() {
+    public ManageRevenue(Admin admin) {
         initComponents();
-       
-        
-        
-        
-        
-              
-        
-        //System.out.println(getClass().getResource("/images/exit.png"));
-        //System.out.println(getClass().getResource("/images/logo.png"));
+        this.admin = admin;
+
     }
         /**
      * This method is called from within the constructor to initialize the form.
@@ -65,6 +58,8 @@ public class ManageRevenue extends javax.swing.JFrame {
         lab_showtimes = new javax.swing.JLabel();
         btn_revenue = new javax.swing.JPanel();
         lab_revenue = new javax.swing.JLabel();
+        logout_pannel = new javax.swing.JPanel();
+        logout = new javax.swing.JLabel();
         main = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -225,16 +220,17 @@ public class ManageRevenue extends javax.swing.JFrame {
 
         header.add(header_top, java.awt.BorderLayout.PAGE_START);
 
-        header_bottom.setAlignmentX(Component.CENTER_ALIGNMENT);
         header_bottom.setBackground(new java.awt.Color(64, 33, 100));
+        header_bottom.setAlignmentX(Component.CENTER_ALIGNMENT);
         header_bottom.setMinimumSize(new java.awt.Dimension(800, 30));
         header_bottom.setPreferredSize(new java.awt.Dimension(800, 50));
 
         main_menu.setBackground(new java.awt.Color(64, 33, 100));
-        main_menu.setPreferredSize(new java.awt.Dimension(600, 30));
-        main_menu.setLayout(new java.awt.GridLayout(1, 5));
+        main_menu.setPreferredSize(new java.awt.Dimension(700, 30));
+        main_menu.setLayout(new java.awt.GridLayout(1, 6));
 
         btn_home.setBackground(new java.awt.Color(64, 33, 100));
+        btn_home.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_home.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_homeMouseClicked(evt);
@@ -248,13 +244,13 @@ public class ManageRevenue extends javax.swing.JFrame {
         });
         btn_home.setLayout(new java.awt.BorderLayout());
 
+        lab_home.setBackground(new java.awt.Color(64, 33, 100));
+        lab_home.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lab_home.setForeground(new java.awt.Color(255, 255, 255));
         lab_home.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lab_home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
         lab_home.setText("Home");
-        lab_home.setBackground(new java.awt.Color(64, 33, 100));
         lab_home.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lab_home.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        lab_home.setForeground(new java.awt.Color(255, 255, 255));
         btn_home.add(lab_home, java.awt.BorderLayout.CENTER);
 
         main_menu.add(btn_home);
@@ -274,11 +270,12 @@ public class ManageRevenue extends javax.swing.JFrame {
         btn_accounts.setLayout(new java.awt.BorderLayout());
 
         lab_accounts.setBackground(new java.awt.Color(64, 33, 100));
-        lab_accounts.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        lab_accounts.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lab_accounts.setForeground(new java.awt.Color(255, 255, 255));
         lab_accounts.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lab_accounts.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/account1.png"))); // NOI18N
         lab_accounts.setText("Accounts");
+        lab_accounts.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_accounts.add(lab_accounts, java.awt.BorderLayout.CENTER);
 
         main_menu.add(btn_accounts);
@@ -297,11 +294,12 @@ public class ManageRevenue extends javax.swing.JFrame {
         });
         btn_films.setLayout(new java.awt.BorderLayout());
 
-        lab_films.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        lab_films.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lab_films.setForeground(new java.awt.Color(255, 255, 255));
         lab_films.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lab_films.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/film.png"))); // NOI18N
         lab_films.setText("Films");
+        lab_films.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_films.add(lab_films, java.awt.BorderLayout.CENTER);
 
         main_menu.add(btn_films);
@@ -320,11 +318,12 @@ public class ManageRevenue extends javax.swing.JFrame {
         });
         btn_showtimes.setLayout(new java.awt.BorderLayout());
 
-        lab_showtimes.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        lab_showtimes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lab_showtimes.setForeground(new java.awt.Color(255, 255, 255));
         lab_showtimes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lab_showtimes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/showtimes.png"))); // NOI18N
         lab_showtimes.setText("Showtimes");
+        lab_showtimes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_showtimes.add(lab_showtimes, java.awt.BorderLayout.CENTER);
 
         main_menu.add(btn_showtimes);
@@ -348,9 +347,33 @@ public class ManageRevenue extends javax.swing.JFrame {
         lab_revenue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lab_revenue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/revenue.png"))); // NOI18N
         lab_revenue.setText(" Revenue");
+        lab_revenue.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_revenue.add(lab_revenue, java.awt.BorderLayout.CENTER);
 
         main_menu.add(btn_revenue);
+
+        logout_pannel.setBackground(new java.awt.Color(64, 33, 100));
+        logout_pannel.setLayout(new java.awt.BorderLayout());
+
+        logout.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        logout.setForeground(new java.awt.Color(255, 255, 255));
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.png"))); // NOI18N
+        logout.setText("Log out");
+        logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logoutMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logoutMouseExited(evt);
+            }
+        });
+        logout_pannel.add(logout, java.awt.BorderLayout.CENTER);
+
+        main_menu.add(logout_pannel);
 
         header_bottom.add(main_menu);
 
@@ -359,16 +382,17 @@ public class ManageRevenue extends javax.swing.JFrame {
         getContentPane().add(header, java.awt.BorderLayout.PAGE_START);
 
         main.setBackground(new java.awt.Color(64, 33, 100));
+        main.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(64, 33, 100)));
         main.setLayout(new java.awt.BorderLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(640, 70));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(64, 33, 100));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("REVENUE");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(64, 33, 100));
         jLabel2.setPreferredSize(new java.awt.Dimension(79, 35));
         jPanel3.add(jLabel2, java.awt.BorderLayout.CENTER);
 
@@ -480,9 +504,9 @@ public class ManageRevenue extends javax.swing.JFrame {
         jPanel27.setPreferredSize(new java.awt.Dimension(100, 30));
         jPanel27.setLayout(new java.awt.BorderLayout());
 
+        mess.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         mess.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         mess.setForeground(new java.awt.Color(204, 0, 51));
-        mess.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         mess.setPreferredSize(new java.awt.Dimension(100, 35));
         jPanel27.add(mess, java.awt.BorderLayout.PAGE_START);
 
@@ -552,76 +576,6 @@ public class ManageRevenue extends javax.swing.JFrame {
         btn_max.setBackground(new Color(64,33,100));
     }//GEN-LAST:event_btn_maxMouseExited
 
-    private void btn_homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_homeMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_homeMouseClicked
-
-    private void btn_homeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_homeMouseEntered
-        // TODO add your handling code here:
-        btn_home.setBackground(new Color(37,12,65));
-    }//GEN-LAST:event_btn_homeMouseEntered
-
-    private void btn_homeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_homeMouseExited
-        // TODO add your handling code here:
-        btn_home.setBackground(new Color(64,33,100));
-    }//GEN-LAST:event_btn_homeMouseExited
-
-    private void btn_accountsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_accountsMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_accountsMouseClicked
-
-    private void btn_accountsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_accountsMouseEntered
-        // TODO add your handling code here:
-        btn_accounts.setBackground(new Color(37,12,65));
-    }//GEN-LAST:event_btn_accountsMouseEntered
-
-    private void btn_accountsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_accountsMouseExited
-        // TODO add your handling code here:
-        btn_accounts.setBackground(new Color(64,33,100));
-    }//GEN-LAST:event_btn_accountsMouseExited
-
-    private void btn_filmsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_filmsMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_filmsMouseClicked
-
-    private void btn_filmsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_filmsMouseEntered
-        // TODO add your handling code here:
-        btn_films.setBackground(new Color(37,12,65));
-    }//GEN-LAST:event_btn_filmsMouseEntered
-
-    private void btn_filmsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_filmsMouseExited
-        // TODO add your handling code here:
-        btn_films.setBackground(new Color(64,33,100));
-    }//GEN-LAST:event_btn_filmsMouseExited
-
-    private void btn_showtimesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_showtimesMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_showtimesMouseClicked
-
-    private void btn_showtimesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_showtimesMouseEntered
-        // TODO add your handling code here:
-        btn_showtimes.setBackground(new Color(37,12,65));
-    }//GEN-LAST:event_btn_showtimesMouseEntered
-
-    private void btn_showtimesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_showtimesMouseExited
-        // TODO add your handling code here:
-        btn_showtimes.setBackground(new Color(64,33,100));
-    }//GEN-LAST:event_btn_showtimesMouseExited
-
-    private void btn_revenueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_revenueMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_revenueMouseClicked
-
-    private void btn_revenueMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_revenueMouseEntered
-        // TODO add your handling code here:
-        btn_revenue.setBackground(new Color(37,12,65));
-    }//GEN-LAST:event_btn_revenueMouseEntered
-
-    private void btn_revenueMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_revenueMouseExited
-        // TODO add your handling code here:
-        btn_revenue.setBackground(new Color(64,33,100));
-    }//GEN-LAST:event_btn_revenueMouseExited
-
     private void lab_minMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lab_minMouseClicked
         // TODO add your handling code here:
         setState(this.ICONIFIED);
@@ -668,46 +622,104 @@ public class ManageRevenue extends javax.swing.JFrame {
         mess.setText("The number of sold seats / total seats: "+res[0]+" / "+res[1]);
         mess1.setText("Total Revenue: "+res[2]);
     }//GEN-LAST:event_saveActionPerformed
-     
-    /**
-     * @param args the command line arguments
-     */
+
+    private void btn_homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_homeMouseClicked
+        // TODO add your handling code here:
+        new AdminView(admin).setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btn_homeMouseClicked
+
+    private void btn_homeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_homeMouseEntered
+        // TODO add your handling code here:
+        btn_home.setBackground(new Color(37,12,65));
+    }//GEN-LAST:event_btn_homeMouseEntered
+
+    private void btn_homeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_homeMouseExited
+        // TODO add your handling code here:
+        btn_home.setBackground(new Color(64,33,100));
+    }//GEN-LAST:event_btn_homeMouseExited
+
+    private void btn_accountsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_accountsMouseClicked
+        // TODO add your handling code here:
+        new MannageUsers(admin).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_accountsMouseClicked
+
+    private void btn_accountsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_accountsMouseEntered
+        // TODO add your handling code here:
+        btn_accounts.setBackground(new Color(37,12,65));
+    }//GEN-LAST:event_btn_accountsMouseEntered
+
+    private void btn_accountsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_accountsMouseExited
+        // TODO add your handling code here:
+        btn_accounts.setBackground(new Color(64,33,100));
+    }//GEN-LAST:event_btn_accountsMouseExited
+
+    private void btn_filmsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_filmsMouseClicked
+        // TODO add your handling code here:
+        new ManageFilms(admin).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_filmsMouseClicked
+
+    private void btn_filmsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_filmsMouseEntered
+        // TODO add your handling code here:
+        btn_films.setBackground(new Color(37,12,65));
+    }//GEN-LAST:event_btn_filmsMouseEntered
+
+    private void btn_filmsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_filmsMouseExited
+        // TODO add your handling code here:
+        btn_films.setBackground(new Color(64,33,100));
+    }//GEN-LAST:event_btn_filmsMouseExited
+
+    private void btn_showtimesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_showtimesMouseClicked
+        // TODO add your handling code here:
+        new ManageShowtimes(admin).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_showtimesMouseClicked
+
+    private void btn_showtimesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_showtimesMouseEntered
+        // TODO add your handling code here:
+        btn_showtimes.setBackground(new Color(37,12,65));
+    }//GEN-LAST:event_btn_showtimesMouseEntered
+
+    private void btn_showtimesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_showtimesMouseExited
+        // TODO add your handling code here:
+        btn_showtimes.setBackground(new Color(64,33,100));
+    }//GEN-LAST:event_btn_showtimesMouseExited
+
+    private void btn_revenueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_revenueMouseClicked
+        // TODO add your handling code here:
+        new ManageRevenue(admin).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_revenueMouseClicked
+
+    private void btn_revenueMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_revenueMouseEntered
+        // TODO add your handling code here:
+        btn_revenue.setBackground(new Color(37,12,65));
+    }//GEN-LAST:event_btn_revenueMouseEntered
+
+    private void btn_revenueMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_revenueMouseExited
+        // TODO add your handling code here:
+        btn_revenue.setBackground(new Color(64,33,100));
+    }//GEN-LAST:event_btn_revenueMouseExited
+
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        // TODO add your handling code here:
+        new SignInView().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutMouseClicked
+
+    private void logoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseEntered
+        // TODO add your handling code here:
+        logout.setFont(new java.awt.Font("Segoe UI", 1, 14));
+    }//GEN-LAST:event_logoutMouseEntered
+
+    private void logoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseExited
+        // TODO add your handling code here:
+        logout.setFont(new java.awt.Font("Segoe UI", 0, 14));
+    }//GEN-LAST:event_logoutMouseExited
     
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageRevenue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageRevenue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageRevenue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageRevenue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ManageRevenue().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btn_accounts;
     private javax.swing.JPanel btn_exit;
@@ -750,6 +762,8 @@ public class ManageRevenue extends javax.swing.JFrame {
     private javax.swing.JLabel lab_min;
     private javax.swing.JLabel lab_revenue;
     private javax.swing.JLabel lab_showtimes;
+    private javax.swing.JLabel logout;
+    private javax.swing.JPanel logout_pannel;
     private javax.swing.JPanel main;
     private javax.swing.JPanel main_menu;
     private javax.swing.JPanel menu_top;
