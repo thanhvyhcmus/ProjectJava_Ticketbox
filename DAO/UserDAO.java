@@ -202,7 +202,7 @@ public class UserDAO {
             String sql = "select isadmin from user where username=? and password= ?";
             stm = conn.prepareStatement(sql);
             stm.setString(1, username);
-            stm.setString(2,password);
+            stm.setString(2,hashPassword(password));
             res= stm.executeQuery();
             if (res.next())
                 rs=res.getInt(1)+1;
@@ -210,6 +210,9 @@ public class UserDAO {
 
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
         finally {
             try
@@ -277,7 +280,7 @@ public class UserDAO {
             stm.setString(1, customer.getFullname());
             stm.setString(2, customer.getDoB());
             stm.setString(3, customer.getUsername());
-            stm.setString(4, customer.getPassword());
+            stm.setString(4, hashPassword(customer.getPassword()));
             stm.setString(5, customer.getPhone());
             stm.setInt(6, customer.getPoints());
             stm.setString(7, customer.getFavouriteGenre());
@@ -287,6 +290,9 @@ public class UserDAO {
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
 
+        } catch (NoSuchAlgorithmException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
         finally{
             try
