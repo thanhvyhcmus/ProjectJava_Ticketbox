@@ -34,24 +34,26 @@ public class CustomerController {
     public static ArrayList<Showtime> getAllShowtimesBy(Theater theater) {
         return DAO.ShowtimeDAO.getAllShowtimesBy(theater);
     }
-
-    public static ArrayList<Showtime> getAllShowtimesBy(int theater, int film) {
-        return DAO.ShowtimeDAO.getAllShowtimesBy(theater, film);
+    public static ArrayList<Showtime> getAllShowtimesBy(String theaterName, String filmName) {
+        return DAO.ShowtimeDAO.getAllShowtimesBy(theaterName, filmName);
+    }
+    public static ArrayList<Showtime> getAllShowtimesBy(String theaterName, String filmName,String date) {
+        return DAO.ShowtimeDAO.getAllShowtimesBy(theaterName, filmName);
     }
 
     public static ArrayList<Theater> getAllTheaters() {
         return DAO.TheaterDAO.getAllTheaters();
     }
 
-    public static HashMap<String, ArrayList<Showtime>> getAllShowtimesByFilm(int film, String date) {
-        return DAO.ShowtimeDAO.getAllShowtimeByFilm(film, date);
+    public static HashMap<String, ArrayList<Showtime>> getAllShowtimesByFilm(int idfilm, String date) {
+        return DAO.ShowtimeDAO.getAllShowtimeByFilm(idfilm, date);
     }
 
-    public static HashMap<String, ArrayList<Showtime>> getAllShowtimesByTheater(int theater, String date) {
-        return DAO.ShowtimeDAO.getAllShowtimeByTheater(theater,date);
+    public static HashMap<String, ArrayList<Showtime>> getAllShowtimesByTheater(int idtheater, String date) {
+        return DAO.ShowtimeDAO.getAllShowtimeByTheater(idtheater,date);
     }
-    public static ArrayList<Showtime> getAllShowtimesBy(int theater,int film,String date){
-        return DAO.ShowtimeDAO.getAllShowtimeBy(theater,film,date);
+    public static ArrayList<Showtime> getAllShowtimesBy(int idtheater,int idfilm,String date){
+        return DAO.ShowtimeDAO.getAllShowtimeBy(idtheater,idfilm,date);
     }
 
 }

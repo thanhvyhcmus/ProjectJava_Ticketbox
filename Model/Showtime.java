@@ -16,7 +16,14 @@ public class Showtime {
         this.theater=theater;
         seats = null;
     }
-    
+    public Showtime( int id,Theater theater,Film film,String startTime,String date) {
+        this.id=id;
+        this.film=film;
+        this.startTime=startTime;
+        this.theater=theater;
+        seats = null;
+        this.date=date;
+    }
     public Showtime( int id,Theater theater,Film film,String startTime,int row,int col) {
         this.id=id;
         this.film=film;
