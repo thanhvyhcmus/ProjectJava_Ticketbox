@@ -38,7 +38,7 @@ public class CustomerController {
         return DAO.ShowtimeDAO.getAllShowtimesBy(theaterName, filmName);
     }
     public static ArrayList<Showtime> getAllShowtimesBy(String theaterName, String filmName,String date) {
-        return DAO.ShowtimeDAO.getAllShowtimesBy(theaterName, filmName);
+        return DAO.ShowtimeDAO.getAllShowtimesBy(theaterName, filmName, date);
     }
 
     public static ArrayList<Theater> getAllTheaters() {

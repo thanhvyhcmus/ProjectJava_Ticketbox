@@ -204,9 +204,10 @@ public class UserDAO {
             stm.setString(1, username);
             stm.setString(2,hashPassword(password));
             res= stm.executeQuery();
-            if (res.next())
-                rs=res.getInt(1)+1;
-                
+            if (res.next()) {
+                rs = res.getInt(1) + 1;
+                System.out.println(rs);
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);

@@ -10,9 +10,14 @@ import Model.Customer;
 import Model.Film;
 import Model.Showtime;
 import Model.Theater;
+import com.github.lgooddatepicker.components.DatePicker;
+import com.github.lgooddatepicker.components.DatePickerSettings;
+import com.github.lgooddatepicker.demo.FullDemo;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -138,7 +143,8 @@ public class CustomerView extends javax.swing.JFrame {
         javax.swing.JLabel cast;
         javax.swing.JLabel castLab;
         javax.swing.JLabel dateLab;
-        com.github.lgooddatepicker.components.DatePicker datePicker;
+        DatePickerSettings dateSettings;
+        DatePicker datePicker;
         javax.swing.JTextArea description;
         javax.swing.JLabel descriptionLab;
         javax.swing.JLabel director;
@@ -159,6 +165,7 @@ public class CustomerView extends javax.swing.JFrame {
         javax.swing.JPanel showtimePanel;
         javax.swing.JLabel showtimeSelection;
         javax.swing.JLabel time;
+        dateSettings = new DatePickerSettings();
         filmPanel = new javax.swing.JPanel();
         filmLab = new javax.swing.JPanel();
         filmTitle = new javax.swing.JLabel();
@@ -178,7 +185,7 @@ public class CustomerView extends javax.swing.JFrame {
         descriptionLab = new javax.swing.JLabel();
         cast = new javax.swing.JLabel();
         description = new javax.swing.JTextArea();
-        datePicker = new com.github.lgooddatepicker.components.DatePicker();
+        datePicker = new DatePicker(dateSettings);
         dateLab = new javax.swing.JLabel();
         showtimePanel = new javax.swing.JPanel();
         showtimeSelection = new javax.swing.JLabel();
@@ -666,13 +673,25 @@ public class CustomerView extends javax.swing.JFrame {
         javax.swing.JPanel showtimePanel;
         javax.swing.JButton btn_showshowtime;
         javax.swing.JLabel dateLabel;
-        com.github.lgooddatepicker.components.DatePicker datePicker;
+        DatePickerSettings dateSettings;
+        DatePicker datePicker;
         theaterSelection = new javax.swing.JComboBox<>();
         movieSelection = new javax.swing.JComboBox<>();
         theaterLabel = new javax.swing.JLabel();
         movieLable = new javax.swing.JLabel();
         dateLabel = new javax.swing.JLabel();
-        datePicker = new com.github.lgooddatepicker.components.DatePicker();
+        dateSettings = new DatePickerSettings();
+        dateSettings.setColor(DatePickerSettings.DateArea.CalendarBackgroundNormalDates, Color.CYAN);
+        dateSettings.setColor(DatePickerSettings.DateArea.TextFieldBackgroundValidDate, Color.LIGHT_GRAY);
+        dateSettings.setFontValidDate(new Font("Segoe UI", 0, 18));
+        datePicker = new DatePicker(dateSettings);
+        datePicker.setDateToToday();
+        URL dateImageURL = FullDemo.class.getResource("/images/datepickerbutton1.png");
+        Image dateExampleImage = Toolkit.getDefaultToolkit().getImage(dateImageURL);
+        ImageIcon dateExampleIcon = new ImageIcon(dateExampleImage);
+        JButton datePickerButton = datePicker.getComponentToggleCalendarButton();
+        datePickerButton.setText("");
+        datePickerButton.setIcon(dateExampleIcon);
         BookTicketLab = new javax.swing.JPanel();
         BookTicketText = new javax.swing.JLabel();
         rightSep = new javax.swing.JPanel();
@@ -761,31 +780,48 @@ public class CustomerView extends javax.swing.JFrame {
         btn_showshowtime.setText("SHOW SHOWTIME");
         btn_showshowtime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_showshowtimeActionPerformed(evt, showtimePanel,movieSelection,theaterSelection);
+                btn_showshowtimeActionPerformed(evt, showtimePanel,movieSelection,theaterSelection, datePicker);
             }
         });
         bookingpanel.add(btn_showshowtime, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, 190, 60));
         showtimePanel.setVisible(false);
         return bookingpanel;
     }
-    
-    private void btn_showshowtimeActionPerformed(java.awt.event.ActionEvent evt, javax.swing.JPanel showtimePanel,javax.swing.JComboBox<String> movieSelection, javax.swing.JComboBox<String> theaterSelection ) {
+
+    private void btn_showshowtimeActionPerformed(java.awt.event.ActionEvent evt, javax.swing.JPanel showtimePanel,javax.swing.JComboBox<String> movieSelection, javax.swing.JComboBox<String> theaterSelection, DatePicker datePicker) {
         // TODO add your handling code here:
         showtimePanel.removeAll();
         showtimePanel.revalidate();
         showtimePanel.repaint();
         String film = (String) movieSelection.getSelectedItem();
         String theater = (String) theaterSelection.getSelectedItem();
-        createShowTimeLists(showtimePanel,film,theater);
+        String date = datePicker.getDateStringOrEmptyString();
+        createShowTimeLists(showtimePanel,film,theater,date);
         showtimePanel.setVisible(true);
     }
-    void createShowTimeLists(javax.swing.JPanel showtimePanel, String film, String theater){
+    void createShowTimeLists(javax.swing.JPanel showtimePanel, String film, String theater, String date){
+        if (date == ""){
+            javax.swing.JLabel noDate = new javax.swing.JLabel();
+            noDate.setText("Please Pick A Date");
+            noDate.setFont(new java.awt.Font("Segoe UI Semibold", 2, 18)); // NOI18N
+            noDate.setForeground(new java.awt.Color(255, 0, 0));
+            showtimePanel.add(noDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 0, 300, 40));
+            return;
+        }
         javax.swing.JLabel showingtimeLabel = new javax.swing.JLabel();
         showingtimeLabel.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         showingtimeLabel.setForeground(new java.awt.Color(255, 255, 255));
         showingtimeLabel.setText("SHOWING TIME");
         showtimePanel.add(showingtimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 230, 40));
-        ArrayList<Showtime> showtimes = CustomerController.getAllShowtimesBy(theater,film);
+        ArrayList<Showtime> showtimes = CustomerController.getAllShowtimesBy(theater,film, date);
+        if (showtimes.size() == 0){
+            javax.swing.JLabel noShowtime = new javax.swing.JLabel();
+            noShowtime.setText("No Showtime On This Day");
+            noShowtime.setFont(new java.awt.Font("Segoe UI Semibold", 2, 24)); // NOI18N
+            noShowtime.setForeground(new java.awt.Color(255, 255, 255));
+            showtimePanel.add(noShowtime, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 300, 40));
+            return;
+        }
         for (int i = 0; i < showtimes.size(); i ++){
             createShowTimeItems(showtimePanel,showtimes.get(i),i);
         }
@@ -795,8 +831,18 @@ public class CustomerView extends javax.swing.JFrame {
         showtimeSelection = new javax.swing.JLabel();
         showtimeSelection.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
         showtimeSelection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ticketbg.png"))); // NOI18N
-        showtimeSelection.setText(showtime.getStartTime());
+        showtimeSelection.setText(showtime.getStartTime().substring(0,5));
         showtimeSelection.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        showtimeSelection.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        showtimeSelection.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showtimeSelectionMouseClicked(evt);
+            }
+
+            private void showtimeSelectionMouseClicked(MouseEvent evt) {
+
+            }
+        });
         int posX = 30 + (pos%4)*200;
         int posY = 90 + (pos/4)*80;
         showtimePanel.add(showtimeSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(posX, posY, 117, -1));
@@ -818,7 +864,14 @@ public class CustomerView extends javax.swing.JFrame {
         }
         return lst;
     }
-
+//    private javax.swing.JPanel createSeatsPanel(Showtime showtime){
+//        JPanel seatspanel;
+//        JPanel BookTicketLab;
+//        JLabel BookTicketText;
+//        JLabel Price;
+//        JLabel btn_Back;
+//        JButton btn_Book;
+//    }
     private void initComponents() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         setTitle("TicketBox");

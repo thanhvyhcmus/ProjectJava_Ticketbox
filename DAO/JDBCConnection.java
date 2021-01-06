@@ -24,7 +24,7 @@ public class JDBCConnection {
     public static Connection getConnection(){
         final String user="root";
         final String password="11111111";
-        final String url = "jdbc:mysql://localhost:3306/ticketbox";
+        final String url = "jdbc:mysql://localhost:3306/ticketbox1";
         Connection conn = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
