@@ -358,7 +358,6 @@ public class ShowtimeDAO {
             conn = JDBCConnection.getConnection();
             sql = "insert into  showtime (idfilm,idtheater,starttime,date) VALUES (?,?,?,?)" ;    
             for (String d : listDate) { 
-                System.out.println(d);
                 if(check_existing_showtime(starttime, d,idtheater, conn)==-1)
                 {
                     stm= conn.prepareStatement(sql);
@@ -367,7 +366,37 @@ public class ShowtimeDAO {
                     stm.setString(3, starttime);
                     stm.setString(4, d);
                     res+=stm.executeUpdate();
-
+                    sql="select id from showtime where idfilm = ? and idtheater = ? and date = ? and starttime = ?";
+                    stm.close();
+                    stm= conn.prepareStatement(sql);
+                    int id=-1;
+                    stm.setInt(1, idfilm);
+                    stm.setInt(2,idtheater);
+                    stm.setString(4, starttime);
+                    stm.setString(3, d);
+                    ResultSet showtimeID= stm.executeQuery();
+                    if(showtimeID.next())
+                        {id= showtimeID.getInt(1);}
+                    for(int i=0;i<5;i++)
+                    {
+                        int price;
+                        if(i==1 ||i ==0)
+                            price=40000;
+                        else
+                            {
+                                price=50000;
+                            }
+                        for(int j=0;j<8;j++){
+                            sql = "insert into  seatsofshowtime (idshowtime,idrow,idcolumn,status,ticketprice) VALUES (?,?,?,null,?)" ; 
+                            stm.close();
+                            stm= conn.prepareStatement(sql);
+                            stm.setInt(1, id);
+                            stm.setInt(2,i);
+                            stm.setInt(3,j);
+                            stm.setInt(4,price);
+                            stm.executeUpdate(); 
+                        }
+                    }
                 }
                 else
                 {
@@ -595,7 +624,6 @@ public class ShowtimeDAO {
                 stm1.setString(count, starttime);
                 count++;
             }
-            System.out.println(sql);
 
             for (String d : date) {
                 stm.setString(1, d);
@@ -626,8 +654,8 @@ public class ShowtimeDAO {
     }
         return rs;
     }
-    
+
     public static void main(String[] args){
-        System.out.println(addShowtimes(10001, 10001, "13:00:00", "2021-01-01", "2021-01-02", false));
+        System.out.println(addShowtimes(10002, 10000, "06:00:00", "2021-1-2", "2021-1-3", true));
     }
 }
