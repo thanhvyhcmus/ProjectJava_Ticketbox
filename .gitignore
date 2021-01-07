@@ -11,5 +11,3 @@ out/production/ProjectJava_Ticketbox/images/seat_disable.png
 out/production/ProjectJava_Ticketbox/images/trash.png
 DAO/JDBCConnection.java
 *.sql
-*.jpg
-*.png
