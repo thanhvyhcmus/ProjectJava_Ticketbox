@@ -12,14 +12,19 @@ public class CustomerController {
         this.customer = customer;
     }
 
-    public boolean bookTicket(Showtime showtime, int row, int col) {
+    public  boolean bookTicket(Showtime showtime, int row, int col) {
         Seat seat = new Seat(showtime.getID(), row, col, customer.getID(), 0);
         ArrayList<Seat> seats = new ArrayList<Seat>();
         seats.add(seat);
         return DAO.ShowtimeDAO.bookTickets(seats);
     }
 
-    public boolean bookTicket(ArrayList<Seat> seats) {
+    public  boolean bookTicket(ArrayList<Seat> seats) {
+        System.out.println(customer.getID());
+        for(int i=0;i<seats.size();i++)
+        {
+            seats.get(i).setStatus(customer.getID());
+        }
         return DAO.ShowtimeDAO.bookTickets(seats);
     }
 
