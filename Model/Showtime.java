@@ -72,6 +72,12 @@ public class Showtime {
     {
         return startTime;
     }
+    public String getDate()
+    {
+        return date;
+    }
+    public Film getFilm(){ return film;}
+    public Theater getTheater() {return theater;}
     public void setID(int id)
     {
         this.id = id;

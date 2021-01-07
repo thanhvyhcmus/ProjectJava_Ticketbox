@@ -6,18 +6,17 @@
 package View;
 
 import Controller.CustomerController;
-import Model.Customer;
-import Model.Film;
-import Model.Showtime;
-import Model.Theater;
+import Model.*;
 import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import com.github.lgooddatepicker.demo.FullDemo;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -31,6 +30,7 @@ public class CustomerView extends javax.swing.JFrame {
      */
     public CustomerView(Customer cus) {
         customer = cus;
+        customerController = new CustomerController(customer);
         initComponents();
     }
 
@@ -681,10 +681,11 @@ public class CustomerView extends javax.swing.JFrame {
         movieLable = new javax.swing.JLabel();
         dateLabel = new javax.swing.JLabel();
         dateSettings = new DatePickerSettings();
-        dateSettings.setColor(DatePickerSettings.DateArea.CalendarBackgroundNormalDates, Color.CYAN);
         dateSettings.setColor(DatePickerSettings.DateArea.TextFieldBackgroundValidDate, Color.LIGHT_GRAY);
         dateSettings.setFontValidDate(new Font("Segoe UI", 0, 18));
+        LocalDate today = LocalDate.now();
         datePicker = new DatePicker(dateSettings);
+//        dateSettings.setDateRangeLimits(today, today.plusDays(30));
         datePicker.setDateToToday();
         URL dateImageURL = FullDemo.class.getResource("/images/datepickerbutton1.png");
         Image dateExampleImage = Toolkit.getDefaultToolkit().getImage(dateImageURL);
@@ -840,7 +841,8 @@ public class CustomerView extends javax.swing.JFrame {
             }
 
             private void showtimeSelectionMouseClicked(MouseEvent evt) {
-
+                JPanel seatpanel =  createSeatsPanel(showtime);
+                mainscrollpane.setViewportView(seatpanel);
             }
         });
         int posX = 30 + (pos%4)*200;
@@ -864,14 +866,309 @@ public class CustomerView extends javax.swing.JFrame {
         }
         return lst;
     }
-//    private javax.swing.JPanel createSeatsPanel(Showtime showtime){
-//        JPanel seatspanel;
-//        JPanel BookTicketLab;
-//        JLabel BookTicketText;
-//        JLabel Price;
-//        JLabel btn_Back;
-//        JButton btn_Book;
-//    }
+    private javax.swing.JPanel createSeatsPanel(Showtime showtime){
+        ArrayList<Seat> seats = CustomerController.getAllSeatsBy(showtime.getID());
+        boolean bookyet = false;
+        int col = 8;
+        int row = 5;
+        JLabel BookTicketText;
+        JPanel BookTicketLab;
+        JLabel Price;
+        JLabel availLab;
+        JLabel availSeatSample;
+        JLabel btn_Back;
+        JButton btn_Book;
+        JLabel choiceLab;
+        JLabel chooseSeatLab;
+        JLabel choosingSeatSample;
+        JPanel cols;
+        JLabel film;
+        JPanel rightSep;
+        JPanel leftSep;
+        JPanel rows;
+        JPanel seatArea;
+        JPanel seatPanel;
+        JLabel seatSelection;
+        JPanel seatspanel;
+        JLabel showtimeLab;
+        JLabel takenLab;
+        JLabel takenSeatSample;
+        JLabel theater;
+        JLabel ticketInfoLab;
+        JPanel ticketInfoPanel;
+        seatspanel = new javax.swing.JPanel();
+        BookTicketLab = new javax.swing.JPanel();
+        BookTicketText = new javax.swing.JLabel();
+        rightSep = new javax.swing.JPanel();
+        leftSep = new javax.swing.JPanel();
+        seatArea = new javax.swing.JPanel();
+        chooseSeatLab = new javax.swing.JLabel();
+        cols = new javax.swing.JPanel();
+        seatPanel = new javax.swing.JPanel();
+        rows = new javax.swing.JPanel();
+        availSeatSample = new javax.swing.JLabel();
+        choiceLab = new javax.swing.JLabel();
+        takenSeatSample = new javax.swing.JLabel();
+        choosingSeatSample = new javax.swing.JLabel();
+        takenLab = new javax.swing.JLabel();
+        availLab = new javax.swing.JLabel();
+        ticketInfoPanel = new javax.swing.JPanel();
+        showtimeLab = new javax.swing.JLabel();
+        ticketInfoLab = new javax.swing.JLabel();
+        film = new javax.swing.JLabel();
+        Price = new javax.swing.JLabel();
+        theater = new javax.swing.JLabel();
+        seatSelection = new javax.swing.JLabel();
+        btn_Book = new javax.swing.JButton();
+        btn_Back = new javax.swing.JLabel();
+
+        seatspanel.setBackground(new java.awt.Color(38, 19, 66));
+        seatspanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BookTicketLab.setBackground(new java.awt.Color(38, 19, 66));
+        BookTicketLab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BookTicketText.setText("BOOKING TICKET");
+        BookTicketText.setBackground(new java.awt.Color(0, 0, 51));
+        BookTicketText.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BookTicketText.setForeground(new java.awt.Color(255, 255, 255));
+        BookTicketLab.add(BookTicketText, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 309, -1));
+
+        javax.swing.GroupLayout rightSepLayout = new javax.swing.GroupLayout(rightSep);
+        rightSep.setLayout(rightSepLayout);
+        rightSepLayout.setHorizontalGroup(
+                rightSepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 300, Short.MAX_VALUE)
+        );
+        rightSepLayout.setVerticalGroup(
+                rightSepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        BookTicketLab.add(rightSep, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 300, 5));
+
+        javax.swing.GroupLayout leftSepLayout = new javax.swing.GroupLayout(leftSep);
+        leftSep.setLayout(leftSepLayout);
+        leftSepLayout.setHorizontalGroup(
+                leftSepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 300, Short.MAX_VALUE)
+        );
+        leftSepLayout.setVerticalGroup(
+                leftSepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        BookTicketLab.add(leftSep, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 300, 5));
+
+        seatspanel.add(BookTicketLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 25, 950, 40));
+
+        seatArea.setBackground(new java.awt.Color(38, 19, 66));
+        seatArea.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        chooseSeatLab.setText("Please choose your seats");
+        chooseSeatLab.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        chooseSeatLab.setForeground(new java.awt.Color(255, 255, 255));
+        seatArea.add(chooseSeatLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 330, 40));
+
+        cols.setBackground(new java.awt.Color(38, 19, 66));
+        cols.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        for (int i = 0; i < 8; i++){
+            JLabel c = new JLabel(Integer.toString(i));
+            c.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+            c.setForeground(new java.awt.Color(255, 255, 255));
+            int x = 30 + 60*i;
+            cols.add(c, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, 0, -1, -1));
+        }
+
+        seatArea.add(cols, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 470, -1));
+
+        seatPanel.setBackground(new java.awt.Color(38, 19, 66));
+        seatPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        int[][] status = new int[5][8];
+        for (Seat ele: seats) {
+            JLabel seat = new JLabel();
+            seat.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
+            if (ele.getStatus() == 0){
+                status[ele.getIDRow()][ele.getIDColumn()] = 0;
+                seat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/seat.png"))); // NOI18N
+                seat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+                seat.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        seatMouseClicked(evt);
+                    }
+
+                    private void seatMouseClicked(MouseEvent evt) {
+                        if (status[ele.getIDRow()][ele.getIDColumn()] == 0){
+                            status[ele.getIDRow()][ele.getIDColumn()] = 1;
+                            seat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/seat_choose.png")));
+                        }
+                        else{
+                            status[ele.getIDRow()][ele.getIDColumn()] = 0;
+                            seat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/seat.png")));
+                        }
+                        String seatStr = "";
+                        long price = 0;
+                        for (int i = 0; i < status.length; i++){
+                            for(int j = 0; j < status[i].length; j++){
+                                if (status[i][j] == 1) {
+                                    int pos = i * col + j;
+                                    Seat now = seats.get(pos);
+                                    seatStr += Integer.toString(now.getIDRow()) + Integer.toString(now.getIDColumn()) + " ";
+                                    price += now.getTicketPrice();
+                                }
+                            }
+                        }
+                        seatSelection.setText("Seats: " + seatStr);
+                        Price.setText("Price: " + price + " VND");
+                        if (price == 0){
+                            btn_Book.setEnabled(false);
+                            btn_Book.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+                        }
+                        else {
+                            btn_Book.setEnabled(true);
+                            btn_Book.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+                        }
+                    }
+                });
+            }else {
+                status[ele.getIDRow()][ele.getIDColumn()] = -1;
+                seat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/seat_disable.png"))); // NOI18N
+            }
+            seat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+            int x = ele.getIDColumn()*60;
+            int y = ele.getIDRow()*60;
+            seatPanel.add(seat, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, -1, -1));
+        }
+
+        seatArea.add(seatPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 470, 290));
+
+        rows.setBackground(new java.awt.Color(38, 19, 66));
+        rows.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        for (int i = 0; i < 5; i++){
+            JLabel r = new JLabel(Integer.toString(i));
+            r.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+            r.setForeground(new java.awt.Color(255, 255, 255));
+            int y = 10 + 60*i;
+            rows.add(r, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, y, -1, -1));
+        }
+        seatArea.add(rows, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 40, 300));
+
+        availSeatSample.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/seat.png"))); // NOI18N
+        seatArea.add(availSeatSample, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 50, 50));
+
+        choiceLab.setText("Your choice");
+        choiceLab.setForeground(new java.awt.Color(255, 255, 255));
+        seatArea.add(choiceLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, -1, -1));
+
+        takenSeatSample.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/seat_disable.png"))); // NOI18N
+        seatArea.add(takenSeatSample, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 230, -1, -1));
+
+        choosingSeatSample.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/seat_choose.png"))); // NOI18N
+        seatArea.add(choosingSeatSample, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 290, -1, -1));
+
+        takenLab.setText("Taken");
+        takenLab.setForeground(new java.awt.Color(255, 255, 255));
+        seatArea.add(takenLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 240, -1, -1));
+
+        availLab.setForeground(new java.awt.Color(255, 255, 255));
+        availLab.setText("Available");
+        seatArea.add(availLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 180, -1, -1));
+
+        seatspanel.add(seatArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 770, 420));
+
+        ticketInfoPanel.setBackground(new java.awt.Color(38, 19, 66));
+        ticketInfoPanel.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)), javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1)));
+        ticketInfoPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        showtimeLab.setText("Showtime: " + showtime.getDate() + " " + showtime.getStartTime().substring(0,5));
+        showtimeLab.setFont(new java.awt.Font("Segoe UI Historic", 0, 18)); // NOI18N
+        showtimeLab.setForeground(new java.awt.Color(255, 255, 255));
+        ticketInfoPanel.add(showtimeLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 270, 40));
+
+        ticketInfoLab.setText("Ticket Infomation");
+        ticketInfoLab.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        ticketInfoLab.setForeground(new java.awt.Color(255, 255, 255));
+        ticketInfoPanel.add(ticketInfoLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0));
+
+        film.setText("Film: " + showtime.getFilm().getTitle());
+        film.setFont(new java.awt.Font("Segoe UI Historic", 0, 18)); // NOI18N
+        film.setForeground(new java.awt.Color(255, 255, 255));
+        ticketInfoPanel.add(film, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 250, 40));
+
+        Price.setText("Price: 0");
+        Price.setFont(new java.awt.Font("Segoe UI Historic", 0, 18)); // NOI18N
+        Price.setForeground(new java.awt.Color(255, 255, 255));
+        ticketInfoPanel.add(Price, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 250, 40));
+
+        theater.setText("Theater: " + showtime.getTheater().getName());
+        theater.setFont(new java.awt.Font("Segoe UI Historic", 0, 18)); // NOI18N
+        theater.setForeground(new java.awt.Color(255, 255, 255));
+        ticketInfoPanel.add(theater, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 250, 40));
+
+        seatSelection.setText("Seat: ");
+        seatSelection.setFont(new java.awt.Font("Segoe UI Historic", 0, 18)); // NOI18N
+        seatSelection.setForeground(new java.awt.Color(255, 255, 255));
+        ticketInfoPanel.add(seatSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 500, 40));
+
+        seatspanel.add(ticketInfoPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 480));
+
+        btn_Book.setBackground(new java.awt.Color(126, 87, 194));
+        btn_Book.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        btn_Book.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Book.setText("BOOK");
+        btn_Book.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_Book.setBorderPainted(false);
+        btn_Book.setEnabled(false);
+        btn_Book.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_BookMouseClicked(evt);
+            }
+
+            private void btn_BookMouseClicked(MouseEvent evt) {
+                ArrayList<Seat> cart = new ArrayList<>();
+                for (int i = 0; i < status.length; i++){
+                    for (int j = 0; j < status[i].length; j++){
+                        if (status[i][j] == 1){
+                            cart.add(seats.get(i*col + j));
+                        }
+                    }
+                }
+                boolean result = customerController.bookTicket(cart);
+                if (result){
+                    JOptionPane.showMessageDialog(mainscrollpane,"Your tickets are booked successfully");
+                }
+                else {
+                    JOptionPane.showMessageDialog(mainscrollpane,"Sorry, your selected seats are already taken. Please try again");
+                }
+                JPanel newSeatPanel = createSeatsPanel(showtime);
+                mainscrollpane.setViewportView(newSeatPanel);
+            }
+        });
+        btn_Book.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_BookActionPerformed(evt);
+            }
+
+            private void btn_BookActionPerformed(ActionEvent evt) {
+            }
+        });
+        seatspanel.add(btn_Book, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 640, 140, 40));
+
+        btn_Back.setText("Back");
+        btn_Back.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        btn_Back.setForeground(new java.awt.Color(0, 51, 255));
+        btn_Back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_BackMouseClicked(evt);
+            }
+
+            private void btn_BackMouseClicked(MouseEvent evt) {
+            }
+        });
+        seatspanel.add(btn_Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 650, -1, -1));
+        return seatspanel;
+    }
     private void initComponents() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         setTitle("TicketBox");
@@ -1260,12 +1557,13 @@ public class CustomerView extends javax.swing.JFrame {
         });
     }
     private Customer customer;
+    private CustomerController customerController;
     public javax.swing.JPanel bg;
     public javax.swing.JPanel mainpanel;
     public javax.swing.JScrollPane mainscrollpane;
     private javax.swing.JPanel sidepane;
-    public javax.swing.JPanel bookingpanel;
     public javax.swing.JPanel personalpanel;
+    public javax.swing.JPanel bookingpanel;
     private Boolean home_onclick = true;
     private Boolean bookticket_onclick = false;
     private Boolean personal_onclick = false;

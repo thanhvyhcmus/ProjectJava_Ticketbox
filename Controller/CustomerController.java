@@ -56,4 +56,8 @@ public class CustomerController {
         return DAO.ShowtimeDAO.getAllShowtimeBy(idtheater,idfilm,date);
     }
 
+    public static ArrayList<Seat> getAllSeatsBy(int idshowtime){
+        return DAO.ShowtimeDAO.getAllSeatsBy(idshowtime);
+    }
+
 }
