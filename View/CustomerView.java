@@ -18,6 +18,8 @@ import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -59,13 +61,7 @@ public class CustomerView extends javax.swing.JFrame {
         theaterlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         theaterlabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/woodenbg.jpg"))); // NOI18N
         theaterlabel.setText(theater.getName());
-        theaterlabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         theaterlabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        theaterlabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                theaterlabelMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout theaterpanelLayout = new javax.swing.GroupLayout(theaterpanel);
         theaterpanel.setLayout(theaterpanelLayout);
@@ -113,6 +109,8 @@ public class CustomerView extends javax.swing.JFrame {
             }
 
             private void filmLabelMouseClicked(MouseEvent evt) {
+                JPanel filmpanel = createFilmPanel(film);
+                mainscrollpane.setViewportView(filmpanel);
             }
         });
 
@@ -123,8 +121,8 @@ public class CustomerView extends javax.swing.JFrame {
                         .addGroup(moviePanel2Layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
                                 .addGroup(moviePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(moviePoster, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(filmLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(moviePoster, 227, 227, Short.MAX_VALUE)
+                                        .addComponent(filmLabel, 227, 227, Short.MAX_VALUE))
                                 .addContainerGap(49, Short.MAX_VALUE))
         );
         moviePanel2Layout.setVerticalGroup(
@@ -135,9 +133,9 @@ public class CustomerView extends javax.swing.JFrame {
                                 .addComponent(filmLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                                 .addContainerGap())
         );
-        int posX = 0 + 320*(pos%3);
+        int posX = 320*(pos%3);
         int posY = 40 + 410*(pos/3);
-        movieListPanel.add(moviePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(posX, posY, -1, -1));
+        movieListPanel.add(moviePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(posX, posY, 310, -1));
     }
     private javax.swing.JPanel createFilmPanel(Film film){
         javax.swing.JLabel cast;
@@ -147,6 +145,8 @@ public class CustomerView extends javax.swing.JFrame {
         DatePicker datePicker;
         javax.swing.JTextArea description;
         javax.swing.JLabel descriptionLab;
+        javax.swing.JLabel titleLab;
+        javax.swing.JLabel title;
         javax.swing.JLabel director;
         javax.swing.JLabel directorLab;
         javax.swing.JLabel durationLab;
@@ -163,9 +163,12 @@ public class CustomerView extends javax.swing.JFrame {
         javax.swing.JPanel rightSep;
         javax.swing.JLabel showingtimeLabel;
         javax.swing.JPanel showtimePanel;
-        javax.swing.JLabel showtimeSelection;
         javax.swing.JLabel time;
+        JButton btn_view;
+        btn_view = new JButton("View Showtimes");
         dateSettings = new DatePickerSettings();
+        titleLab = new javax.swing.JLabel();
+        title = new javax.swing.JLabel();
         filmPanel = new javax.swing.JPanel();
         filmLab = new javax.swing.JPanel();
         filmTitle = new javax.swing.JLabel();
@@ -185,26 +188,35 @@ public class CustomerView extends javax.swing.JFrame {
         descriptionLab = new javax.swing.JLabel();
         cast = new javax.swing.JLabel();
         description = new javax.swing.JTextArea();
-        datePicker = new DatePicker(dateSettings);
-        dateLab = new javax.swing.JLabel();
-        showtimePanel = new javax.swing.JPanel();
-        showtimeSelection = new javax.swing.JLabel();
-        showingtimeLabel = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("TicketBox");
 
         filmPanel.setBackground(new java.awt.Color(38, 19, 66));
         filmPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        dateSettings.setColor(DatePickerSettings.DateArea.TextFieldBackgroundValidDate, Color.LIGHT_GRAY);
+        dateSettings.setFontValidDate(new Font("Segoe UI", 0, 18));
+        LocalDate today = LocalDate.now();
+        datePicker = new DatePicker(dateSettings);
+//        dateSettings.setDateRangeLimits(today, today.plusDays(30));
+        datePicker.setDateToToday();
+        filmPanel.add(datePicker, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 580, -1, -1));
+        URL dateImageURL = FullDemo.class.getResource("/images/datepickerbutton1.png");
+        Image dateExampleImage = Toolkit.getDefaultToolkit().getImage(dateImageURL);
+        ImageIcon dateExampleIcon = new ImageIcon(dateExampleImage);
+        JButton datePickerButton = datePicker.getComponentToggleCalendarButton();
+        datePickerButton.setText("");
+        datePickerButton.setIcon(dateExampleIcon);
+
+        dateLab = new javax.swing.JLabel();
+        showtimePanel = new javax.swing.JPanel();
+
         filmLab.setBackground(new java.awt.Color(38, 19, 66));
         filmLab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        filmTitle.setText("SAI GON IN THE RAIN");
+        filmTitle.setText("Film Details");
         filmTitle.setBackground(new java.awt.Color(0, 0, 51));
         filmTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         filmTitle.setForeground(new java.awt.Color(255, 255, 255));
-        filmLab.add(filmTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 309, -1));
+        filmLab.add(filmTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 270, -1));
 
         javax.swing.GroupLayout rightSepLayout = new javax.swing.GroupLayout(rightSep);
         rightSep.setLayout(rightSepLayout);
@@ -237,6 +249,14 @@ public class CustomerView extends javax.swing.JFrame {
         filmInfoPanel.setBackground(new java.awt.Color(38, 19, 66));
 
         poster.setIcon(new javax.swing.ImageIcon(getClass().getResource(film.getLinkimg()))); // NOI18N
+
+        titleLab.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        titleLab.setForeground(new java.awt.Color(255, 255, 255));
+        titleLab.setText("Title:");
+
+        title.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        title.setForeground(new java.awt.Color(255, 255, 255));
+        title.setText(film.getTitle());
 
         directorLab.setText("Director: ");
         directorLab.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
@@ -304,11 +324,6 @@ public class CustomerView extends javax.swing.JFrame {
                                 .addGap(43, 43, 43)
                                 .addGroup(filmInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(filmInfoPanelLayout.createSequentialGroup()
-                                                .addComponent(directorLab, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(director, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGap(34, 34, 34))
-                                        .addGroup(filmInfoPanelLayout.createSequentialGroup()
                                                 .addComponent(genreLab, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(genre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -329,14 +344,30 @@ public class CustomerView extends javax.swing.JFrame {
                                                                 .addComponent(castLab, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(cast, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                        .addComponent(descriptionLab, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                                        .addComponent(descriptionLab, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(filmInfoPanelLayout.createSequentialGroup()
+                                                .addComponent(description)
+                                                .addContainerGap())
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filmInfoPanelLayout.createSequentialGroup()
+                                                .addGroup(filmInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addGroup(filmInfoPanelLayout.createSequentialGroup()
+                                                                .addComponent(titleLab, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addGroup(filmInfoPanelLayout.createSequentialGroup()
+                                                                .addComponent(directorLab, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(director, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                .addGap(34, 34, 34))))
         );
         filmInfoPanelLayout.setVerticalGroup(
                 filmInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(filmInfoPanelLayout.createSequentialGroup()
-                                .addGap(45, 45, 45)
+                                .addGroup(filmInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(titleLab, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(7, 7, 7)
                                 .addGroup(filmInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(directorLab, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(director, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -359,40 +390,43 @@ public class CustomerView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(descriptionLab, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addContainerGap())
+                                .addComponent(description, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filmInfoPanelLayout.createSequentialGroup()
-                                .addContainerGap(86, Short.MAX_VALUE)
-                                .addComponent(poster)
-                                .addGap(49, 49, 49))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(poster, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(68, 68, 68))
         );
 
         filmPanel.add(filmInfoPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 890, 470));
-
-        datePicker.setText("Pick a date");
-        datePicker.setBackground(new java.awt.Color(38, 19, 66));
-        filmPanel.add(datePicker, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 600, -1, -1));
 
         dateLab.setText("Dates");
         dateLab.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         dateLab.setForeground(new java.awt.Color(255, 255, 255));
         filmPanel.add(dateLab, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 540, 230, 40));
+        btn_view.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        btn_view.setBackground(new java.awt.Color(126, 87, 194));
+        btn_view.setForeground(new java.awt.Color(255, 255, 255));
+        btn_view.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_view.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_viewMouseClicked(evt);
+            }
 
+            private void btn_viewMouseClicked(MouseEvent evt) {
+                showtimePanel.removeAll();
+                showtimePanel.revalidate();
+                showtimePanel.repaint();
+                String date = datePicker.getDateStringOrEmptyString();
+                createShowTimeLists(showtimePanel,film,date);
+                showtimePanel.setVisible(true);
+            }
+        });
+
+        filmPanel.add(btn_view, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 580, -1, -1));
         showtimePanel.setBackground(new java.awt.Color(38, 19, 66));
         showtimePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        showtimeSelection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ticketbg.png"))); // NOI18N
-        showtimeSelection.setText("18:00");
-        showtimeSelection.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
-        showtimeSelection.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        showtimePanel.add(showtimeSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 117, -1));
-
-        showingtimeLabel.setText("Dates");
-        showingtimeLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        showingtimeLabel.setForeground(new java.awt.Color(255, 255, 255));
-        showtimePanel.add(showingtimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 540, 230, 40));
-
-        filmPanel.add(showtimePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 680, 890, 260));
+        filmPanel.add(showtimePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 650,  -1, -1));
         return filmPanel;
     }
     private javax.swing.JPanel createAccountPanel(){
@@ -800,6 +834,43 @@ public class CustomerView extends javax.swing.JFrame {
         createShowTimeLists(showtimePanel,film,theater,date);
         showtimePanel.setVisible(true);
     }
+    void createShowTimeLists(javax.swing.JPanel showtimePanel, Film film, String date){
+        if (date == ""){
+            javax.swing.JLabel noDate = new javax.swing.JLabel();
+            noDate.setText("Please Pick A Date");
+            noDate.setFont(new java.awt.Font("Segoe UI Semibold", 2, 18)); // NOI18N
+            noDate.setForeground(new java.awt.Color(255, 0, 0));
+            showtimePanel.add(noDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 300, 40));
+            return;
+        }
+        javax.swing.JLabel showingtimeLabel = new javax.swing.JLabel();
+        HashMap<String,ArrayList<Showtime>> showtimesByFilm = CustomerController.getAllShowtimesByFilm(film.getID(), date);
+        if (showtimesByFilm.size() == 0){
+            javax.swing.JLabel noShowtime = new javax.swing.JLabel();
+            noShowtime.setText("No Showtime On This Day");
+            noShowtime.setFont(new java.awt.Font("Segoe UI Semibold", 2, 24)); // NOI18N
+            noShowtime.setForeground(new java.awt.Color(255, 255, 255));
+            showtimePanel.add(noShowtime, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 300, 40));
+            return;
+        }
+        int i = 0;
+        for (Map.Entry<String,ArrayList<Showtime>> entry : showtimesByFilm.entrySet()) {
+            String theater = entry.getKey();
+            ArrayList<Showtime> showtimes = entry.getValue();
+            javax.swing.JLabel theaterLabel = new javax.swing.JLabel();
+            theaterLabel.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+            theaterLabel.setForeground(new java.awt.Color(255, 255, 255));
+            theaterLabel.setText(theater);
+            showtimePanel.add(theaterLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, i*80, 230, 40));
+            i++;
+            int j = 0;
+            for (Showtime st: showtimes){
+                createShowTimeItems(showtimePanel,st, i, j);
+                j++;
+            }
+            i = i + (j/4) + 1;
+        }
+    }
     void createShowTimeLists(javax.swing.JPanel showtimePanel, String film, String theater, String date){
         if (date == ""){
             javax.swing.JLabel noDate = new javax.swing.JLabel();
@@ -826,6 +897,28 @@ public class CustomerView extends javax.swing.JFrame {
         for (int i = 0; i < showtimes.size(); i ++){
             createShowTimeItems(showtimePanel,showtimes.get(i),i);
         }
+    }
+    void createShowTimeItems(javax.swing.JPanel showtimePanel, Showtime showtime, int posTheater, int posShowtime){
+        javax.swing.JLabel showtimeSelection;
+        showtimeSelection = new javax.swing.JLabel();
+        showtimeSelection.setFont(new java.awt.Font("Segoe Script", 1, 18)); // NOI18N
+        showtimeSelection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ticketbg.png"))); // NOI18N
+        showtimeSelection.setText(showtime.getStartTime().substring(0,5));
+        showtimeSelection.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        showtimeSelection.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        showtimeSelection.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showtimeSelectionMouseClicked(evt);
+            }
+
+            private void showtimeSelectionMouseClicked(MouseEvent evt) {
+                JPanel seatpanel =  createSeatsPanel(showtime);
+                mainscrollpane.setViewportView(seatpanel);
+            }
+        });
+        int posX = 30 + (posShowtime%4)*200;
+        int posY = posTheater*80 + (posShowtime/4)*80;
+        showtimePanel.add(showtimeSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(posX, posY, 117, -1));
     }
     void createShowTimeItems(javax.swing.JPanel showtimePanel, Showtime showtime, int pos){
         javax.swing.JLabel showtimeSelection;
@@ -868,7 +961,6 @@ public class CustomerView extends javax.swing.JFrame {
     }
     private javax.swing.JPanel createSeatsPanel(Showtime showtime){
         ArrayList<Seat> seats = CustomerController.getAllSeatsBy(showtime.getID());
-        boolean bookyet = false;
         int col = 8;
         int row = 5;
         JLabel BookTicketText;
@@ -1158,12 +1250,15 @@ public class CustomerView extends javax.swing.JFrame {
         btn_Back.setText("Back");
         btn_Back.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
         btn_Back.setForeground(new java.awt.Color(0, 51, 255));
+        btn_Back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_Back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_BackMouseClicked(evt);
             }
 
             private void btn_BackMouseClicked(MouseEvent evt) {
+                JPanel backPanel = createBookingPanel();
+                mainscrollpane.setViewportView(backPanel);
             }
         });
         seatspanel.add(btn_Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 650, -1, -1));
@@ -1189,6 +1284,7 @@ public class CustomerView extends javax.swing.JFrame {
         bg.add(sidepane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 332, 700));
 
         mainscrollpane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        mainscrollpane.getVerticalScrollBar().setUnitIncrement(16);
 //        mainscrollpane.getHorizontalScrollBar().setBackground(new java.awt.Color(38, 19, 66));
         mainscrollpane.setViewportView(mainpanel);
         bg.add(mainscrollpane, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 960, 700));
@@ -1352,7 +1448,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         infoPanel.add(btn_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 70, 70));
 
-        sidepane.add(infoPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 590, 330, 70));
+        sidepane.add(infoPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 630, 330, 70));
         applogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
         sidepane.add(applogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, -1));
         return sidepane;
@@ -1401,9 +1497,6 @@ public class CustomerView extends javax.swing.JFrame {
         }
     }
 
-    private void theaterlabelMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-    }
     private javax.swing.JPanel createHomepanel(){
         javax.swing.JPanel mainpanel;
         javax.swing.JLabel poster;
@@ -1523,39 +1616,7 @@ public class CustomerView extends javax.swing.JFrame {
         mainscrollpane.setViewportView(mainpanel);
         return mainpanel;
     }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CustomerView(new Customer(1,"Nguyễn Phạm Thanh Vy","","","","",0,"")).setVisible(true);
-            }
-        });
-    }
     private Customer customer;
     private CustomerController customerController;
     public javax.swing.JPanel bg;

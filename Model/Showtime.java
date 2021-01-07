@@ -77,7 +77,7 @@ public class Showtime {
         return date;
     }
     public Film getFilm(){ return film;}
-    public Theater getTheater() {return theater;}
+    public Theater getTheater() {return theater; }
     public void setID(int id)
     {
         this.id = id;
