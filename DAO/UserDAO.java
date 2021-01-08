@@ -118,21 +118,33 @@ public class UserDAO {
         }
         return user;
     }
-    public static boolean updateACustomer(Customer customer){
+    public static boolean updateACustomer(Customer customer,boolean mode){
         int rs=0;
         Connection conn=null;
         PreparedStatement stm=null;
 
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "update user set  fullname = ?, dob = ?,password = ?, phone= ?,favouriteGenre = ? where id = ?" ;
-            stm = conn.prepareStatement(sql);
-            stm.setString(1, customer.getFullname());
-            stm.setString(2, customer.getDoB());
-            stm.setString(3, hashPassword(customer.getPassword()));
-            stm.setString(4, customer.getPhone());
-            stm.setString(5, customer.getFavouriteGenre());
-            stm.setInt(6, customer.getID());
+            if(mode)
+            {            
+                String sql = "update user set  fullname = ?, dob = ?,password = ?, phone= ?,favouriteGenre = ? where id = ?" ;
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, customer.getFullname());
+                stm.setString(2, customer.getDoB());
+                stm.setString(3, hashPassword(customer.getPassword()));
+                stm.setString(4, customer.getPhone());
+                stm.setString(5, customer.getFavouriteGenre());
+                stm.setInt(6, customer.getID());
+            }
+            else{
+                String sql = "update user set  fullname = ?, dob = ? phone= ?,favouriteGenre = ? where id = ?" ;
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, customer.getFullname());
+                stm.setString(2, customer.getDoB());
+                stm.setString(3, customer.getPhone());
+                stm.setString(4, customer.getFavouriteGenre());
+                stm.setInt(5, customer.getID());
+            }
             rs= stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
