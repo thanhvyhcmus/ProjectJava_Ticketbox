@@ -129,13 +129,16 @@ public class UserDAO {
             stm = conn.prepareStatement(sql);
             stm.setString(1, customer.getFullname());
             stm.setString(2, customer.getDoB());
-            stm.setString(3, customer.getPassword());
+            stm.setString(3, hashPassword(customer.getPassword()));
             stm.setString(4, customer.getPhone());
             stm.setString(5, customer.getFavouriteGenre());
             stm.setInt(6, customer.getID());
             rs= stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
         finally{
             try{
