@@ -125,18 +125,14 @@ public class UserDAO {
 
         try {
             conn = JDBCConnection.getConnection();
-            String sql = "update user set id = ?, fullname = ?, dob = ?,username = ?,password = ?, phone= ?,point = ?,favouriteGenre = ?,isadmin = ? where id = ?" ;
+            String sql = "update user set  fullname = ?, dob = ?,password = ?, phone= ?,favouriteGenre = ? where id = ?" ;
             stm = conn.prepareStatement(sql);
-            stm.setInt(1, customer.getID());
-            stm.setString(2, customer.getFullname());
-            stm.setString(3, customer.getDoB());
-            stm.setString(4, customer.getUsername());
-            stm.setString(5, customer.getPassword());
-            stm.setString(6, customer.getPhone());
-            stm.setInt(7, customer.getPoints());
-            stm.setString(8, customer.getFavouriteGenre());
-            stm.setByte(9, customer.getIsadmin());
-            stm.setInt(10, customer.getID());
+            stm.setString(1, customer.getFullname());
+            stm.setString(2, customer.getDoB());
+            stm.setString(3, customer.getPassword());
+            stm.setString(4, customer.getPhone());
+            stm.setString(5, customer.getFavouriteGenre());
+            stm.setInt(6, customer.getID());
             rs= stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);

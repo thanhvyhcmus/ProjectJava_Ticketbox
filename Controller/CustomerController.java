@@ -64,5 +64,8 @@ public class CustomerController {
     public static ArrayList<Seat> getAllSeatsBy(int idshowtime){
         return DAO.ShowtimeDAO.getAllSeatsBy(idshowtime);
     }
+    public static boolean updateACustomer(Customer customer){
+        return DAO.UserDAO.updateACustomer(customer);
+    }
 
 }
