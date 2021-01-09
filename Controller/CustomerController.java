@@ -3,6 +3,7 @@ package Controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import DAO.UserDAO;
 import Model.*;
 
 public class CustomerController {
@@ -64,8 +65,15 @@ public class CustomerController {
     public static ArrayList<Seat> getAllSeatsBy(int idshowtime){
         return DAO.ShowtimeDAO.getAllSeatsBy(idshowtime);
     }
-    public static boolean updateACustomer(Customer customer,boolean ischangePassword){
-        return DAO.UserDAO.updateACustomer(customer,ischangePassword);
+    public static int updateACustomer(Customer account,boolean ischangePassword){
+        if(!(account.getDoB().length()!=0 && account.getFullname().length()!=0 && account.getPhone().length()!=0))
+            return -1;
+        if(account.getFullname().length()>45 || account.getPassword().length()>10 || account.getPhone().length()>10||account.getFavouriteGenre().length()>20)
+            return -2;
+        if(UserDAO.updateACustomer(account,ischangePassword))
+            return 1;
+        else
+            return 0;
     }
 
 }

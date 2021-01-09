@@ -5,9 +5,19 @@
  */
 package View;
 
-import java.awt.Color;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.net.URL;
+import java.time.LocalDate;
+
 import Model.Customer;
 import Controller.SignUpController;
+import com.github.lgooddatepicker.components.DatePicker;
+import com.github.lgooddatepicker.components.DatePickerSettings;
+import com.github.lgooddatepicker.demo.FullDemo;
+
+import javax.swing.*;
+
 /**
  *
  * @author ngnth
@@ -60,9 +70,6 @@ public class SignUpView extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         phone = new javax.swing.JTextField();
         username_warning = new javax.swing.JLabel();
-        year = new javax.swing.JComboBox<>();
-        month = new javax.swing.JComboBox<>();
-        date = new javax.swing.JComboBox<>();
         genre_action = new javax.swing.JCheckBox();
         genre_comedy = new javax.swing.JCheckBox();
         genre_drama = new javax.swing.JCheckBox();
@@ -222,35 +229,26 @@ public class SignUpView extends javax.swing.JFrame {
         username_warning.setText("Sorry! Username already taken.");
         panel_right.add(username_warning, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 240, -1));
 
-        year.setBackground(new java.awt.Color(32, 33, 35));
-        year.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        year.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
-        year.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                monthFocusGained(evt);
+        dateSettings = new DatePickerSettings();
+        dateSettings.setFontValidDate(new Font("Segoe UI", 0, 18));
+        LocalDate today = LocalDate.now();
+        datePicker = new DatePicker(dateSettings);
+        System.out.println(datePicker);
+        dateSettings.setDateRangeLimits(today.minusYears(100), today.minusYears(13));
+        dateSettings.setColor(DatePickerSettings.DateArea.TextFieldBackgroundValidDate, new Color(51, 52, 54));
+        datePicker.setDate(today.minusYears(13));
+        URL dateImageURL = FullDemo.class.getResource("/images/datepickerbutton1.png");
+        Image dateExampleImage = Toolkit.getDefaultToolkit().getImage(dateImageURL);
+        ImageIcon dateExampleIcon = new ImageIcon(dateExampleImage);
+        JButton datePickerButton = datePicker.getComponentToggleCalendarButton();
+        datePickerButton.setText("");
+        datePickerButton.setIcon(dateExampleIcon);
+        datePickerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                datePickerFocusGained(evt);
             }
         });
-        panel_right.add(year, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, 90, -1));
-
-        month.setBackground(new java.awt.Color(32, 33, 35));
-        month.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        month.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-        month.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                monthFocusGained(evt);
-            }
-        });
-        panel_right.add(month, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 250, 60, -1));
-
-        date.setBackground(new java.awt.Color(32, 33, 35));
-        date.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        date.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" }));
-        date.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                monthFocusGained(evt);
-            }
-        });
-        panel_right.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 250, 60, -1));
+        panel_right.add(datePicker, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, -1, -1));
 
         genre_action.setBackground(new java.awt.Color(32, 33, 35));
         genre_action.setForeground(new java.awt.Color(51, 52, 54));
@@ -304,9 +302,6 @@ public class SignUpView extends javax.swing.JFrame {
         jLab_Password.setForeground(new Color(51, 52, 54));
         jLab_Genre.setForeground(new Color(51, 52, 54));
         jLab_DOB.setForeground(new Color(51, 52, 54));
-        date.setBackground(new Color(32,33,35));
-        month.setBackground(new Color(32,33,35));
-        year.setBackground(new Color(32,33,35));
         genre_drama.setForeground(new Color(51, 52, 54));
         genre_comedy.setForeground(new Color(51, 52, 54));
         genre_action.setForeground(new Color(51, 52, 54));
@@ -320,9 +315,6 @@ public class SignUpView extends javax.swing.JFrame {
         jLab_UserName.setForeground(new Color(51, 52, 54));
         jLab_DOB.setForeground(new Color(51, 52, 54));
         jLab_Phone.setForeground(new Color(51, 52, 54));
-        date.setBackground(new Color(32,33,35));
-        month.setBackground(new Color(32,33,35));
-        year.setBackground(new Color(32,33,35));
         genre_drama.setForeground(new Color(51, 52, 54));
         genre_comedy.setForeground(new Color(51, 52, 54));
         genre_action.setForeground(new Color(51, 52, 54));
@@ -340,9 +332,6 @@ public class SignUpView extends javax.swing.JFrame {
         jLab_Password.setForeground(new Color(51, 52, 54));
         jLab_DOB.setForeground(new Color(51, 52, 54));
         jLab_Phone.setForeground(new Color(51, 52, 54));
-        date.setBackground(new Color(32,33,35));
-        month.setBackground(new Color(32,33,35));
-        year.setBackground(new Color(32,33,35));
         genre_drama.setForeground(new Color(51, 52, 54));
         genre_comedy.setForeground(new Color(51, 52, 54));
         genre_action.setForeground(new Color(51, 52, 54));
@@ -360,9 +349,6 @@ public class SignUpView extends javax.swing.JFrame {
         jLab_Password.setForeground(new Color(51, 52, 54));
         jLab_DOB.setForeground(new Color(51, 52, 54));
         jLab_Phone.setForeground(new Color(51, 52, 54));
-        date.setBackground(new Color(32,33,35));
-        month.setBackground(new Color(32,33,35));
-        year.setBackground(new Color(32,33,35));
         genre_drama.setForeground(new Color(51, 52, 54));
         genre_comedy.setForeground(new Color(51, 52, 54));
         genre_action.setForeground(new Color(51, 52, 54));
@@ -373,7 +359,8 @@ public class SignUpView extends javax.swing.JFrame {
         String full_name = fullname.getText();
         String user_name = username.getText();
         String pass = String.valueOf(password.getPassword());
-        String dateofbirth = (String)year.getSelectedItem() + "/" + (String)month.getSelectedItem() + "/" + (String)date.getSelectedItem();
+        System.out.println(datePicker.getDateStringOrEmptyString());
+        String dateofbirth = datePicker.getDateStringOrEmptyString();
         System.out.println(dateofbirth);
         String phonenum = phone.getText();
         String favgenre = "";
@@ -411,7 +398,7 @@ public class SignUpView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_SignInTextMouseClicked
 
-    private void monthFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_monthFocusGained
+    private void datePickerFocusGained(ActionEvent evt) {//GEN-FIRST:event_monthFocusGained
         // TODO add your handling code here:
         jLab_DOB.setForeground(new Color(153, 153, 255));
         jLab_FullName.setForeground(new Color(51, 52, 54));
@@ -419,9 +406,6 @@ public class SignUpView extends javax.swing.JFrame {
         jLab_Password.setForeground(new Color(51, 52, 54));
         jLab_Genre.setForeground(new Color(51, 52, 54));
         jLab_Phone.setForeground(new Color(51, 52, 54));
-        date.setBackground(new Color(153, 153, 255));
-        month.setBackground(new Color(153, 153, 255));
-        year.setBackground(new Color(153, 153, 255));
         genre_drama.setForeground(new Color(51, 52, 54));
         genre_comedy.setForeground(new Color(51, 52, 54));
         genre_action.setForeground(new Color(51, 52, 54));
@@ -435,9 +419,6 @@ public class SignUpView extends javax.swing.JFrame {
         jLab_Password.setForeground(new Color(51, 52, 54));
         jLab_DOB.setForeground(new Color(51, 52, 54));
         jLab_Phone.setForeground(new Color(51, 52, 54));
-        date.setBackground(new Color(32,33,35));
-        month.setBackground(new Color(32,33,35));
-        year.setBackground(new Color(32,33,35));
         genre_drama.setForeground(new Color(153, 153, 255));
         genre_comedy.setForeground(new Color(153, 153, 255));
         genre_action.setForeground(new Color(153, 153, 255));
@@ -449,7 +430,6 @@ public class SignUpView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel SignInText;
-    private javax.swing.JComboBox<String> date;
     private javax.swing.JLabel fill_warning;
     private javax.swing.JLabel format_warning;
     private javax.swing.JTextField fullname;
@@ -473,12 +453,12 @@ public class SignUpView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSep_Password1;
     private javax.swing.JSeparator jSep_UserName;
     private javax.swing.JSeparator jSep_UserName1;
-    private javax.swing.JComboBox<String> month;
     private javax.swing.JPanel panel_right;
     private javax.swing.JPasswordField password;
     private javax.swing.JTextField phone;
     private javax.swing.JTextField username;
     private javax.swing.JLabel username_warning;
-    private javax.swing.JComboBox<String> year;
+    private DatePickerSettings dateSettings;
+    private DatePicker datePicker;
     // End of variables declaration//GEN-END:variables
 }

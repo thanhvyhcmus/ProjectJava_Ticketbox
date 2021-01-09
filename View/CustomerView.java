@@ -450,9 +450,6 @@ public class CustomerView extends javax.swing.JFrame {
         JPanel dobLabelPanel = new javax.swing.JPanel();
         JLabel dobLabel = new javax.swing.JLabel();
         JPanel  dobInputPanel = new javax.swing.JPanel();
-        JComboBox year = new javax.swing.JComboBox<>();
-        JComboBox month = new javax.swing.JComboBox<>();
-        JComboBox  date = new javax.swing.JComboBox<>();
         JLabel lab_cfname1 = new javax.swing.JLabel();
         JPanel phonePanel = new javax.swing.JPanel();
         JPanel phoneLabelPanel = new javax.swing.JPanel();
@@ -461,6 +458,7 @@ public class CustomerView extends javax.swing.JFrame {
         JTextField phone = new javax.swing.JTextField();
         JLabel lab_cphone = new javax.swing.JLabel();
         JPanel genrePanel = new javax.swing.JPanel();
+        JPanel warningPanel = new javax.swing.JPanel();
         JPanel bg_genre = new javax.swing.JPanel();
         JLabel lab_genre = new javax.swing.JLabel();
         JPanel jPanel22 = new javax.swing.JPanel();
@@ -469,6 +467,20 @@ public class CustomerView extends javax.swing.JFrame {
         JCheckBox genre_action = new javax.swing.JCheckBox();
         JPanel footer = new javax.swing.JPanel();
         JButton jBut_Save = new javax.swing.JButton();
+        DatePickerSettings dateSettings = new DatePickerSettings();
+        dateSettings.setFontValidDate(new Font("Segoe UI", 0, 18));
+        LocalDate today = LocalDate.now();
+        DatePicker datePicker = new DatePicker(dateSettings);
+        System.out.println(datePicker);
+        dateSettings.setDateRangeLimits(today.minusYears(100), today.minusYears(13));
+        dateSettings.setColor(DatePickerSettings.DateArea.TextFieldBackgroundValidDate, new Color(38, 19, 66));
+        datePicker.setDate(today.minusYears(13));
+        URL dateImageURL = FullDemo.class.getResource("/images/datepickerbutton1.png");
+        Image dateExampleImage = Toolkit.getDefaultToolkit().getImage(dateImageURL);
+        ImageIcon dateExampleIcon = new ImageIcon(dateExampleImage);
+        JButton datePickerButton = datePicker.getComponentToggleCalendarButton();
+        datePickerButton.setText("");
+        datePickerButton.setIcon(dateExampleIcon);
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(960, 700));
@@ -476,7 +488,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         jPanel2.setLayout(new javax.swing.OverlayLayout(jPanel2));
 
-        mainPanel.setBackground(new java.awt.Color(64, 33, 100));
+        mainPanel.setBackground(new java.awt.Color(38, 19, 66));
         mainPanel.setLayout(new java.awt.BorderLayout());
 
         accountSettingLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -486,32 +498,32 @@ public class CustomerView extends javax.swing.JFrame {
         accountSettingLabel.setPreferredSize(new java.awt.Dimension(138, 50));
         mainPanel.add(accountSettingLabel, java.awt.BorderLayout.PAGE_START);
 
-        detail.setBackground(new java.awt.Color(64, 33, 100));
+        detail.setBackground(new java.awt.Color(38, 19, 66));
         detail.setPreferredSize(new java.awt.Dimension(540, 200));
         detail.setLayout(new java.awt.GridLayout(6, 1, 5, 5));
 
-        fullnamePanel.setBackground(new java.awt.Color(64, 33, 100));
+        fullnamePanel.setBackground(new java.awt.Color(38, 19, 66));
         fullnamePanel.setLayout(new java.awt.BorderLayout(20, 20));
 
-        fullnameLabelPanel.setBackground(new java.awt.Color(64, 33, 100));
+        fullnameLabelPanel.setBackground(new java.awt.Color(38, 19, 66));
         fullnameLabelPanel.setPreferredSize(new java.awt.Dimension(165, 37));
         fullnameLabelPanel.setLayout(null);
 
         fullnameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         fullnameLabel.setForeground(new java.awt.Color(255, 255, 255));
         fullnameLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        fullnameLabel.setText("Full Name");
+        fullnameLabel.setText("Fullname");
         fullnameLabelPanel.add(fullnameLabel);
         fullnameLabel.setBounds(83, 0, 80, 42);
 
         fullnamePanel.add(fullnameLabelPanel, java.awt.BorderLayout.WEST);
 
-        fullnameTextPanel.setBackground(new java.awt.Color(64, 33, 100));
+        fullnameTextPanel.setBackground(new java.awt.Color(38, 19, 66));
         fullnameTextPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         fullname.setPreferredSize(new java.awt.Dimension(300, 30));
         fullnameTextPanel.add(fullname);
-//        fullname.setText(cus.getFullname());
+        fullname.setText(customer.getFullname());
 
         lab_cfname.setPreferredSize(new java.awt.Dimension(40, 30));
         fullnameTextPanel.add(lab_cfname);
@@ -520,10 +532,10 @@ public class CustomerView extends javax.swing.JFrame {
 
         detail.add(fullnamePanel);
 
-        passwordPanel.setBackground(new java.awt.Color(64, 33, 100));
+        passwordPanel.setBackground(new java.awt.Color(38, 19, 66));
         passwordPanel.setLayout(new java.awt.BorderLayout(20, 20));
 
-        passwordLabelPanel.setBackground(new java.awt.Color(64, 33, 100));
+        passwordLabelPanel.setBackground(new java.awt.Color(38, 19, 66));
         passwordLabelPanel.setPreferredSize(new java.awt.Dimension(165, 37));
         passwordLabelPanel.setLayout(null);
 
@@ -536,7 +548,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         passwordPanel.add(passwordLabelPanel, java.awt.BorderLayout.WEST);
 
-        passwordTextPanel.setBackground(new java.awt.Color(64, 33, 100));
+        passwordTextPanel.setBackground(new java.awt.Color(38, 19, 66));
         passwordTextPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         jPasswordField1.setPreferredSize(new java.awt.Dimension(300, 30));
@@ -550,10 +562,10 @@ public class CustomerView extends javax.swing.JFrame {
 
         detail.add(passwordPanel);
 
-        dobPanel.setBackground(new java.awt.Color(64, 33, 100));
+        dobPanel.setBackground(new java.awt.Color(38, 19, 66));
         dobPanel.setLayout(new java.awt.BorderLayout(20, 20));
 
-        dobLabelPanel.setBackground(new java.awt.Color(64, 33, 100));
+        dobLabelPanel.setBackground(new java.awt.Color(38, 19, 66));
         dobLabelPanel.setPreferredSize(new java.awt.Dimension(165, 37));
         dobLabelPanel.setLayout(null);
 
@@ -565,21 +577,9 @@ public class CustomerView extends javax.swing.JFrame {
         dobLabel.setBounds(0, 0, 165, 42);
 
         dobPanel.add(dobLabelPanel, java.awt.BorderLayout.WEST);
-
-        dobInputPanel.setBackground(new java.awt.Color(64, 33, 100));
+        dobInputPanel.add(datePicker);
+        dobInputPanel.setBackground(new java.awt.Color(38, 19, 66));
         dobInputPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
-
-        year.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        year.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
-        dobInputPanel.add(year);
-
-        month.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        month.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-        dobInputPanel.add(month);
-
-        date.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        date.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" }));
-        dobInputPanel.add(date);
 
         lab_cfname1.setPreferredSize(new java.awt.Dimension(40, 30));
         dobInputPanel.add(lab_cfname1);
@@ -588,10 +588,10 @@ public class CustomerView extends javax.swing.JFrame {
 
         detail.add(dobPanel);
 
-        phonePanel.setBackground(new java.awt.Color(64, 33, 100));
+        phonePanel.setBackground(new java.awt.Color(38, 19, 66));
         phonePanel.setLayout(new java.awt.BorderLayout(20, 20));
 
-        phoneLabelPanel.setBackground(new java.awt.Color(64, 33, 100));
+        phoneLabelPanel.setBackground(new java.awt.Color(38, 19, 66));
         phoneLabelPanel.setPreferredSize(new java.awt.Dimension(165, 37));
         phoneLabelPanel.setLayout(null);
 
@@ -604,12 +604,12 @@ public class CustomerView extends javax.swing.JFrame {
 
         phonePanel.add(phoneLabelPanel, java.awt.BorderLayout.WEST);
 
-        phoneTextPanel.setBackground(new java.awt.Color(64, 33, 100));
+        phoneTextPanel.setBackground(new java.awt.Color(38, 19, 66));
         phoneTextPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         phone.setPreferredSize(new java.awt.Dimension(300, 30));
 
-//        phone.setText(cus.getPhone());
+        phone.setText(customer.getPhone());
         phoneTextPanel.add(phone);
 
         lab_cphone.setPreferredSize(new java.awt.Dimension(40, 30));
@@ -619,10 +619,10 @@ public class CustomerView extends javax.swing.JFrame {
 
         detail.add(phonePanel);
 
-        genrePanel.setBackground(new java.awt.Color(64, 33, 100));
+        genrePanel.setBackground(new java.awt.Color(38, 19, 66));
         genrePanel.setLayout(new java.awt.BorderLayout(20, 20));
 
-        bg_genre.setBackground(new java.awt.Color(64, 33, 100));
+        bg_genre.setBackground(new java.awt.Color(38, 19, 66));
         bg_genre.setPreferredSize(new java.awt.Dimension(165, 37));
         bg_genre.setLayout(null);
 
@@ -635,41 +635,63 @@ public class CustomerView extends javax.swing.JFrame {
 
         genrePanel.add(bg_genre, java.awt.BorderLayout.WEST);
 
-        jPanel22.setBackground(new java.awt.Color(64, 33, 100));
+        jPanel22.setBackground(new java.awt.Color(38, 19, 66));
         jPanel22.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        genre_drama.setBackground(new java.awt.Color(64, 33, 100));
+        genre_drama.setBackground(new java.awt.Color(38, 19, 66));
         genre_drama.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         genre_drama.setForeground(new java.awt.Color(255, 255, 255));
-        genre_drama.setSelected(true);
+        if (customer.getFavouriteGenre().contains("Drama")){
+            genre_drama.setSelected(true);
+        }
         genre_drama.setText("Drama");
         jPanel22.add(genre_drama);
 
-        genre_comedy.setBackground(new java.awt.Color(64, 33, 100));
+        genre_comedy.setBackground(new java.awt.Color(38, 19, 66));
         genre_comedy.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         genre_comedy.setForeground(new java.awt.Color(255, 255, 255));
-        genre_comedy.setSelected(true);
+        if (customer.getFavouriteGenre().contains("Comedy")){
+            genre_comedy.setSelected(true);
+        }
         genre_comedy.setText("Comedy");
         jPanel22.add(genre_comedy);
 
-        genre_action.setBackground(new java.awt.Color(64, 33, 100));
+        genre_action.setBackground(new java.awt.Color(38, 19, 66));
         genre_action.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         genre_action.setForeground(new java.awt.Color(255, 255, 255));
         genre_action.setSelected(true);
         genre_action.setText("Action");
         jPanel22.add(genre_action);
-//        if(cus.getFavouriteGenre().contains("Action"))
-        genre_action.setSelected(true);
+        if(customer.getFavouriteGenre().contains("Action"))
+            genre_action.setSelected(true);
 
         genrePanel.add(jPanel22, java.awt.BorderLayout.CENTER);
 
         detail.add(genrePanel);
 
+        JLabel warning = new JLabel();
+        JPanel insidewarning = new JPanel();
+
+        warningPanel.setBackground(new java.awt.Color(38, 19, 66));
+        warningPanel.setLayout(new java.awt.BorderLayout(20, 20));
+
+        insidewarning.setBackground(new java.awt.Color(38, 19, 66));
+        insidewarning.setLayout(new java.awt.FlowLayout(FlowLayout.CENTER));
+
+        warning.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        warning.setForeground(Color.RED);
+        warning.setHorizontalAlignment(SwingConstants.CENTER);
+        warning.setPreferredSize(new java.awt.Dimension(400, 30));
+        insidewarning.add(warning);
+
+        warningPanel.add(insidewarning, BorderLayout.CENTER);
+
+        detail.add(warningPanel);
+
         mainPanel.add(detail, java.awt.BorderLayout.CENTER);
 
-        footer.setBackground(new java.awt.Color(64, 33, 100));
+        footer.setBackground(new java.awt.Color(38, 19, 66));
         footer.setPreferredSize(new java.awt.Dimension(640, 50));
-
         jBut_Save.setBackground(new java.awt.Color(255, 255, 255));
         jBut_Save.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jBut_Save.setForeground(new java.awt.Color(64, 33, 100));
@@ -680,7 +702,44 @@ public class CustomerView extends javax.swing.JFrame {
         jBut_Save.setPreferredSize(new java.awt.Dimension(100, 29));
         jBut_Save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                jBut_SaveActionPerformed(evt);
+                jBut_SaveActionPerformed(evt);
+            }
+
+            private void jBut_SaveActionPerformed(ActionEvent evt) {
+                String full_name = fullname.getText();
+                String password = String.valueOf(jPasswordField1.getPassword());
+                boolean mode = true;
+                if (password.length() == 0){
+                    mode = false;
+                }
+                String dateofbirth = datePicker.getDateStringOrEmptyString();
+                System.out.println(dateofbirth);
+                String phonenum = phone.getText();
+                String favgenre = "";
+                if (genre_drama.isSelected())
+                    favgenre += genre_drama.getText() + ", ";
+                if (genre_action.isSelected())
+                    favgenre += genre_action.getText() + ", ";
+                if (genre_comedy.isSelected())
+                    favgenre += genre_comedy.getText() + ", ";
+                if (favgenre.length() != 0){
+                    favgenre = favgenre.substring(0, favgenre.length() - 2);
+                }
+                int res = CustomerController.updateACustomer(new Customer(customer.getID(),full_name,dateofbirth,customer.getUsername(),password,phonenum,0,favgenre),mode);
+
+                if (res == -1){
+                    warning.setText("Every field (except Password field) mustn't be empty");
+                    warning.setForeground(Color.RED);
+                } else if (res == -2){
+                    warning.setText("Some fields have too much characters");
+                    warning.setForeground(Color.RED);
+                }else if (res == 0){
+                    warning.setText("Sorry we cannot change your password now");
+                    warning.setForeground(Color.RED);
+                } else {
+                    warning.setText("Updated");
+                    warning.setForeground(Color.GREEN);
+                }
             }
         });
         footer.add(jBut_Save);

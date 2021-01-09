@@ -654,8 +654,4 @@ public class ShowtimeDAO {
     }
         return rs;
     }
-
-    public static void main(String[] args){
-        System.out.println(addShowtimes(10002, 10000, "06:00:00", "2021-1-2", "2021-1-3", true));
-    }
 }

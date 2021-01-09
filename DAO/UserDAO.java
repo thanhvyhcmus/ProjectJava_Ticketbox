@@ -122,7 +122,6 @@ public class UserDAO {
         int rs=0;
         Connection conn=null;
         PreparedStatement stm=null;
-
         try {
             conn = JDBCConnection.getConnection();
             if(mode)
@@ -137,7 +136,7 @@ public class UserDAO {
                 stm.setInt(6, customer.getID());
             }
             else{
-                String sql = "update user set  fullname = ?, dob = ? phone= ?,favouriteGenre = ? where id = ?" ;
+                String sql = "update user set  fullname = ?, dob = ?, phone= ?,favouriteGenre = ? where id = ?" ;
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, customer.getFullname());
                 stm.setString(2, customer.getDoB());
@@ -418,7 +417,6 @@ public class UserDAO {
         int rs=0;
         Connection conn=null;
         PreparedStatement stm=null;
-
         try {
             conn = JDBCConnection.getConnection();
             String sql = "update user set  fullname = ?, dob = ?,username = ?,password = ?, phone= ? where id = ?" ;

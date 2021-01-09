@@ -20,7 +20,7 @@ public class AdminController {
         return DAO.UserDAO.addAnAdmin(admin);
     }
     public static boolean updateACustomer(Customer customer) {
-        return DAO.UserDAO.updateACustomer(customer);
+        return DAO.UserDAO.updateACustomer(customer,false);
     }
     public static boolean updateAnUser(User user) {
         return DAO.UserDAO.updateAnUser(user);
