@@ -177,8 +177,14 @@ public class SignInView extends javax.swing.JFrame {
         wrong_warning.setVisible(false);
         String user = username.getText();
         String pass = String.valueOf(password.getPassword());
+        if (user.length() == 0 || pass.length() == 0){
+            wrong_warning.setText("Please fill in all information.");
+            wrong_warning.setVisible(true);
+            return;
+        }
         int check = LoginController.checkAnAccount(user, pass);
         if (check == 0){
+            wrong_warning.setText("Wrong username or password!");
             wrong_warning.setVisible(true);
         }
         else if (check == 1){

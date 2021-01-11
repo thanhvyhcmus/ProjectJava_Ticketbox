@@ -196,7 +196,7 @@ public class CustomerView extends javax.swing.JFrame {
         dateSettings.setFontValidDate(new Font("Segoe UI", 0, 18));
         LocalDate today = LocalDate.now();
         datePicker = new DatePicker(dateSettings);
-//        dateSettings.setDateRangeLimits(today, today.plusDays(30));
+        dateSettings.setDateRangeLimits(today, today.plusDays(30));
         datePicker.setDateToToday();
         filmPanel.add(datePicker, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 580, -1, -1));
         URL dateImageURL = FullDemo.class.getResource("/images/datepickerbutton1.png");
@@ -778,7 +778,7 @@ public class CustomerView extends javax.swing.JFrame {
         dateSettings.setFontValidDate(new Font("Segoe UI", 0, 18));
         LocalDate today = LocalDate.now();
         datePicker = new DatePicker(dateSettings);
-//        dateSettings.setDateRangeLimits(today, today.plusDays(30));
+        dateSettings.setDateRangeLimits(today, today.plusDays(30));
         datePicker.setDateToToday();
         URL dateImageURL = FullDemo.class.getResource("/images/datepickerbutton1.png");
         Image dateExampleImage = Toolkit.getDefaultToolkit().getImage(dateImageURL);
@@ -1334,6 +1334,10 @@ public class CustomerView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screenSize.width, screenSize.height);
+        this.setMinimumSize(new Dimension(screenSize.width, screenSize.height));
+        this.setResizable(false);
 
         mainpanel = createHomepanel();
         bookingpanel = createBookingPanel();
