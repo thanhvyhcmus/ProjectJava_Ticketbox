@@ -360,6 +360,7 @@ public class ShowtimeDAO {
             for (String d : listDate) { 
                 if(check_existing_showtime(starttime, d,idtheater, conn)==-1)
                 {
+                    sql = "insert into  showtime (idfilm,idtheater,starttime,date) VALUES (?,?,?,?)" ; 
                     stm= conn.prepareStatement(sql);
                     stm.setInt(1, idfilm);
                     stm.setInt(2,idtheater);

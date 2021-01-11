@@ -332,7 +332,7 @@ public class UserDAO {
             stm.setString(1, admin.getFullname());
             stm.setString(2, admin.getDoB());
             stm.setString(3, admin.getUsername());
-            stm.setString(4, admin.getPassword());
+            stm.setString(4, hashPassword(admin.getPassword()));
             stm.setString(5, admin.getPhone());
             stm.setInt(6, 0);
             stm.setString(7, null);
@@ -343,7 +343,11 @@ public class UserDAO {
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
 
+        } catch (NoSuchAlgorithmException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
+        
         if (rs==0)
             return false;
         return true;
@@ -377,7 +381,7 @@ public class UserDAO {
             stm.setString(1, user.getFullname());
             stm.setString(2, user.getDoB());
             stm.setString(3, user.getUsername());
-            stm.setString(4, user.getPassword());
+            stm.setString(4, hashPassword(user.getPassword()));
             stm.setString(5, user.getPhone());
             stm.setInt(6, 0);
             stm.setString(7, null);
@@ -388,7 +392,11 @@ public class UserDAO {
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
 
+        }catch (NoSuchAlgorithmException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
+        
         if (rs==0)
             return false;
         return true;
@@ -509,19 +517,21 @@ public class UserDAO {
             conn=JDBCConnection.getConnection();
             if(type!=0)
             {
-                sql="select * from user where username like ? and isadmin = ?";
+                //sql="select * from user where username like ? and isadmin = ?";
+                sql="select *  from user where match(username,fullname) against (?) and isadmin = ?";
                 stm= conn.prepareStatement(sql);
-                stm.setString(1,"%"+username+"%");
+                stm.setString(1,username);
                 stm.setByte(2,(byte)(type-1));
             }
             else
             {
-                sql = "select * from user where username like ? ";
+                //sql = "select * from user where username like ? ";
+                sql="select *  from user where match(username,fullname) against (?)";
                 stm= conn.prepareStatement(sql);
-                stm.setString(1,"%"+username+"%");
+                stm.setString(1,username);
             }
             res = stm.executeQuery();
-            if(res.next())
+            while(res.next())
             {
                 if(res.getByte("isadmin")==0){
                     System.out.println(0);

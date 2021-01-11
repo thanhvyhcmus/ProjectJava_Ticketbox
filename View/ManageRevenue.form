@@ -752,7 +752,7 @@
                         </Property>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="cb_starttime.addItem(&quot;ALL&quot;);&#xa;for(int x = 8; x&lt;= 22;x+=2){&#xa;            cb_starttime.addItem(Integer.toString(x)+&quot;:00:00&quot;);&#xa;        }"/>
+                        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="cb_starttime.addItem(&quot;ALL&quot;);&#xa;cb_starttime.addItem(&quot;08:00:00&quot;);&#xa;for(int x = 10; x&lt;= 22;x+=2){&#xa;            cb_starttime.addItem(Integer.toString(x)+&quot;:00:00&quot;);&#xa;        }"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>

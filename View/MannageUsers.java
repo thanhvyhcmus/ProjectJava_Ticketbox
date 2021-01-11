@@ -562,6 +562,7 @@ public class MannageUsers extends javax.swing.JFrame {
             }
         ));
         tab.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tab.setAutoscrolls(false);
         tab.setMinimumSize(new java.awt.Dimension(15, 64));
         tab.setPreferredSize(new java.awt.Dimension(350, 350));
         tab.setRowHeight(25);
@@ -770,6 +771,7 @@ public class MannageUsers extends javax.swing.JFrame {
                 System.out.println(nfe);
                 ArrayList<User> lstUsers = AdminController.searchUsers(key,type);
                 deftab.setRowCount(0);
+                System.out.println(lstUsers);
                 for(User s:lstUsers){
                     System.out.println(s.getObject());
                     deftab.addRow(s.getObject());

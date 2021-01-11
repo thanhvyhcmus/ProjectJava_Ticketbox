@@ -88,7 +88,8 @@ public class ManageRevenue extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         cb_starttime = new javax.swing.JComboBox<>();
         cb_starttime.addItem("ALL");
-        for(int x = 8; x<= 22;x+=2){
+        cb_starttime.addItem("08:00:00");
+        for(int x = 10; x<= 22;x+=2){
             cb_starttime.addItem(Integer.toString(x)+":00:00");
         }
         jPanel26 = new javax.swing.JPanel();

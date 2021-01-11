@@ -161,13 +161,13 @@ public class AddShowtimes extends javax.swing.JFrame {
         footer.setBackground(new java.awt.Color(64, 33, 100));
         footer.setPreferredSize(new java.awt.Dimension(640, 50));
 
-        save.setBackground(new java.awt.Color(255, 255, 255));
-        save.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        save.setForeground(new java.awt.Color(64, 33, 100));
         save.setText("Save");
+        save.setBackground(new java.awt.Color(255, 255, 255));
         save.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         save.setBorderPainted(false);
         save.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        save.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        save.setForeground(new java.awt.Color(64, 33, 100));
         save.setPreferredSize(new java.awt.Dimension(100, 29));
         save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,6 +250,7 @@ public class AddShowtimes extends javax.swing.JFrame {
         jPanel27.setBackground(new java.awt.Color(64, 33, 100));
         jPanel27.setLayout(new java.awt.BorderLayout());
 
+        ignore.setSelected(true);
         ignore.setText("Ignore showtimes whose start time is used");
         ignore.setBackground(new java.awt.Color(64, 33, 100));
         ignore.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
